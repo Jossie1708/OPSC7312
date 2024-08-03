@@ -1,1 +1,1 @@
-# OPSC7312
+# OPSC7312 Quadcopter project
