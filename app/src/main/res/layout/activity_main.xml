@@ -5,13 +5,21 @@
     android:id="@+id/main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".MainActivity">
+    android:background="#FFFFFF"
+    android:backgroundTintMode="src_over"
+    tools:context=".MainActivity" >
 
     <Button
-        android:id="@+id/btnTestLogin"
+        android:id="@+id/btnLoginTest"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Login"
-        tools:layout_editor_absoluteX="147dp"
-        tools:layout_editor_absoluteY="244dp" />
+        android:layout_marginStart="138dp"
+        android:layout_marginTop="118dp"
+        android:layout_marginEnd="185dp"
+        android:layout_marginBottom="565dp"
+        android:text="login"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 </androidx.constraintlayout.widget.ConstraintLayout>
