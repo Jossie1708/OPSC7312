@@ -16,7 +16,7 @@ class HomeActivity : AppCompatActivity() {
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom)
             insets
         }
-        val HomeFragment = HomeFragment()
+        val HomeFragment = RegisterFragment()
         val transaction = supportFragmentManager.beginTransaction()
         transaction.replace(R.id.frameLayout, HomeFragment)
         transaction.commit()

@@ -36,7 +36,8 @@ android {
 }
 
 dependencies {
-
+  //  implementation("androidx.biometric:biometric:1.4.0-alpha02")
+// implementation("androidx.biometric:biometric-ktx:1.4.0-alpha02")
     implementation(libs.androidx.core.ktx)
     implementation(libs.androidx.appcompat)
     implementation(libs.material)
