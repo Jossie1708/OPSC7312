@@ -21,7 +21,7 @@ class MainActivity : AppCompatActivity() {
             insets
         }
 
-        var btnLogin = findViewById<Button>(R.id.btnTestLogin)
+        val btnLogin = findViewById<Button>(R.id.btnLoginTest)
 
         btnLogin.setOnClickListener {
             // Handler to post a delayed task
