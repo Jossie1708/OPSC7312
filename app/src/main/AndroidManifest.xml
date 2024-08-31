@@ -16,7 +16,7 @@
             android:name=".HomeActivity"
             android:exported="false" />
         <activity
-            android:name=".fragments.HomeFragment"
+            android:name=".HomeFragment"
             android:exported="false" />
         <activity
             android:name=".MainActivity"
