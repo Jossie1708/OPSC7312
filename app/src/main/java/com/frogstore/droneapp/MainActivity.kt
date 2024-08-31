@@ -1,36 +1,66 @@
 package com.frogstore.droneapp
 
-import android.content.Intent
+import android.os.Build
 import android.os.Bundle
-import android.os.Handler
-import android.os.Looper
-import android.widget.Button
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
+import androidx.fragment.app.Fragment
+import com.google.android.material.tabs.TabLayout
 
 class MainActivity : AppCompatActivity() {
+    private val loginFragment = LoginFragment()
+    private val registerFragment = RegisterFragment()
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
         setContentView(R.layout.activity_main)
+
+        if (android.os.Build.VERSION.SDK_INT >= Build.VERSION_CODES.CUPCAKE)
+        {
+            getWindow().setNavigationBarColor(getResources().getColor(R.color.navBar));
+        }
+        // Handle window insets to avoid overlapping system bars
         ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main)) { v, insets ->
             val systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars())
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom)
             insets
         }
 
-        val btnLogin = findViewById<Button>(R.id.btnLoginTest)
+        // Set initial fragment
+        if (savedInstanceState == null) {
+            supportFragmentManager.beginTransaction()
+                .replace(R.id.frameLayout, loginFragment)
+                .commit()
+        }
 
-        btnLogin.setOnClickListener {
-            // Handler to post a delayed task
-            Handler(Looper.getMainLooper()).postDelayed({
-                val intent = Intent(this,HomeActivity::class.java)
-                startActivity(intent)
-                 finish() // Finish MainActivity to remove it from the back stack
-            }, 2000)
+        // Set up TabLayout and listener
+        val tabBar = findViewById<TabLayout>(R.id.tabLayout)
+        tabBar.addOnTabSelectedListener(object : TabLayout.OnTabSelectedListener {
+            override fun onTabSelected(tab: TabLayout.Tab?) {
+                when (tab?.position) {
+                    0 -> replaceFrag(loginFragment)
+                    1 -> replaceFrag(registerFragment)
+                }
+            }
 
+            override fun onTabUnselected(tab: TabLayout.Tab?) {
+                // Optional: Handle tab unselected if needed
+            }
+
+            override fun onTabReselected(tab: TabLayout.Tab?) {
+                // Optional: Handle tab reselected if needed
+            }
+        })
+    }
+
+    private fun replaceFrag(fragment: Fragment) {
+        if (fragment != null) {
+            val transaction = supportFragmentManager.beginTransaction()
+            transaction.replace(R.id.frameLayout, fragment)
+            transaction.commit()
         }
     }
 }
