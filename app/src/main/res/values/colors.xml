@@ -3,6 +3,6 @@
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
     <color name = "lightGreen">#288D8A</color>
-    <color name = "navBar">#69C5A0</color>
+    <color name = "green">#69C5A0</color>
     <color name = "textColor">#126171</color>
 </resources>

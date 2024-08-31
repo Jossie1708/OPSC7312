@@ -1,8 +1,10 @@
 package com.frogstore.droneapp
 
+import android.os.Build
 import android.os.Bundle
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
+import androidx.core.content.ContextCompat
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
 
@@ -16,10 +18,11 @@ class HomeActivity : AppCompatActivity() {
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom)
             insets
         }
-        /*val HomeFragment = RegisterFragment()
-        val transaction = supportFragmentManager.beginTransaction()
-        transaction.replace(R.id.frameLayout, HomeFragment)
-        transaction.commit()*/
+        if (android.os.Build.VERSION.SDK_INT >= Build.VERSION_CODES.CUPCAKE)
+        {
+            window.statusBarColor = ContextCompat.getColor(this, R.color.green)
+            window.navigationBarColor = ContextCompat.getColor(this, R.color.green)
+        }
 
     }
 }

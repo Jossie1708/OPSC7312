@@ -1,10 +1,14 @@
 package com.frogstore.droneapp
 
+import android.content.Intent
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Button
+import android.widget.TextView
+import android.widget.Toast
 
 class LoginFragment : Fragment() {
 
@@ -14,6 +18,21 @@ class LoginFragment : Fragment() {
     ): View? {
         // Inflate the layout for this fragment
         val layout = inflater.inflate(R.layout.fragment_login, container, false)
+
+        val lblUseFingerprint = layout.findViewById<TextView>(R.id.lblLoginFingerprint)
+        val btnLogin = layout.findViewById<Button>(R.id.btnLogin)
+
+
+        btnLogin.setOnClickListener{
+            // Create an Intent to start HomeActivity
+            val intent = Intent(activity, HomeActivity::class.java)
+            startActivity(intent)
+
+        }
+
+        lblUseFingerprint.setOnClickListener{
+            Toast.makeText(requireContext(), "Fingerprint fragment pops up thank you!", Toast.LENGTH_SHORT).show()
+        }
         // Return the inflated layout
         return layout
 
