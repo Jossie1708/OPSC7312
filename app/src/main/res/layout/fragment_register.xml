@@ -11,95 +11,70 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
-        <Button
-            android:id="@+id/btnRegister"
-            android:layout_width="212dp"
-            android:layout_height="53dp"
-            android:layout_marginTop="80dp"
-            android:text="Register"
+        <EditText
+            android:id="@+id/txtRegConfirm"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:ems="10"
+            android:hint="Confirm Password"
+            android:inputType="text"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.36"
+            app:layout_constraintHorizontal_bias="0.56"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/txtConfirm" />
-
-        <Button
-            android:id="@+id/btnCancel"
-            android:layout_width="212dp"
-            android:layout_height="53dp"
-            android:layout_marginTop="32dp"
-            android:text="Cancel"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.353"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/btnRegister"
-            app:layout_constraintVertical_bias="0.0" />
-
-        <TextView
-            android:id="@+id/txtRegister"
-            android:layout_width="280dp"
-            android:layout_height="54dp"
-            android:text="REGISTER PAGE HERE "
-            android:textSize="24sp"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.419"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.072" />
+            app:layout_constraintTop_toBottomOf="@+id/txtRegPassword" />
 
         <EditText
-            android:id="@+id/txtUsername"
-            android:layout_width="240dp"
-            android:layout_height="48dp"
-            android:layout_marginTop="44dp"
+            android:id="@+id/txtRegEmail"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:ems="10"
+            android:hint="Email"
+            android:inputType="text"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.558"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <EditText
+            android:id="@+id/txtRegUsername"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
             android:ems="10"
             android:hint="Username"
             android:inputType="text"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.373"
+            app:layout_constraintHorizontal_bias="0.56"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/txtRegister" />
+            app:layout_constraintTop_toBottomOf="@+id/txtRegEmail" />
 
         <EditText
-            android:id="@+id/txtEmail"
-            android:layout_width="240dp"
-            android:layout_height="48dp"
-            android:layout_marginTop="28dp"
-            android:ems="10"
-            android:hint="Email"
-            android:inputType="text|textEmailAddress"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.373"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/txtUsername" />
-
-        <EditText
-            android:id="@+id/txtPassword"
-            android:layout_width="235dp"
-            android:layout_height="50dp"
-            android:layout_marginTop="28dp"
+            android:id="@+id/txtRegPassword"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
             android:ems="10"
             android:hint="Password"
-            android:inputType="text|textPassword"
+            android:inputType="text"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.373"
+            app:layout_constraintHorizontal_bias="0.56"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/txtEmail" />
+            app:layout_constraintTop_toBottomOf="@+id/txtRegUsername" />
 
-        <EditText
-            android:id="@+id/txtConfirm"
-            android:layout_width="240dp"
-            android:layout_height="48dp"
+        <Button
+            android:id="@+id/btnRegister"
+            android:layout_width="356dp"
+            android:layout_height="49dp"
             android:layout_marginTop="24dp"
-            android:ems="10"
-            android:hint="Confirm Password"
-            android:inputType="text|textPassword"
+            android:text="Register"
+            app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.373"
+            app:layout_constraintHorizontal_bias="0.67"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/txtPassword" />
-
+            app:layout_constraintTop_toBottomOf="@+id/txtRegConfirm"
+            app:layout_constraintVertical_bias="0.0" />
     </androidx.constraintlayout.widget.ConstraintLayout>
 
 </FrameLayout>
