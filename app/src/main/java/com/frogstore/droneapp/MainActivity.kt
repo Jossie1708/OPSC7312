@@ -4,6 +4,7 @@ import android.os.Build
 import android.os.Bundle
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
+import androidx.core.content.ContextCompat
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
 import androidx.fragment.app.Fragment
@@ -12,6 +13,7 @@ import com.google.android.material.tabs.TabLayout
 class MainActivity : AppCompatActivity() {
     private val loginFragment = LoginFragment()
     private val registerFragment = RegisterFragment()
+    private val fingerprintFragment = FingerprintFragment()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -20,7 +22,8 @@ class MainActivity : AppCompatActivity() {
 
         if (android.os.Build.VERSION.SDK_INT >= Build.VERSION_CODES.CUPCAKE)
         {
-            getWindow().setNavigationBarColor(getResources().getColor(R.color.navBar));
+          //  window.statusBarColor = ContextCompat.getColor(this, R.color.green)
+            window.navigationBarColor = ContextCompat.getColor(this, R.color.green)
         }
         // Handle window insets to avoid overlapping system bars
         ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main)) { v, insets ->
@@ -29,10 +32,12 @@ class MainActivity : AppCompatActivity() {
             insets
         }
 
+
+
         // Set initial fragment
         if (savedInstanceState == null) {
             supportFragmentManager.beginTransaction()
-                .replace(R.id.frameLayout, loginFragment)
+                .replace(R.id.frMain, loginFragment)
                 .commit()
         }
 
@@ -59,7 +64,7 @@ class MainActivity : AppCompatActivity() {
     private fun replaceFrag(fragment: Fragment) {
         if (fragment != null) {
             val transaction = supportFragmentManager.beginTransaction()
-            transaction.replace(R.id.frameLayout, fragment)
+            transaction.replace(R.id.frMain, fragment)
             transaction.commit()
         }
     }
