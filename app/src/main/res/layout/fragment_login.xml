@@ -58,28 +58,6 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/txtLoginEmail" />
 
-        <com.google.android.material.bottomnavigation.BottomNavigationView
-            android:id="@+id/NavBar"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:background="#69C5A0"
-            android:backgroundTintMode="src_in"
-            android:keepScreenOn="true"
-            app:itemIconSize="24dp"
-            app:itemIconTint="@color/textColor"
-            app:itemTextAppearanceActiveBoldEnabled="false"
-            app:itemTextColor="#126171"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.0"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/btnLogin"
-            app:layout_constraintVertical_bias="1.0"
-            app:menu="@menu/menu">
-
-
-        </com.google.android.material.bottomnavigation.BottomNavigationView>
-
         <Button
             android:id="@+id/btnLogin"
             android:layout_width="356dp"
@@ -113,6 +91,34 @@
             app:layout_constraintHorizontal_bias="0.679"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/imgLoginEmail" />
+
+        <com.google.android.material.bottomappbar.BottomAppBar
+            android:id="@+id/bottomAppBar"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_gravity="bottom"
+            android:background="#69C5A0"
+            app:backgroundTint="#69C5A0"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/btnLogin"
+            app:layout_constraintVertical_bias="1.0" />
+
+        <TextView
+            android:id="@+id/lblLoginFingerprint"
+            android:layout_width="155dp"
+            android:layout_height="22dp"
+            android:background="#00FFFFFF"
+            android:drawableStart="@drawable/ic_fingerprint"
+            android:drawableTint="#126171"
+            android:text="  Use fingerprint"
+            android:textColor="#033854"
+            android:textSize="16sp"
+            app:layout_constraintBottom_toBottomOf="@+id/bottomAppBar"
+            app:layout_constraintEnd_toEndOf="@+id/bottomAppBar"
+            app:layout_constraintStart_toStartOf="@+id/bottomAppBar"
+            app:layout_constraintTop_toTopOf="@+id/bottomAppBar" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </FrameLayout>
