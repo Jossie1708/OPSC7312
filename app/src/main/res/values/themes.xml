@@ -7,4 +7,10 @@
     </style>
 
     <style name="Theme.DroneApp" parent="Base.Theme.DroneApp" />
+    <style name="Theme.DroneApp.NoActionBar">
+        <item name="windowActionBar">false</item>
+        <item name="windowNoTitle">true</item>
+    </style>
+    <style name="Theme.DroneApp.AppBarOverlay" parent="ThemeOverlay.AppCompat.Dark.ActionBar" />
+    <style name="Theme.DroneApp.PopupOverlay" parent="ThemeOverlay.AppCompat.Light" />
 </resources>
