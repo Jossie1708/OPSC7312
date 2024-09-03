@@ -10,10 +10,10 @@
 
     <com.google.android.material.bottomnavigation.BottomNavigationView
         android:id="@+id/navBarHome"
-        android:layout_width="435dp"
-        android:layout_height="101dp"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
         android:background="#69C5A0"
-        app:itemIconSize="40dp"
+        app:itemIconSize="30dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
@@ -40,14 +40,13 @@
 
     <FrameLayout
         android:id="@+id/frHome"
-        android:layout_width="417dp"
-        android:layout_height="633dp"
+        android:layout_width="0dp"
+        android:layout_height="573dp"
         android:layout_marginStart="1dp"
         android:layout_marginEnd="1dp"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/bottomAppBar">
+        app:layout_constraintTop_toBottomOf="@+id/topBarHome">
 
     </FrameLayout>
 </androidx.constraintlayout.widget.ConstraintLayout>

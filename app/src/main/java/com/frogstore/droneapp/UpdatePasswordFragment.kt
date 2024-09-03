@@ -6,9 +6,8 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 
-class SettingsFragment : Fragment() {
 
-
+class UpdatePasswordFragment : Fragment() {
 
 
     override fun onCreateView(
@@ -18,11 +17,9 @@ class SettingsFragment : Fragment() {
 
 
         // Inflate the layout for this fragment
-        val layout = inflater.inflate(R.layout.fragment_settings, container, false)
+        val layout = inflater.inflate(R.layout.fragment_update_password, container, false)
         // Return the inflated layout
         return layout
     }
-
-
 
 }
