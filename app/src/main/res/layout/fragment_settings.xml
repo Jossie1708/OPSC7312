@@ -4,6 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="#C5FDD3"
     tools:context=".SettingsFragment">
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -18,21 +19,23 @@
             android:background="#69C5A0"
             app:backgroundTint="#69C5A0"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="1.0"
+            app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
         <Button
             android:id="@+id/btnNoteBack"
             android:layout_width="43dp"
-            android:layout_height="0dp"
-            android:layout_marginTop="16dp"
-            android:background="@color/lightGreen"
-            android:gravity="start"
+            android:layout_height="32dp"
+            android:layout_marginTop="28dp"
+            android:layout_marginRight="15dp"
+            android:background="@android:color/transparent"
+            android:gravity="center"
             android:maxLength="0"
+            android:contentDescription="@string/description_text"
             app:cornerRadius="60dp"
             app:icon="@drawable/left_arrow"
-            app:iconGravity="end"
+            app:iconGravity="textEnd"
             app:iconPadding="8dp"
             app:iconSize="30dp"
             app:iconTint="#FFFFFF"
@@ -61,7 +64,8 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="32dp"
             android:text="Profile"
-            android:textSize="16sp"
+            android:textColor="#126171"
+            android:textSize="20sp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.087"
             app:layout_constraintStart_toStartOf="parent"
@@ -74,8 +78,18 @@
             android:layout_marginEnd="224dp"
             android:text="  Account details"
             android:textSize="16sp"
+            android:textColor="#033854"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toTopOf="@+id/imgSetPerson" />
+
+        <View
+            android:id="@+id/view"
+            style="@style/Divider"
+            android:layout_marginVertical="55dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="@+id/btnSetAccount"></View>
+
 
         <TextView
             android:id="@+id/lblChangePassword"
@@ -85,6 +99,7 @@
             android:layout_marginEnd="212dp"
             android:text="Change Password"
             android:textSize="16sp"
+            android:textColor="#033854"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/lblSecurity" />
 
@@ -96,6 +111,7 @@
             android:layout_marginEnd="252dp"
             android:text="Use touch ID"
             android:textSize="16sp"
+            android:textColor="#033854"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/lblChangePassword" />
 
@@ -103,25 +119,76 @@
             android:id="@+id/lblChangeFingerprintID"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="24dp"
+            android:layout_marginTop="36dp"
             android:layout_marginEnd="192dp"
             android:text="Change fingerprint ID"
+            android:textColor="#033854"
             android:textSize="16sp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/lblUseTouchID" />
+
+        <ImageView
+            android:id="@+id/imageView5"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="40dp"
+            android:src="@drawable/ic_fingerprint"
+            app:layout_constraintEnd_toStartOf="@+id/lblChangeFingerprintID"
+            app:layout_constraintHorizontal_bias="0.847"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/imageView4" />
 
         <TextView
             android:id="@+id/lbUseDarkTheme"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="20dp"
-            android:layout_marginEnd="232dp"
+            android:layout_marginEnd="224dp"
             android:text="Use dark theme"
+            android:textColor="#033854"
             android:textSize="16sp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/lblTheme"
-            app:layout_constraintVertical_bias="0.009" />
+            app:layout_constraintVertical_bias="0.0" />
+
+        <ImageView
+            android:id="@+id/imageView6"
+            android:layout_width="47dp"
+            android:layout_height="48dp"
+            android:layout_marginTop="10dp"
+            android:src="@drawable/theme"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toStartOf="@+id/lbUseDarkTheme"
+            app:layout_constraintHorizontal_bias="0.8"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/lblTheme"
+            app:layout_constraintVertical_bias="0.0" />
+
+        <TextView
+            android:id="@+id/lblTheme"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="56dp"
+            android:text="Theme"
+            android:textColor="#126171"
+            android:textSize="20sp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.068"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/imageView5" />
+
+        <Switch
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="92dp"
+            android:height="30dp"
+            android:background="@drawable/switch_background"
+            android:text=""
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.723"
+            app:layout_constraintStart_toEndOf="@+id/lbUseDarkTheme"
+            app:layout_constraintTop_toBottomOf="@+id/btnSetFingerprint" />
 
         <TextView
             android:id="@+id/lblAfrikaans"
@@ -130,6 +197,7 @@
             android:layout_marginTop="36dp"
             android:text="Afrikaans"
             android:textSize="16sp"
+            android:textColor="#033854"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.192"
             app:layout_constraintStart_toStartOf="parent"
@@ -142,6 +210,7 @@
             android:layout_marginTop="28dp"
             android:text="English"
             android:textSize="16sp"
+            android:textColor="#033854"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.192"
             app:layout_constraintStart_toStartOf="parent"
@@ -153,11 +222,30 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="32dp"
             android:text="Language"
-            android:textSize="16sp"
+            android:textSize="20sp"
+            android:textColor="#126171"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.076"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/lblAccountDetails" />
+
+        <View
+            android:id="@+id/view2"
+            style="@style/Divider"
+            android:layout_marginVertical="40dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="@+id/lblEnglish"></View>
+
+        <View
+            android:id="@+id/view3"
+            style="@style/Divider"
+            android:layout_marginVertical="50dp"
+            android:layout_marginBottom="52dp"
+            app:layout_constraintBottom_toBottomOf="@+id/lblTheme"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toStartOf="parent"></View>
 
         <TextView
             android:id="@+id/lblSecurity"
@@ -165,33 +253,23 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="20dp"
             android:text="Security"
-            android:textSize="16sp"
+            android:textSize="20sp"
+            android:textColor="#126171"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.073"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/lblEnglish" />
-
-        <TextView
-            android:id="@+id/lblTheme"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="32dp"
-            android:text="Theme"
-            android:textSize="16sp"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.071"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/imageView5" />
+            app:layout_constraintTop_toBottomOf="@+id/view2" />
 
         <ImageView
             android:id="@+id/imgSetPerson"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_marginBottom="17dp"
             android:src="@drawable/ic_person"
+            app:layout_constraintBottom_toTopOf="@+id/view"
             app:layout_constraintEnd_toStartOf="@+id/lblAccountDetails"
             app:layout_constraintHorizontal_bias="0.866"
-            app:layout_constraintStart_toStartOf="parent"
-            tools:layout_editor_absoluteY="148dp" />
+            app:layout_constraintStart_toStartOf="parent" />
 
         <ImageView
             android:id="@+id/imgSetLock"
@@ -215,65 +293,63 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/imgSetLock" />
 
-        <ImageView
-            android:id="@+id/imageView5"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="28dp"
-            android:src="@drawable/ic_fingerprint"
-            app:layout_constraintEnd_toStartOf="@+id/lblChangeFingerprintID"
-            app:layout_constraintHorizontal_bias="0.847"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/imageView4" />
-
-        <ImageView
-            android:id="@+id/imageView6"
-            android:layout_width="26dp"
-            android:layout_height="28dp"
-            android:layout_marginTop="16dp"
-            android:src="@drawable/theme"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toStartOf="@+id/lbUseDarkTheme"
-            app:layout_constraintHorizontal_bias="0.86"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/lblTheme"
-            app:layout_constraintVertical_bias="0.04" />
-
         <Button
             android:id="@+id/btnSetAccount"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_width="60dp"
+            android:layout_height="50dp"
+            android:layout_marginTop="56dp"
+            android:background="transparent"
             android:text=">"
-            tools:layout_editor_absoluteX="296dp"
-            tools:layout_editor_absoluteY="133dp" />
+            android:textColor="@color/black"
+            android:textSize="25dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.707"
+            app:layout_constraintStart_toEndOf="@+id/lblAccountDetails"
+            app:layout_constraintTop_toBottomOf="@+id/topBarSettings" />
 
         <Button
             android:id="@+id/btnSetPassword"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_width="60dp"
+            android:layout_height="50dp"
+            android:layout_marginTop="64dp"
+            android:background="transparent"
             android:text=">"
-            tools:layout_editor_absoluteX="296dp"
-            tools:layout_editor_absoluteY="400dp" />
+            android:textColor="@color/black"
+            android:textSize="25dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.682"
+            app:layout_constraintStart_toEndOf="@+id/lblChangePassword"
+            app:layout_constraintTop_toBottomOf="@+id/view2" />
 
         <Button
             android:id="@+id/btnSetFingerprint"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_width="60dp"
+            android:layout_height="50dp"
+            android:layout_marginTop="28dp"
+            android:background="transparent"
             android:text=">"
-            tools:layout_editor_absoluteX="296dp"
-            tools:layout_editor_absoluteY="486dp" />
+            android:textColor="@color/black"
+            android:textSize="25dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.628"
+            app:layout_constraintStart_toEndOf="@+id/lblChangeFingerprintID"
+            app:layout_constraintTop_toBottomOf="@+id/switch1" />
 
         <RadioGroup
+            android:id="@+id/radioGroup"
             android:layout_width="183dp"
             android:layout_height="105dp"
-            tools:layout_editor_absoluteX="249dp"
-            tools:layout_editor_absoluteY="239dp">
+            android:layout_marginTop="49dp"
+            android:layout_marginLeft="270dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/lblAfrikaans"
+            app:layout_constraintTop_toBottomOf="@+id/view">
 
             <RadioButton
                 android:id="@+id/radioButton2"
                 android:layout_width="220dp"
                 android:layout_height="60dp"
-                android:text="RadioButton"
+                android:contentDescription=""
                 tools:layout_editor_absoluteX="266dp"
                 tools:layout_editor_absoluteY="262dp" />
 
@@ -281,23 +357,20 @@
                 android:id="@+id/radioButton"
                 android:layout_width="144dp"
                 android:layout_height="54dp"
-                android:text="RadioButton" />
+                android:contentDescription="" />
         </RadioGroup>
 
         <Switch
             android:id="@+id/switch1"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Switch"
-            tools:layout_editor_absoluteX="290dp"
-            tools:layout_editor_absoluteY="456dp" />
-
-        <Switch
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Switch"
-            tools:layout_editor_absoluteX="290dp"
-            tools:layout_editor_absoluteY="608dp" />
+            android:layout_marginTop="12dp"
+            android:background="@drawable/switch_background"
+            android:text=""
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.762"
+            app:layout_constraintStart_toEndOf="@+id/lblUseTouchID"
+            app:layout_constraintTop_toBottomOf="@+id/btnSetPassword" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </FrameLayout>

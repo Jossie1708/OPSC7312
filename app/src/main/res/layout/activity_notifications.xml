@@ -32,17 +32,19 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="@+id/topBarNotify" />
 
+    <!-- Adjust layout_marginRight currently set at 15dp to desired position -->
     <Button
         android:id="@+id/btnNoteBack"
         android:layout_width="43dp"
         android:layout_height="32dp"
         android:layout_marginTop="28dp"
-        android:background="@color/lightGreen"
-    android:gravity="start"
+        android:background="@android:color/transparent"
+        android:layout_marginRight="15dp"
+    android:gravity="center"
     android:maxLength="0"
     app:cornerRadius="60dp"
     app:icon="@drawable/left_arrow"
-    app:iconGravity="end"
+    app:iconGravity="textEnd"
     app:iconPadding="8dp"
     app:iconSize="30dp"
     app:iconTint="#FFFFFF"
