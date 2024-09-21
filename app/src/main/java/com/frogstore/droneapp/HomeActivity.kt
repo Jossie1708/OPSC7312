@@ -1,7 +1,9 @@
 package com.frogstore.droneapp
 
-import android.os.Build
+import android.Manifest
+import android.content.pm.PackageManager
 import android.os.Bundle
+import android.widget.Toast
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.ContextCompat
@@ -11,7 +13,9 @@ import androidx.fragment.app.Fragment
 import com.google.android.material.bottomnavigation.BottomNavigationView
 
 class HomeActivity : AppCompatActivity() {
-    private val HomeFrag =UpdatePasswordFragment()
+
+    private val homeFrag = HomeFragment()
+    private val galleryFrag = GalleryFragment()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -22,28 +26,25 @@ class HomeActivity : AppCompatActivity() {
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom)
             insets
         }
-        if (android.os.Build.VERSION.SDK_INT >= Build.VERSION_CODES.CUPCAKE)
-        {
-            window.statusBarColor = ContextCompat.getColor(this, R.color.green)
-            window.navigationBarColor = ContextCompat.getColor(this, R.color.green)
-        }
 
-        replaceFrag(HomeFrag)
+
+
         val bottomBar = findViewById<BottomNavigationView>(R.id.navBarHome)
         bottomBar.selectedItemId = R.id.ic_home
         bottomBar.setOnItemSelectedListener {
             when (it.itemId) {
-                R.id.ic_home -> replaceFrag(HomeFrag)
+                R.id.ic_home -> replaceFrag(homeFrag)
+                R.id.ic_gallery -> replaceFrag(galleryFrag)
             }
             true
-
         }
     }
+
+
+
     private fun replaceFrag(fragment: Fragment) {
-        if (fragment != null) {
-            val transaction = supportFragmentManager.beginTransaction()
-            transaction.replace(R.id.frHome, fragment)
-            transaction.commit()
-        }
+        val transaction = supportFragmentManager.beginTransaction()
+        transaction.replace(R.id.frHome, fragment)
+        transaction.commit()
     }
 }
