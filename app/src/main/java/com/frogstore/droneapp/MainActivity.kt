@@ -1,9 +1,13 @@
 package com.frogstore.droneapp
 
+import android.Manifest
+import android.content.pm.PackageManager
 import android.os.Build
 import android.os.Bundle
+import android.widget.Toast
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
+import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
@@ -20,19 +24,16 @@ class MainActivity : AppCompatActivity() {
         enableEdgeToEdge()
         setContentView(R.layout.activity_main)
 
-        if (android.os.Build.VERSION.SDK_INT >= Build.VERSION_CODES.CUPCAKE)
-        {
-          //  window.statusBarColor = ContextCompat.getColor(this, R.color.green)
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.CUPCAKE) {
             window.navigationBarColor = ContextCompat.getColor(this, R.color.green)
         }
+
         // Handle window insets to avoid overlapping system bars
         ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main)) { v, insets ->
             val systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars())
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom)
             insets
         }
-
-
 
         // Set initial fragment
         if (savedInstanceState == null) {
@@ -59,6 +60,8 @@ class MainActivity : AppCompatActivity() {
                 // Optional: Handle tab reselected if needed
             }
         })
+
+
     }
 
     private fun replaceFrag(fragment: Fragment) {
