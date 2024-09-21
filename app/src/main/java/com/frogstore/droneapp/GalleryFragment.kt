@@ -34,15 +34,6 @@ class GalleryFragment : Fragment() {
     ): View? {
         val layout = inflater.inflate(R.layout.fragment_gallery, container, false)
 
-        // Request permissions
-        if (ContextCompat.checkSelfPermission(requireContext(), Manifest.permission.READ_MEDIA_IMAGES)
-            != PackageManager.PERMISSION_GRANTED) {
-            ActivityCompat.requestPermissions(
-                requireActivity(),
-                arrayOf(Manifest.permission.READ_MEDIA_IMAGES),
-                1 // Request code
-            )
-        }
 
         recyclerView = layout.findViewById(R.id.recyclerView)
         layoutManager = GridLayoutManager(requireContext(), 2)
@@ -83,9 +74,6 @@ class GalleryFragment : Fragment() {
             Toast.makeText(requireContext(), "Folder not found", Toast.LENGTH_SHORT).show()
         }
     }
-
-
-
 
     override fun onRequestPermissionsResult(
         requestCode: Int,
