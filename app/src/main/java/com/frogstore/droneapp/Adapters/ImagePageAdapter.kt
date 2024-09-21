@@ -1,4 +1,4 @@
-package com.frogstore.droneapp
+package com.frogstore.droneapp.Adapters
 
 import android.content.Context
 import android.view.LayoutInflater
@@ -7,6 +7,7 @@ import android.view.ViewGroup
 import android.widget.ImageView
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
+import com.frogstore.droneapp.R
 
 class ImagePageAdapter(private val context: Context, private val images: List<String>) :
     RecyclerView.Adapter<ImagePageAdapter.ImageViewHolder>() {

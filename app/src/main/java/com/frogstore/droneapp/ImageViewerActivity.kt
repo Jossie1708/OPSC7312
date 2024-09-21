@@ -3,6 +3,7 @@ package com.frogstore.droneapp
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import androidx.viewpager2.widget.ViewPager2
+import com.frogstore.droneapp.Adapters.ImageAdapter
 
 class ImageViewerActivity : AppCompatActivity() {
     private lateinit var viewPager: ViewPager2

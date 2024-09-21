@@ -1,10 +1,11 @@
-package com.frogstore.droneapp
+package com.frogstore.droneapp.Fragments
 
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import com.frogstore.droneapp.R
 
 
 class AccountDetailsFragment : Fragment() {

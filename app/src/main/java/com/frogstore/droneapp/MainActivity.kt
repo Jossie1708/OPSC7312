@@ -1,17 +1,16 @@
 package com.frogstore.droneapp
 
-import android.Manifest
-import android.content.pm.PackageManager
 import android.os.Build
 import android.os.Bundle
-import android.widget.Toast
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
-import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
 import androidx.fragment.app.Fragment
+import com.frogstore.droneapp.Fragments.FingerprintFragment
+import com.frogstore.droneapp.Fragments.LoginFragment
+import com.frogstore.droneapp.Fragments.RegisterFragment
 import com.google.android.material.tabs.TabLayout
 
 class MainActivity : AppCompatActivity() {
