@@ -15,7 +15,7 @@ class ImageAdapter(
 ) : RecyclerView.Adapter<ImageAdapter.ViewHolder>() {
 
     inner class ViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
-        val imageView: ImageView = itemView.findViewById(R.id.imageView)
+        val imageView: ImageView = itemView.findViewById(R.id.imageViewGallery)
 
         init {
             itemView.setOnClickListener {

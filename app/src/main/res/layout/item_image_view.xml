@@ -5,7 +5,7 @@
     android:layout_margin="4dp">
 
     <ImageView
-        android:id="@+id/imageView"
+        android:id="@+id/imageViewGalleryClick"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:scaleType="fitCenter"

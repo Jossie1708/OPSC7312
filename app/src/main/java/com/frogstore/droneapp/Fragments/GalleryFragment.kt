@@ -44,7 +44,7 @@ class GalleryFragment : Fragment() {
             )
         }
 
-        recyclerView = layout.findViewById(R.id.recyclerView)
+        recyclerView = layout.findViewById(R.id.recyclerViewGallery)
         layoutManager = GridLayoutManager(requireContext(), 3)
         recyclerView.layoutManager = layoutManager
 
