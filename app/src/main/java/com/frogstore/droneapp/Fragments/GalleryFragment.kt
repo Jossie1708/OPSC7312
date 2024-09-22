@@ -1,6 +1,7 @@
-package com.frogstore.droneapp.Fragments
+package com.frogstore.droneapp
 
 
+import android.Manifest
 import android.content.Intent
 import android.content.pm.PackageManager
 import android.os.Bundle
@@ -8,14 +9,16 @@ import android.os.storage.StorageManager
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Button
 import android.widget.Toast
 
+import androidx.appcompat.app.AppCompatActivity
+import androidx.core.app.ActivityCompat
+import androidx.core.content.ContextCompat
+import androidx.core.content.ContextCompat.getSystemService
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.RecyclerView
-import com.frogstore.droneapp.Adapters.ImageAdapter
-import com.frogstore.droneapp.ImageViewerActivity
-import com.frogstore.droneapp.R
 import java.io.File
 
 class GalleryFragment : Fragment() {
@@ -31,9 +34,18 @@ class GalleryFragment : Fragment() {
     ): View? {
         val layout = inflater.inflate(R.layout.fragment_gallery, container, false)
 
+        // Request permissions
+        if (ContextCompat.checkSelfPermission(requireContext(), Manifest.permission.READ_MEDIA_IMAGES)
+            != PackageManager.PERMISSION_GRANTED) {
+            ActivityCompat.requestPermissions(
+                requireActivity(),
+                arrayOf(Manifest.permission.READ_MEDIA_IMAGES),
+                1 // Request code
+            )
+        }
 
         recyclerView = layout.findViewById(R.id.recyclerView)
-        layoutManager = GridLayoutManager(requireContext(), 2)
+        layoutManager = GridLayoutManager(requireContext(), 3)
         recyclerView.layoutManager = layoutManager
 
         loadImagesFromFolder()
@@ -71,24 +83,4 @@ class GalleryFragment : Fragment() {
             Toast.makeText(requireContext(), "Folder not found", Toast.LENGTH_SHORT).show()
         }
     }
-
-    override fun onRequestPermissionsResult(
-        requestCode: Int,
-        permissions: Array<out String>,
-        grantResults: IntArray
-    ) {
-        super.onRequestPermissionsResult(requestCode, permissions, grantResults)
-        if (requestCode == 1) {
-            if (grantResults.isNotEmpty() && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
-                // Permission granted
-                loadImagesFromFolder() // Load images if permission granted
-            } else {
-                Toast.makeText(requireContext(), "Permission denied", Toast.LENGTH_SHORT).show()
-            }
-        }
-    }
-
-
-
-
 }
