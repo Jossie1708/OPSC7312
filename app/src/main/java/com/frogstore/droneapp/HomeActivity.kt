@@ -2,14 +2,16 @@ package com.frogstore.droneapp
 
 import android.Manifest
 import android.content.pm.PackageManager
+import android.os.Build
 import android.os.Bundle
-import android.widget.Toast
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
+import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
 import androidx.fragment.app.Fragment
+import com.frogstore.droneapp.Fragments.HomeFragment
 import com.google.android.material.bottomnavigation.BottomNavigationView
 
 class HomeActivity : AppCompatActivity() {
@@ -28,6 +30,20 @@ class HomeActivity : AppCompatActivity() {
         }
 
 
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.CUPCAKE) {
+            window.navigationBarColor = ContextCompat.getColor(this, R.color.green)
+            window.statusBarColor = ContextCompat.getColor(this, R.color.green)
+        }
+
+        // Request permissions
+        if (ContextCompat.checkSelfPermission(this, Manifest.permission.READ_MEDIA_IMAGES)
+            != PackageManager.PERMISSION_GRANTED) {
+            ActivityCompat.requestPermissions(
+                this,
+                arrayOf(Manifest.permission.READ_MEDIA_IMAGES),
+                1 // Request code
+            )
+        }
 
         val bottomBar = findViewById<BottomNavigationView>(R.id.navBarHome)
         bottomBar.selectedItemId = R.id.ic_home
@@ -39,8 +55,6 @@ class HomeActivity : AppCompatActivity() {
             true
         }
     }
-
-
 
     private fun replaceFrag(fragment: Fragment) {
         val transaction = supportFragmentManager.beginTransaction()

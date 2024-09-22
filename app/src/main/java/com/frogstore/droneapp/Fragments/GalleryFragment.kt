@@ -45,7 +45,7 @@ class GalleryFragment : Fragment() {
         }
 
         recyclerView = layout.findViewById(R.id.recyclerView)
-        layoutManager = GridLayoutManager(requireContext(), 2)
+        layoutManager = GridLayoutManager(requireContext(), 3)
         recyclerView.layoutManager = layoutManager
 
         loadImagesFromFolder()
@@ -83,27 +83,4 @@ class GalleryFragment : Fragment() {
             Toast.makeText(requireContext(), "Folder not found", Toast.LENGTH_SHORT).show()
         }
     }
-
-
-
-
-    override fun onRequestPermissionsResult(
-        requestCode: Int,
-        permissions: Array<out String>,
-        grantResults: IntArray
-    ) {
-        super.onRequestPermissionsResult(requestCode, permissions, grantResults)
-        if (requestCode == 1) {
-            if (grantResults.isNotEmpty() && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
-                // Permission granted
-                loadImagesFromFolder() // Load images if permission granted
-            } else {
-                Toast.makeText(requireContext(), "Permission denied", Toast.LENGTH_SHORT).show()
-            }
-        }
-    }
-
-
-
-
 }

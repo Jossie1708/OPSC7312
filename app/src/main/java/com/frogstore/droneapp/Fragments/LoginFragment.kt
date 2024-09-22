@@ -1,4 +1,4 @@
-package com.frogstore.droneapp
+package com.frogstore.droneapp.Fragments
 
 import android.content.Intent
 import android.os.Bundle
@@ -9,6 +9,8 @@ import android.view.ViewGroup
 import android.widget.Button
 import android.widget.TextView
 import android.widget.Toast
+import com.frogstore.droneapp.HomeActivity
+import com.frogstore.droneapp.R
 
 class LoginFragment : Fragment() {
 
