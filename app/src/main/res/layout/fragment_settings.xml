@@ -11,65 +11,17 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
-        <com.google.android.material.bottomappbar.BottomAppBar
-            android:id="@+id/topBarSettings"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_gravity="bottom"
-            android:background="#69C5A0"
-            app:backgroundTint="#69C5A0"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.0"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
-
-        <Button
-            android:id="@+id/btnNoteBack"
-            android:layout_width="43dp"
-            android:layout_height="32dp"
-            android:layout_marginTop="28dp"
-            android:layout_marginRight="15dp"
-
-            android:gravity="center"
-            android:maxLength="0"
-            android:contentDescription=""
-            app:cornerRadius="60dp"
-            app:icon="@drawable/left_arrow"
-            app:iconGravity="textEnd"
-            app:iconPadding="8dp"
-            app:iconSize="30dp"
-            app:iconTint="#FFFFFF"
-            app:layout_constraintBottom_toBottomOf="@+id/topBarSettings"
-            app:layout_constraintEnd_toStartOf="@+id/txtSetHeading"
-            app:layout_constraintHorizontal_bias="0.524"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.0" />
-
-        <TextView
-            android:id="@+id/txtSetHeading"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="16dp"
-            android:layout_marginEnd="144dp"
-            android:text="Settings"
-            android:textColor="#FFFFFF"
-            android:textSize="34sp"
-            app:layout_constraintEnd_toEndOf="@+id/topBarSettings"
-            app:layout_constraintTop_toTopOf="parent" />
-
         <TextView
             android:id="@+id/lblProfile"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="32dp"
             android:text="Profile"
             android:textColor="#126171"
             android:textSize="20sp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.087"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/topBarSettings" />
+            tools:layout_editor_absoluteY="112dp" />
 
         <TextView
             android:id="@+id/lblAccountDetails"
@@ -77,8 +29,8 @@
             android:layout_height="wrap_content"
             android:layout_marginEnd="224dp"
             android:text="  Account details"
-            android:textSize="16sp"
             android:textColor="#033854"
+            android:textSize="16sp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toTopOf="@+id/imgSetPerson" />
 
@@ -98,8 +50,8 @@
             android:layout_marginTop="36dp"
             android:layout_marginEnd="212dp"
             android:text="Change Password"
-            android:textSize="16sp"
             android:textColor="#033854"
+            android:textSize="16sp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/lblSecurity" />
 
@@ -110,8 +62,8 @@
             android:layout_marginTop="32dp"
             android:layout_marginEnd="252dp"
             android:text="Use touch ID"
-            android:textSize="16sp"
             android:textColor="#033854"
+            android:textSize="16sp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/lblChangePassword" />
 
@@ -196,8 +148,8 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="36dp"
             android:text="Afrikaans"
-            android:textSize="16sp"
             android:textColor="#033854"
+            android:textSize="16sp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.192"
             app:layout_constraintStart_toStartOf="parent"
@@ -209,8 +161,8 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="28dp"
             android:text="English"
-            android:textSize="16sp"
             android:textColor="#033854"
+            android:textSize="16sp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.192"
             app:layout_constraintStart_toStartOf="parent"
@@ -222,8 +174,8 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="32dp"
             android:text="Language"
-            android:textSize="20sp"
             android:textColor="#126171"
+            android:textSize="20sp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.076"
             app:layout_constraintStart_toStartOf="parent"
@@ -253,8 +205,8 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="20dp"
             android:text="Security"
-            android:textSize="20sp"
             android:textColor="#126171"
+            android:textSize="20sp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.073"
             app:layout_constraintStart_toStartOf="parent"
@@ -297,7 +249,6 @@
             android:id="@+id/btnSetAccount"
             android:layout_width="60dp"
             android:layout_height="50dp"
-            android:layout_marginTop="56dp"
 
             android:text=">"
             android:textColor="@color/black"
@@ -305,7 +256,7 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.707"
             app:layout_constraintStart_toEndOf="@+id/lblAccountDetails"
-            app:layout_constraintTop_toBottomOf="@+id/topBarSettings" />
+            tools:layout_editor_absoluteY="136dp" />
 
         <Button
             android:id="@+id/btnSetPassword"
@@ -339,8 +290,8 @@
             android:id="@+id/radioGroup"
             android:layout_width="183dp"
             android:layout_height="105dp"
-            android:layout_marginTop="49dp"
             android:layout_marginLeft="270dp"
+            android:layout_marginTop="49dp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toEndOf="@+id/lblAfrikaans"
             app:layout_constraintTop_toBottomOf="@+id/view">

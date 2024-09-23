@@ -11,6 +11,7 @@ import android.widget.TextView
 import android.widget.Toast
 import com.frogstore.droneapp.HomeActivity
 import com.frogstore.droneapp.R
+import com.frogstore.droneapp.SideMenuNavBarActivity
 
 class LoginFragment : Fragment() {
 
@@ -27,8 +28,10 @@ class LoginFragment : Fragment() {
 
         btnLogin.setOnClickListener{
             // Create an Intent to start HomeActivity
-            val intent = Intent(activity, HomeActivity::class.java)
+            val intent = Intent(activity, SideMenuNavBarActivity::class.java)
             startActivity(intent)
+            // Finish the current activity
+            requireActivity().finish()
 
         }
 

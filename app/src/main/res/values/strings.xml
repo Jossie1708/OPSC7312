@@ -1,6 +1,10 @@
 <resources>
     <string name="app_name">DroneApp</string>
-
+    <string name="menu_settings">Settings</string>
+    <string name="menu_logout">Logout</string>
+    <string name="menu_controller">Controller</string>
+    <string name="menu_notification">Notification</string>
+    <string name="menu_location">Location</string>
     <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="title_activity_home_menu">HomeMenuActivity</string>
     <string name="navigation_drawer_open">Open navigation drawer</string>
@@ -10,6 +14,8 @@
     <string name="nav_header_desc">Navigation header</string>
     <string name="action_settings">Settings</string>
     <string name="large_text">
+
+
         "Material is the metaphor.\n\n"
 
         "A material metaphor is the unifying theory of a rationalized space and a system of motion."
@@ -98,5 +104,11 @@
         "For example, position the FAB to one side of stream of a cards so the FAB won’t interfere "
         "when a user tries to pick up one of cards.\n\n"
     </string>
+    <string name="title_activity_side_menu_nav_bar">SideMenuNavBarActivity</string>
+
+    <string name="menu_home">Home</string>
+    <string name="menu_gallery">Gallery</string>
+    <string name="menu_slideshow">Slideshow</string>
+
 
 </resources>
