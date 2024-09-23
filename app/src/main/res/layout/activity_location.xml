@@ -7,14 +7,44 @@
     android:layout_height="match_parent"
     tools:context=".LocationActivity">
 
-    <FrameLayout
-        android:id="@+id/frLocation"
+    <com.google.android.material.bottomnavigation.BottomNavigationView
+        android:id="@+id/navBarLocation"
         android:layout_width="0dp"
-        android:layout_height="0dp"
+        android:layout_height="wrap_content"
+        android:background="#69C5A0"
+        app:itemIconSize="30dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent">
+        app:menu="@menu/location"
+        app:navigationIconTint="#94E1B4">
+
+
+    </com.google.android.material.bottomnavigation.BottomNavigationView>
+
+    <com.google.android.material.bottomappbar.BottomAppBar
+        android:id="@+id/topBarLocation"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_gravity="bottom"
+        android:background="#69C5A0"
+        app:backgroundTint="#69C5A0"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <FrameLayout
+        android:id="@+id/frLocation"
+        android:layout_width="411dp"
+        android:layout_height="569dp"
+        android:layout_marginTop="3dp"
+        android:layout_marginBottom="3dp"
+        app:layout_constraintBottom_toTopOf="@+id/navBarLocation"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/topBarLocation">
 
     </FrameLayout>
 </androidx.constraintlayout.widget.ConstraintLayout>
