@@ -1,7 +1,8 @@
 plugins {
     alias(libs.plugins.android.application)
     alias(libs.plugins.jetbrains.kotlin.android)
-    id("kotlin-kapt") // Apply Kotlin KAPT plugin here
+    id("kotlin-kapt")
+    alias(libs.plugins.google.android.libraries.mapsplatform.secrets.gradle.plugin) // Apply Kotlin KAPT plugin here
 }
 
 android {
@@ -44,6 +45,7 @@ dependencies {
 // implementation("androidx.biometric:biometric-ktx:1.4.0-alpha02")
 
     implementation("com.github.bumptech.glide:glide:4.15.1")
+    implementation(libs.play.services.maps)
     kapt("com.github.bumptech.glide:compiler:4.15.1") // Add this for Glide annotation processor
 
 
