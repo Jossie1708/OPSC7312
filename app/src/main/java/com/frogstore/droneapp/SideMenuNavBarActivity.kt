@@ -1,5 +1,7 @@
 package com.frogstore.droneapp
 
+import android.Manifest
+import android.content.pm.PackageManager
 import android.os.Build
 import android.os.Bundle
 import android.view.Menu
@@ -11,6 +13,7 @@ import androidx.navigation.ui.setupActionBarWithNavController
 import androidx.navigation.ui.setupWithNavController
 import androidx.drawerlayout.widget.DrawerLayout
 import androidx.appcompat.app.AppCompatActivity
+import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
 import com.frogstore.droneapp.databinding.ActivitySideMenuNavBarBinding
 
@@ -25,6 +28,27 @@ class SideMenuNavBarActivity : AppCompatActivity() {
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.CUPCAKE) {
             window.navigationBarColor = ContextCompat.getColor(this, R.color.toolsbarColor)
             window.statusBarColor = ContextCompat.getColor(this, R.color.toolsbarColor)
+        }
+
+        // Request permissions gallery
+        if (ContextCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION)
+            != PackageManager.PERMISSION_GRANTED) {
+            ActivityCompat.requestPermissions(
+                this,
+                arrayOf(Manifest.permission.ACCESS_FINE_LOCATION,
+                      Manifest.permission.ACCESS_COARSE_LOCATION),
+                1 // Request code
+            )
+        }
+
+        // Request permissions location
+        if (ContextCompat.checkSelfPermission(this, Manifest.permission.READ_MEDIA_IMAGES)
+            != PackageManager.PERMISSION_GRANTED) {
+            ActivityCompat.requestPermissions(
+                this,
+                arrayOf(Manifest.permission.READ_MEDIA_IMAGES),
+                1 // Request code
+            )
         }
 
         binding = ActivitySideMenuNavBarBinding.inflate(layoutInflater)

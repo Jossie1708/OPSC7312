@@ -34,15 +34,6 @@ class GalleryFragment : Fragment() {
     ): View? {
         val layout = inflater.inflate(R.layout.fragment_gallery, container, false)
 
-        // Request permissions
-        if (ContextCompat.checkSelfPermission(requireContext(), Manifest.permission.READ_MEDIA_IMAGES)
-            != PackageManager.PERMISSION_GRANTED) {
-            ActivityCompat.requestPermissions(
-                requireActivity(),
-                arrayOf(Manifest.permission.READ_MEDIA_IMAGES),
-                1 // Request code
-            )
-        }
 
         recyclerView = layout.findViewById(R.id.recyclerViewGallery)
         layoutManager = GridLayoutManager(requireContext(), 3)

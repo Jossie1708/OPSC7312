@@ -1,7 +1,9 @@
 package com.frogstore.droneapp
 
+import android.os.Build
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
+import androidx.core.content.ContextCompat
 import androidx.viewpager2.widget.ViewPager2
 import com.frogstore.droneapp.Adapters.ImageViewerAdapter
 
@@ -13,6 +15,10 @@ class ImageViewerActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_image_viewer)
 
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.CUPCAKE) {
+            window.navigationBarColor = ContextCompat.getColor(this, R.color.toolsbarColor)
+            window.statusBarColor = ContextCompat.getColor(this, R.color.toolsbarColor)
+        }
         viewPager = findViewById(R.id.viewPager)
 
         val imagePaths = intent.getStringArrayListExtra("imagePaths") ?: arrayListOf()
