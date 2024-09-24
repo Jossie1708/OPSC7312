@@ -1,5 +1,6 @@
 package com.frogstore.droneapp
 
+import android.os.Build
 import android.os.Bundle
 import android.view.Menu
 import com.google.android.material.navigation.NavigationView
@@ -10,6 +11,7 @@ import androidx.navigation.ui.setupActionBarWithNavController
 import androidx.navigation.ui.setupWithNavController
 import androidx.drawerlayout.widget.DrawerLayout
 import androidx.appcompat.app.AppCompatActivity
+import androidx.core.content.ContextCompat
 import com.frogstore.droneapp.databinding.ActivitySideMenuNavBarBinding
 
 class SideMenuNavBarActivity : AppCompatActivity() {
@@ -19,6 +21,11 @@ class SideMenuNavBarActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.CUPCAKE) {
+            window.navigationBarColor = ContextCompat.getColor(this, R.color.toolsbarColor)
+            window.statusBarColor = ContextCompat.getColor(this, R.color.toolsbarColor)
+        }
 
         binding = ActivitySideMenuNavBarBinding.inflate(layoutInflater)
         setContentView(binding.root)
