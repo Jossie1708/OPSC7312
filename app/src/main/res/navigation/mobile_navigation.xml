@@ -28,10 +28,11 @@
         android:label="@string/menu_notification"
         tools:layout="@layout/fragment_notification" />
 
-    <activity
+    <fragment
         android:id="@+id/nav_location"
-        android:name="com.frogstore.droneapp.LocationActivity"
-        android:label="@string/menu_location"
-        tools:layout="@layout/activity_location" />
+        android:name="com.frogstore.droneapp.Fragments.MapsFragment"
+        android:label="@string/menu_maps"
+        tools:layout="@layout/fragment_maps"
+        />
 
 </navigation>

@@ -17,7 +17,7 @@ class HomeFragment : Fragment() {
         // Inflate the layout for this fragment
         val layout = inflater.inflate(R.layout.fragment_home, container, false)
 
-        val btn = layout.findViewById<Button>(R.id.btnTestingNotifications)
+
 
 
         // Return the inflated layout
