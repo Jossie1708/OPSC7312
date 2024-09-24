@@ -35,4 +35,11 @@
         tools:layout="@layout/fragment_maps"
         />
 
+    <fragment
+        android:id="@+id/nav_controller"
+        android:name="com.frogstore.droneapp.Fragments.ControllerFragment"
+        android:label="@string/menu_controller"
+        tools:layout="@layout/fragment_controller"
+        />
+
 </navigation>
