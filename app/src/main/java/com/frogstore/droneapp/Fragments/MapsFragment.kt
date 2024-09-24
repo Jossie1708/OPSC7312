@@ -33,11 +33,6 @@ class MapsFragment : Fragment(),
         googleMap.setOnMyLocationButtonClickListener(this)
         googleMap.setOnMyLocationClickListener(this)
         enableMyLocation()
-
-        // Add a marker in Sydney and move the camera
-        val sydney = LatLng(-34.0, 151.0)
-        googleMap.addMarker(MarkerOptions().position(sydney).title("Marker in Sydney"))
-        googleMap.moveCamera(CameraUpdateFactory.newLatLng(sydney))
     }
 
     override fun onCreateView(
@@ -99,7 +94,6 @@ class MapsFragment : Fragment(),
     }
 
     override fun onMyLocationButtonClick(): Boolean {
-        Toast.makeText(context, "MyLocation button clicked", Toast.LENGTH_SHORT).show()
         return false // Return false to allow default behavior (camera moves to user's location)
     }
 
