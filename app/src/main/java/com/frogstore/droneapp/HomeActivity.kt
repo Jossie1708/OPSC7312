@@ -30,10 +30,7 @@ class HomeActivity : AppCompatActivity() {
         }
 
 
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.CUPCAKE) {
-            window.navigationBarColor = ContextCompat.getColor(this, R.color.green)
-            window.statusBarColor = ContextCompat.getColor(this, R.color.green)
-        }
+
 
         // Request permissions
         if (ContextCompat.checkSelfPermission(this, Manifest.permission.READ_MEDIA_IMAGES)
