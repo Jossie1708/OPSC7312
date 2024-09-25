@@ -20,12 +20,7 @@ class HomeFragment : Fragment() {
     ): View? {
 
 
-        // Inflate the layout for this fragment
-        val layout = inflater.inflate(R.layout.fragment_home, container, false)
-
-
-        // Return the inflated layout
-        return layout
+        return inflater.inflate(R.layout.fragment_home, container, false)
 
 
     }

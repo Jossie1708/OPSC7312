@@ -12,10 +12,12 @@ import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.frogstore.droneapp.R
 
-class NotificationsAdapter(private val context: Context,
-                           private val notificationList: List<String>,
-                           private val imageList: List<String>) :
-    RecyclerView.Adapter<NotificationsAdapter.ViewHolder>(){
+class NotificationsAdapter(
+    private val context: Context,
+    private val notificationList: List<String>,
+    private val imageList: List<String> = emptyList(), // Default to empty if not provided
+    private val itemClickListener: ((String) -> Unit)? = null // Optional click listener
+) : RecyclerView.Adapter<NotificationsAdapter.ViewHolder>() {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
         val view = LayoutInflater.from(context).inflate(R.layout.item_notification, parent, false)
@@ -23,16 +25,21 @@ class NotificationsAdapter(private val context: Context,
     }
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
-        val item = notificationList.get(position)
-        val img = imageList.get(position)
-
+        val item = notificationList[position]
         holder.itemNotification.text = item
         holder.card.setCardBackgroundColor(ContextCompat.getColor(context, R.color.white))
 
-        // Load the image into the ImageView
-        Glide.with(context)
-            .load(img) // Replace this with the appropriate image source
-            .into(holder.imageViewNotification) // Use the correct reference for your ImageView
+        // Load the image into the ImageView if available
+        if (position < imageList.size) {
+            Glide.with(context)
+                .load(imageList[position])
+                .into(holder.imageViewNotification)
+        }
+
+        // Set click listener if provided
+        holder.itemView.setOnClickListener {
+            itemClickListener?.invoke(item)
+        }
     }
 
     override fun getItemCount(): Int {
@@ -40,11 +47,8 @@ class NotificationsAdapter(private val context: Context,
     }
 
     class ViewHolder(view: View) : RecyclerView.ViewHolder(view) {
-        // Use findViewById to reference the TextView and CardView
         val itemNotification: TextView = view.findViewById(R.id.txtItem_notification)
         val card: CardView = view.findViewById(R.id.cardNotification)
-        val imageViewNotification: ImageView = view.findViewById(R.id.imageViewNotification) // Add this line
+        val imageViewNotification: ImageView = view.findViewById(R.id.imageViewNotification)
     }
-
-    }
-
+}
