@@ -16,7 +16,16 @@
             android:layout_width="match_parent"
             android:layout_height="?attr/actionBarSize"
             android:background="@color/toolsbarColor"
-            app:popupTheme="@style/Theme.DroneApp.PopupOverlay" />
+            app:popupTheme="@style/Theme.DroneApp.PopupOverlay" >
+
+        <ImageButton
+            android:id="@+id/notificationIcon"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/ic_notification"
+            android:contentDescription="@string/menu_notification"
+            android:background="?attr/selectableItemBackgroundBorderless" />
+        </androidx.appcompat.widget.Toolbar>
 
     </com.google.android.material.appbar.AppBarLayout>
 
