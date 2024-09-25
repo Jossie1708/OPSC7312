@@ -8,9 +8,11 @@ import android.os.Bundle
 import android.os.storage.StorageManager
 import android.view.LayoutInflater
 import android.view.Menu
+import android.view.View
 import android.widget.ImageButton
 import android.widget.LinearLayout
 import android.widget.PopupWindow
+import android.widget.TextView
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.cardview.widget.CardView
@@ -57,7 +59,8 @@ class SideMenuNavBarActivity : AppCompatActivity() {
         val navController = findNavController(R.id.nav_host_fragment_content_side_menu_nav_bar)
 
         appBarConfiguration = AppBarConfiguration(
-            setOf(R.id.nav_home, R.id.nav_gallery, R.id.nav_location,R.id.nav_controller,R.id.nav_settings), drawerLayout
+            setOf(R.id.nav_home, R.id.nav_gallery, R.id.nav_location, R.id.nav_controller, R.id.nav_settings),
+            drawerLayout
         )
         setupActionBarWithNavController(navController, appBarConfiguration)
         navView.setupWithNavController(navController)
@@ -79,6 +82,9 @@ class SideMenuNavBarActivity : AppCompatActivity() {
                 popupWindow.showAsDropDown(notificationIcon) // Show below the icon
             }
         }
+
+        // Update the UI based on notifications
+        updateNotificationUI()
     }
 
     private fun setupPopupWindow() {
@@ -127,11 +133,40 @@ class SideMenuNavBarActivity : AppCompatActivity() {
         }
     }
 
-    fun clearNotifications() {
-        notifications.clear()
-        popupWindow.contentView.findViewById<RecyclerView>(R.id.recyclerViewNotifications).adapter?.notifyDataSetChanged()
+    private fun updateNotificationUI() {
+        val recyclerView: RecyclerView = popupWindow.contentView.findViewById(R.id.recyclerViewNotifications)
+        val noNotificationsMessage: TextView = popupWindow.contentView.findViewById(R.id.noNotificationsMessage)
+        val notificationsTitle: TextView = popupWindow.contentView.findViewById(R.id.notificationsTitle)
+        val lineBreak: View = popupWindow.contentView.findViewById(R.id.lineBreak)
+        val clearButton: ImageButton = popupWindow.contentView.findViewById(R.id.clearNotificationsButton)
+
+        if (notifications.isEmpty()) {
+            recyclerView.visibility = View.GONE
+            noNotificationsMessage.visibility = View.VISIBLE
+            notificationsTitle.visibility = View.GONE
+            lineBreak.visibility = View.GONE
+            clearButton.visibility = View.GONE
+        } else {
+            recyclerView.visibility = View.VISIBLE
+            noNotificationsMessage.visibility = View.GONE
+            notificationsTitle.visibility = View.VISIBLE
+            lineBreak.visibility = View.VISIBLE
+            clearButton.visibility = View.VISIBLE
+            recyclerView.adapter?.notifyDataSetChanged()
+        }
     }
 
+
+
+    fun clearNotifications() {
+        notifications.clear()
+        updateNotificationUI() // Update UI after clearing notifications
+    }
+
+    override fun onCreateOptionsMenu(menu: Menu): Boolean {
+        menuInflater.inflate(R.menu.side_menu_nav_bar, menu)
+        return true
+    }
 
     override fun onRequestPermissionsResult(requestCode: Int, permissions: Array<out String>, grantResults: IntArray) {
         super.onRequestPermissionsResult(requestCode, permissions, grantResults)
@@ -144,11 +179,6 @@ class SideMenuNavBarActivity : AppCompatActivity() {
                 }
             }
         }
-    }
-
-    override fun onCreateOptionsMenu(menu: Menu): Boolean {
-        menuInflater.inflate(R.menu.side_menu_nav_bar, menu)
-        return true
     }
 
     override fun onSupportNavigateUp(): Boolean {

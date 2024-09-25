@@ -1,11 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="wrap_content"
     android:layout_height="wrap_content"
     android:orientation="vertical"
     android:padding="16dp">
 
     <LinearLayout
+        android:id="@+id/headerLayout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
@@ -16,7 +18,7 @@
             android:id="@+id/notificationsTitle"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Notifications"
+            android:text="@string/menu_notification"
             android:layout_marginEnd="35dp"
             android:textSize="18sp"
             android:textStyle="bold" />
@@ -32,6 +34,7 @@
     </LinearLayout>
 
     <View
+        android:id="@+id/lineBreak"
         android:layout_width="match_parent"
         android:layout_height="1dp"
         android:background="@android:color/darker_gray"
@@ -39,8 +42,15 @@
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/recyclerViewNotifications"
-        android:layout_width="180dp"
-        android:layout_height="200dp"
+        android:layout_width="220dp"
+        android:layout_height="270dp"
         android:background="@android:color/white"
-        android:padding="8dp" />
+        android:padding="2dp" />
+
+    <TextView
+        android:id="@+id/noNotificationsMessage"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="No notifications"
+        android:visibility="gone" />
 </LinearLayout>
