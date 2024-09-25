@@ -1,23 +1,18 @@
 package com.frogstore.droneapp
 
-import android.Manifest
 import android.content.Context
-import android.content.pm.PackageManager
 import android.os.Build
 import android.os.Bundle
 import android.os.storage.StorageManager
 import android.view.LayoutInflater
 import android.view.Menu
-import android.view.View
 import android.widget.ImageButton
 import android.widget.LinearLayout
 import android.widget.PopupWindow
 import android.widget.TextView
 import android.widget.Toast
-import androidx.appcompat.app.AppCompatActivity
-import androidx.cardview.widget.CardView
-import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
+import androidx.appcompat.app.AppCompatActivity
 import androidx.drawerlayout.widget.DrawerLayout
 import androidx.navigation.findNavController
 import androidx.navigation.ui.AppBarConfiguration
@@ -26,7 +21,6 @@ import androidx.navigation.ui.setupActionBarWithNavController
 import androidx.navigation.ui.setupWithNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
-import com.bumptech.glide.Glide
 import com.frogstore.droneapp.Adapters.NotificationsAdapter
 import com.frogstore.droneapp.databinding.ActivitySideMenuNavBarBinding
 import java.io.File
@@ -37,10 +31,6 @@ class SideMenuNavBarActivity : AppCompatActivity() {
     private lateinit var popupWindow: PopupWindow
     private lateinit var notifications: ArrayList<String>
     private lateinit var imageList: ArrayList<String>
-
-    companion object {
-        private const val REQUEST_CODE_PERMISSIONS = 1
-    }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -59,18 +49,27 @@ class SideMenuNavBarActivity : AppCompatActivity() {
         val navController = findNavController(R.id.nav_host_fragment_content_side_menu_nav_bar)
 
         appBarConfiguration = AppBarConfiguration(
-            setOf(R.id.nav_home, R.id.nav_gallery, R.id.nav_location, R.id.nav_controller, R.id.nav_settings),
-            drawerLayout
+            setOf(R.id.nav_home, R.id.nav_gallery, R.id.nav_location, R.id.nav_controller, R.id.nav_settings), drawerLayout
         )
         setupActionBarWithNavController(navController, appBarConfiguration)
         navView.setupWithNavController(navController)
 
-        // Initialize notifications and image lists
-        notifications = arrayListOf("Notification 1", "Notification 2", "Notification 3", "Notification 4", "Notification 5", "Notification 6")
-        imageList = arrayListOf() // Initialize this based on your needs
-        loadImages() // Load images into imageList
+        val toolbarTitle: TextView = binding.appBarSideMenuNavBar.toolbar.findViewById(R.id.toolbarTitle)
 
-        // Setup PopupWindow
+        navController.addOnDestinationChangedListener { _, destination, _ ->
+            val title = destination.label
+            if (title != null) {
+                toolbarTitle.text = title
+            } else {
+                toolbarTitle.text = ""
+            }
+        }
+
+
+        // Initialize notifications and image lists
+        notifications = arrayListOf("Notification 1", "Notification 2", "Notification 3")
+        imageList = arrayListOf()
+        loadImages()
         setupPopupWindow()
 
         // Setup notification icon click listener
@@ -79,47 +78,35 @@ class SideMenuNavBarActivity : AppCompatActivity() {
             if (popupWindow.isShowing) {
                 popupWindow.dismiss()
             } else {
-                popupWindow.showAsDropDown(notificationIcon) // Show below the icon
+                popupWindow.showAsDropDown(notificationIcon)
             }
         }
-
-        // Update the UI based on notifications
-        updateNotificationUI()
     }
 
     private fun setupPopupWindow() {
-        // Inflate the dropdown layout
         val popupView = LayoutInflater.from(this).inflate(R.layout.dropdown_notification, null)
         val recyclerView: RecyclerView = popupView.findViewById(R.id.recyclerViewNotifications)
 
-        // Set up RecyclerView
         recyclerView.layoutManager = LinearLayoutManager(this)
         recyclerView.adapter = NotificationsAdapter(this, notifications, imageList) { notification ->
             Toast.makeText(this, "Clicked: $notification", Toast.LENGTH_SHORT).show()
         }
 
-        // Setup clear button
         val clearButton: ImageButton = popupView.findViewById(R.id.clearNotificationsButton)
         clearButton.setOnClickListener {
             clearNotifications()
-            popupWindow.dismiss() // Optionally dismiss the popup
+            popupWindow.dismiss()
         }
 
-        // Create PopupWindow
-        popupWindow = PopupWindow(popupView,
-            LinearLayout.LayoutParams.WRAP_CONTENT,
-            LinearLayout.LayoutParams.WRAP_CONTENT,
-            true)
-
+        popupWindow = PopupWindow(popupView, LinearLayout.LayoutParams.WRAP_CONTENT, LinearLayout.LayoutParams.WRAP_CONTENT, true)
         popupWindow.isFocusable = true
         popupWindow.setBackgroundDrawable(getDrawable(android.R.color.white))
     }
 
     private fun loadImages() {
-        // Load images from your storage logic here and populate imageList
         val storageManager = getSystemService(Context.STORAGE_SERVICE) as StorageManager
         val storageVolume = storageManager.storageVolumes.firstOrNull()
-        val folderPath = storageVolume?.directory?.path + "/DCIM/pic" // Specify your folder path here
+        val folderPath = storageVolume?.directory?.path + "/DCIM/pic"
         val folder = File(folderPath)
 
         if (folder.exists() && folder.isDirectory) {
@@ -127,58 +114,20 @@ class SideMenuNavBarActivity : AppCompatActivity() {
                 file.isFile && (file.name.endsWith(".jpeg", true) || file.name.endsWith(".jpg", true) || file.name.endsWith(".png", true))
             }?.map { it.absolutePath } ?: emptyList()
 
-            imageList.addAll(imageFiles) // Populate your imageList
+            imageList.addAll(imageFiles)
         } else {
             Toast.makeText(this, "Folder not found", Toast.LENGTH_SHORT).show()
         }
     }
 
-    private fun updateNotificationUI() {
-        val recyclerView: RecyclerView = popupWindow.contentView.findViewById(R.id.recyclerViewNotifications)
-        val noNotificationsMessage: TextView = popupWindow.contentView.findViewById(R.id.noNotificationsMessage)
-        val notificationsTitle: TextView = popupWindow.contentView.findViewById(R.id.notificationsTitle)
-        val lineBreak: View = popupWindow.contentView.findViewById(R.id.lineBreak)
-        val clearButton: ImageButton = popupWindow.contentView.findViewById(R.id.clearNotificationsButton)
-
-        if (notifications.isEmpty()) {
-            recyclerView.visibility = View.GONE
-            noNotificationsMessage.visibility = View.VISIBLE
-            notificationsTitle.visibility = View.GONE
-            lineBreak.visibility = View.GONE
-            clearButton.visibility = View.GONE
-        } else {
-            recyclerView.visibility = View.VISIBLE
-            noNotificationsMessage.visibility = View.GONE
-            notificationsTitle.visibility = View.VISIBLE
-            lineBreak.visibility = View.VISIBLE
-            clearButton.visibility = View.VISIBLE
-            recyclerView.adapter?.notifyDataSetChanged()
-        }
-    }
-
-
-
     fun clearNotifications() {
         notifications.clear()
-        updateNotificationUI() // Update UI after clearing notifications
+        popupWindow.contentView.findViewById<RecyclerView>(R.id.recyclerViewNotifications).adapter?.notifyDataSetChanged()
     }
 
     override fun onCreateOptionsMenu(menu: Menu): Boolean {
         menuInflater.inflate(R.menu.side_menu_nav_bar, menu)
         return true
-    }
-
-    override fun onRequestPermissionsResult(requestCode: Int, permissions: Array<out String>, grantResults: IntArray) {
-        super.onRequestPermissionsResult(requestCode, permissions, grantResults)
-        when (requestCode) {
-            REQUEST_CODE_PERMISSIONS -> {
-                if (grantResults.isNotEmpty() && grantResults.all { it == PackageManager.PERMISSION_GRANTED }) {
-                    // Permissions granted
-                } else {
-                    // Permissions denied
-                }
-            }
-        }
     }
 
     override fun onSupportNavigateUp(): Boolean {
