@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="wrap_content"
     android:layout_height="wrap_content"
     android:orientation="vertical"
@@ -16,8 +17,8 @@
             android:id="@+id/notificationsTitle"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Notifications"
-            android:layout_marginEnd="35dp"
+            android:text="@string/menu_notification"
+            android:layout_marginEnd="90dp"
             android:textSize="18sp"
             android:textStyle="bold" />
 
@@ -39,8 +40,19 @@
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/recyclerViewNotifications"
-        android:layout_width="180dp"
-        android:layout_height="200dp"
+        android:layout_width="220dp"
+        android:layout_height="wrap_content"
         android:background="@android:color/white"
-        android:padding="8dp" />
+        android:padding="2dp"
+        android:visibility="gone" /> <!-- Initially hidden -->
+
+    <TextView
+        android:id="@+id/noNotificationsMessage"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="No notifications"
+        android:visibility="gone"
+    android:paddingTop="8dp"
+    android:textSize="16sp"
+    android:textColor="@android:color/darker_gray" />
 </LinearLayout>
