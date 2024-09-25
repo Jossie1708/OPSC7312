@@ -136,16 +136,27 @@ class SideMenuNavBarActivity : AppCompatActivity() {
     private fun updateNotificationUI() {
         val recyclerView: RecyclerView = popupWindow.contentView.findViewById(R.id.recyclerViewNotifications)
         val noNotificationsMessage: TextView = popupWindow.contentView.findViewById(R.id.noNotificationsMessage)
+        val notificationsTitle: TextView = popupWindow.contentView.findViewById(R.id.notificationsTitle)
+        val lineBreak: View = popupWindow.contentView.findViewById(R.id.lineBreak)
+        val clearButton: ImageButton = popupWindow.contentView.findViewById(R.id.clearNotificationsButton)
 
         if (notifications.isEmpty()) {
             recyclerView.visibility = View.GONE
             noNotificationsMessage.visibility = View.VISIBLE
+            notificationsTitle.visibility = View.GONE
+            lineBreak.visibility = View.GONE
+            clearButton.visibility = View.GONE
         } else {
             recyclerView.visibility = View.VISIBLE
             noNotificationsMessage.visibility = View.GONE
+            notificationsTitle.visibility = View.VISIBLE
+            lineBreak.visibility = View.VISIBLE
+            clearButton.visibility = View.VISIBLE
             recyclerView.adapter?.notifyDataSetChanged()
         }
     }
+
+
 
     fun clearNotifications() {
         notifications.clear()
