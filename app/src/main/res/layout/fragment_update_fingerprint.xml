@@ -10,34 +10,6 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
-        <com.google.android.material.bottomappbar.BottomAppBar
-            android:layout_width="411dp"
-            android:layout_height="wrap_content"
-            android:layout_gravity="bottom"
-            android:background="#69C5A0"
-            app:backgroundTint="#69C5A0"
-            tools:layout_editor_absoluteX="0dp"
-            tools:layout_editor_absoluteY="2dp" />
-
-        <com.google.android.material.bottomappbar.BottomAppBar
-            android:layout_width="411dp"
-            android:layout_height="wrap_content"
-            android:layout_gravity="bottom"
-            android:background="#69C5A0"
-            app:backgroundTint="#69C5A0"
-            tools:layout_editor_absoluteX="0dp"
-            tools:layout_editor_absoluteY="652dp" />
-
-        <TextView
-            android:id="@+id/textView4"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Update fingerprint"
-            android:textColor="#FFFFFF"
-            android:textSize="34sp"
-            tools:layout_editor_absoluteX="74dp"
-            tools:layout_editor_absoluteY="16dp" />
-
         <TextView
             android:id="@+id/textView3"
             android:layout_width="wrap_content"
@@ -63,12 +35,5 @@
             tools:layout_editor_absoluteY="500dp" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
-
-    <com.google.android.material.bottomappbar.BottomAppBar
-        android:layout_width="411dp"
-        android:layout_height="wrap_content"
-        android:layout_gravity="bottom"
-        android:background="#69C5A0"
-        app:backgroundTint="#69C5A0" />
 
 </FrameLayout>
