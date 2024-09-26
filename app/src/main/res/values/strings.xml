@@ -1,6 +1,9 @@
 <resources>
     <string name="app_name">DroneApp</string>
     <string name="menu_settings">Settings</string>
+    <string name="menu_Account">Account details</string>
+    <string name="menu_updatePass">Update password</string>
+    <string name="menu_updatePrint">Update fingerprint</string>
     <string name="menu_maps">Map</string>
     <string name="menu_logout">Logout</string>
     <string name="menu_controller">Controller</string>
