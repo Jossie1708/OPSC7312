@@ -20,12 +20,37 @@
 
     <string name="text_forgot_password">Forgot password?</string>
     <string name="text_password">Password</string>
+    <string name="text_old_pass">Old password</string>
+    <string name="text_new_pass">New password</string>
+    <string name="text_change_password">Change password</string>
     <string name="text_confirm_password">Confirm password</string>
     <string name="text_email">Email</string>
+    <string name="text_use_theme">Use dark theme</string>
+    <string name="text_theme">Theme</string>
+    <string name="text_update">Update</string>
+    <string name="text_security">Security</string>
+    <string name="text_afr">Afrikaans</string>
+    <string name="text_eng">English</string>
+    <string name="text_lang">Language</string>
+    <string name="text_touch_id">Use touch id</string>
+    <string name="text_change_id">Change fingerprint ID</string>
     <string name="text_username">Username</string>
     <string name="text_login">Login</string>
+    <string name="text_profile">Profile</string>
+    <string name="text_account_details">Account details</string>
     <string name="text_register">Register</string>
     <string name="text_use_fingerprint">Use fingerprint</string>
+    <string name="text_use_context_delete">Clear Notifications</string>
+    <string name="text_use_clear_notify">No notifications</string>
+
+    <string name="controller_forward">Forward</string>
+    <string name="controller_reverse">Reverse</string>
+    <string name="controller_left">Left</string>
+    <string name="controller_right">Right</string>
+    <string name="controller_up">Up</string>
+    <string name="controller_down">Down</string>
+
+
 
     <string name="menu_home">Home</string>
     <string name="menu_gallery">Gallery</string>
