@@ -1,10 +1,17 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <color name="black">#FF000000</color>
-    <color name="white">#FFFFFFFF</color>
-    <color name = "lightGreen">#288D8A</color>
-    <color name = "green">#69C5A0</color>
+
     <color name = "textColor">#126171</color>
     <color name = "divider">#818181</color>
     <color name = "toolsbarColor">#009688</color>
+
+
+    <color name="lightGreen">#94E1B4</color>
+    <color name="greenAccent">#69C5A0</color>
+    <color name="darkGreen">#45A994</color>
+    <color name="darkGreenAccent">#288D8A</color>
+    <color name="black">#033854</color>
+    <color name="white">#FFFFFF</color>
+    <color name="lightBackground">#C5FDD3</color>
+    <color name="colorBackground">#FFFFFF</color>
 </resources>

@@ -1,10 +1,50 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!-- res/values/styles.xml -->
 <resources>
-    <style name="AppTheme" parent="Theme.AppCompat.Light.NoActionBar">
-        <!-- Customize your theme here -->
-        <!-- Other styles -->
+    <style name="Base.Theme.DroneApp" parent="Theme.Material3.DayNight.NoActionBar">
+        <!-- Light Theme Customization -->
+        <item name="textFillColor">@color/textColor</item>
+        <item name="backgroundColor">@color/white</item>
+        <item name="colorPrimary">@color/lightGreen</item>
+        <item name="colorOnPrimary">@color/black</item>
+        <item name="colorSecondary">@color/greenAccent</item>
+        <item name="colorOnSecondary">@color/black</item>
+        <item name="android:statusBarColor">@color/darkGreen</item>
+        <item name="android:navigationBarColor">@color/white</item>
+        <item name="android:windowBackground">@color/lightBackground</item>
     </style>
+
+    <style name="Theme.DroneApp" parent="Base.Theme.DroneApp" />
+    <style name="Theme.DroneApp.NoActionBar">
+        <item name="windowActionBar">false</item>
+        <item name="windowNoTitle">true</item>
+    </style>
+
+    <!-- Dark Theme Customization -->
+    <style name="Base.Theme.DroneApp.Dark" parent="Theme.Material3.DayNight.NoActionBar">
+        <item name="textFillColor">@color/textColor</item>
+        <item name="backgroundColor">@color/black</item>
+        <item name="colorPrimary">@color/darkGreen</item>
+        <item name="colorOnPrimary">@color/white</item>
+        <item name="colorSecondary">@color/darkGreenAccent</item>
+        <item name="colorOnSecondary">@color/white</item>
+        <item name="android:statusBarColor">@color/black</item>
+        <item name="android:navigationBarColor">@color/black</item>
+        <item name="android:windowBackground">@color/black</item>
+    </style>
+
+    <style name="Theme.DroneApp.Dark" parent="Base.Theme.DroneApp.Dark" />
+    <style name="Theme.DroneApp.Dark.NoActionBar">
+        <item name="windowActionBar">false</item>
+        <item name="windowNoTitle">true</item>
+    </style>
+
+    <style name="Theme.DroneApp.AppBarOverlay" parent="ThemeOverlay.AppCompat.Dark.ActionBar" />
+    <style name="Theme.DroneApp.PopupOverlay" parent="ThemeOverlay.AppCompat.Light" />
+
+
+
+
     <style name="Divider">
         <item name="android:layout_width">match_parent</item>
         <item name="android:layout_height">1dp</item>

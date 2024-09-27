@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#C5FDD3"
+    android:background="?attr/backgroundColor"
     tools:context=".Fragments.SettingsFragment">
 
     <ScrollView
@@ -13,7 +13,7 @@
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
-            android:layout_height="match_parent">
+            android:layout_height="wrap_content">
 
             <TextView
                 android:id="@+id/lblProfile"
@@ -21,8 +21,8 @@
                 android:layout_height="wrap_content"
                 android:layout_marginStart="16dp"
                 android:layout_marginTop="8dp"
-                android:text="Profile"
-                android:textColor="#126171"
+                android:text="@string/text_profile"
+                android:textColor="?attr/colorOnSecondary"
                 android:textSize="20sp"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
@@ -33,8 +33,8 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="12dp"
                 android:layout_marginEnd="115dp"
-                android:text="  Account details"
-                android:textColor="#033854"
+                android:text="@string/text_account_details"
+                android:textColor="?attr/textFillColor"
                 android:textSize="16sp"
                 app:layout_constraintEnd_toStartOf="@+id/btnAccountDetails"
                 app:layout_constraintTop_toBottomOf="@+id/lblProfile" />
@@ -46,8 +46,8 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="16dp"
                 android:layout_marginEnd="138dp"
-                android:text="Use Location"
-                android:textColor="#033854"
+                android:text="@string/menu_location"
+                android:textColor="?attr/textFillColor"
                 android:textSize="16sp"
                 app:layout_constraintEnd_toStartOf="@+id/useLocationSwitch"
                 app:layout_constraintTop_toBottomOf="@+id/lblAccountDetails" />
@@ -65,8 +65,8 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="12dp"
                 android:layout_marginEnd="80dp"
-                android:text="Change Password"
-                android:textColor="#033854"
+                android:text="@string/text_change_password"
+                android:textColor="?attr/textFillColor"
                 android:textSize="16sp"
                 app:layout_constraintEnd_toStartOf="@+id/btnSetPassword"
                 app:layout_constraintTop_toBottomOf="@+id/lblSecurity" />
@@ -77,8 +77,8 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="15dp"
                 android:layout_marginEnd="120dp"
-                android:text="Use touch ID"
-                android:textColor="#033854"
+                android:text="@string/text_touch_id"
+                android:textColor="?attr/textFillColor"
                 android:textSize="16sp"
                 app:layout_constraintEnd_toStartOf="@+id/useTouchIDSwitch"
                 app:layout_constraintTop_toBottomOf="@+id/lblChangePassword" />
@@ -89,8 +89,8 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="16dp"
                 android:layout_marginEnd="60dp"
-                android:text="Change fingerprint ID"
-                android:textColor="#033854"
+                android:text="@string/text_change_id"
+                android:textColor="?attr/textFillColor"
                 android:textSize="16sp"
                 app:layout_constraintEnd_toStartOf="@+id/btnSetFingerprint"
                 app:layout_constraintTop_toBottomOf="@+id/lblUseTouchID" />
@@ -113,8 +113,8 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="16dp"
                 android:layout_marginEnd="100dp"
-                android:text="Use dark theme"
-                android:textColor="#033854"
+                android:text="@string/text_use_theme"
+                android:textColor="?attr/textFillColor"
                 android:textSize="16sp"
                 app:layout_constraintEnd_toStartOf="@+id/switch1"
                 app:layout_constraintTop_toBottomOf="@+id/lblTheme" />
@@ -136,8 +136,8 @@
                 android:layout_height="wrap_content"
                 android:layout_marginStart="16dp"
                 android:layout_marginTop="12dp"
-                android:text="Theme"
-                android:textColor="#126171"
+                android:text="@string/text_theme"
+                android:textColor="?attr/colorOnSecondary"
                 android:textSize="20sp"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/view3" />
@@ -158,8 +158,8 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="16dp"
-                android:text="Afrikaans"
-                android:textColor="#033854"
+                android:text="@string/text_afr"
+                android:textColor="?attr/textFillColor"
                 android:textSize="16sp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="0.309"
@@ -171,8 +171,8 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="24dp"
-                android:text="English"
-                android:textColor="#033854"
+                android:text="@string/text_eng"
+                android:textColor="?attr/textFillColor"
                 android:textSize="16sp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="0.298"
@@ -184,8 +184,8 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="12dp"
-                android:text="Language"
-                android:textColor="#126171"
+                android:text="@string/text_lang"
+                android:textColor="?attr/colorOnSecondary"
                 android:textSize="20sp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="0.049"
@@ -211,8 +211,8 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="12dp"
-                android:text="Security"
-                android:textColor="#126171"
+                android:text="@string/text_security"
+                android:textColor="?attr/colorOnSecondary"
                 android:textSize="20sp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="0.047"
@@ -266,7 +266,7 @@
                 android:paddingTop="-30dp"
                 android:text=">"
                 android:textAlignment="center"
-                android:textColor="@color/black"
+                android:textColor="?attr/textFillColor"
                 android:textSize="22sp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
@@ -282,7 +282,7 @@
                 android:paddingTop="-30dp"
                 android:text=">"
                 android:textAlignment="center"
-                android:textColor="@color/black"
+                android:textColor="?attr/textFillColor"
                 android:textSize="22sp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/view2" />
@@ -298,7 +298,7 @@
                 android:paddingTop="-30dp"
                 android:text=">"
                 android:textAlignment="center"
-                android:textColor="@color/black"
+                android:textColor="?attr/textFillColor"
                 android:textSize="22sp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/useTouchIDSwitch" />
