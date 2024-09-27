@@ -8,7 +8,9 @@ import android.view.ViewGroup
 import android.widget.Button
 import android.widget.TextView
 import androidx.fragment.app.Fragment
+import com.frogstore.droneapp.MainActivity2
 import com.frogstore.droneapp.R
+import com.frogstore.droneapp.SideMenuNavBarActivity
 import com.google.android.gms.auth.api.signin.GoogleSignIn
 import com.google.android.gms.auth.api.signin.GoogleSignInAccount
 import com.google.android.gms.auth.api.signin.GoogleSignInClient
@@ -22,6 +24,7 @@ class HomeFragment : Fragment() {
     private lateinit var name: TextView
     private lateinit var email: TextView
     private lateinit var signOutBtn: Button
+    private lateinit var WeatherApi: Button
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -34,6 +37,7 @@ class HomeFragment : Fragment() {
         name = view.findViewById(R.id.name)
         email = view.findViewById(R.id.email)
         signOutBtn = view.findViewById(R.id.signout)
+        WeatherApi = view.findViewById(R.id.WeatherApi)
 
         // Configure Google Sign-In
         val gso = GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
@@ -49,6 +53,11 @@ class HomeFragment : Fragment() {
             val personEmail = it.email
             name.text = personName
             email.text = personEmail
+        }
+        WeatherApi.setOnClickListener {
+            val intent = Intent(activity, MainActivity2::class.java)
+            // Start the new activity
+            startActivity(intent)
         }
 
         // Set the sign-out button click listener
