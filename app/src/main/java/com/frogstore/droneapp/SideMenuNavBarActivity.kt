@@ -1,9 +1,7 @@
 package com.frogstore.droneapp
 
-import android.Manifest
 import android.content.Context
 import android.content.pm.PackageManager
-import android.os.Build
 import android.os.Bundle
 import android.os.storage.StorageManager
 import android.preference.PreferenceManager
@@ -16,8 +14,6 @@ import android.widget.PopupWindow
 import android.widget.TextView
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
-import androidx.cardview.widget.CardView
-import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
 import androidx.drawerlayout.widget.DrawerLayout
 import androidx.navigation.findNavController
@@ -27,7 +23,6 @@ import androidx.navigation.ui.setupActionBarWithNavController
 import androidx.navigation.ui.setupWithNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
-import com.bumptech.glide.Glide
 import com.frogstore.droneapp.Adapters.NotificationsAdapter
 import com.frogstore.droneapp.databinding.ActivitySideMenuNavBarBinding
 import java.io.File
@@ -53,10 +48,6 @@ class SideMenuNavBarActivity : AppCompatActivity() {
         }
         super.onCreate(savedInstanceState)
 
-//        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.CUPCAKE) {
-//            window.navigationBarColor = ContextCompat.getColor(this, R.color.toolsbarColor)
-//            window.statusBarColor = ContextCompat.getColor(this, R.color.toolsbarColor)
-//        }
         // Set system UI colors based on the theme
         updateSystemUiColors(isDarkTheme)
 

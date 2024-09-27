@@ -64,4 +64,11 @@
         tools:layout="@layout/fragment_controller"
         />
 
+    <activity
+        android:id="@+id/nav_logout"
+        android:name="com.frogstore.droneapp.MainActivity"
+        android:label="@string/menu_controller"
+        tools:layout="@layout/activity_home"
+        />
+
 </navigation>

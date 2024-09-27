@@ -337,29 +337,33 @@
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/imgAccountDetails" />
 
-            <RadioButton
-                android:id="@+id/rbtnAfrikaans"
-                android:layout_width="30dp"
-                android:layout_height="30dp"
-                android:layout_marginStart="135dp"
-                android:layout_marginTop="44dp"
-                android:contentDescription=""
+            <RadioGroup
+                android:id="@+id/radioGroupLanguages"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="119dp"
+                android:layout_marginTop="20dp"
+                android:layout_marginEnd="24dp"
+                android:layout_marginBottom="19dp"
+                android:orientation="vertical"
+                app:layout_constraintBottom_toTopOf="@+id/view2"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.052"
                 app:layout_constraintStart_toEndOf="@+id/lblAfrikaans"
-                app:layout_constraintTop_toBottomOf="@+id/view" />
+                app:layout_constraintTop_toBottomOf="@+id/view">
 
-            <RadioButton
-                android:id="@+id/rbtnEnglish"
-                android:layout_width="30dp"
-                android:layout_height="30dp"
-                android:layout_marginStart="150dp"
-                android:layout_marginTop="16dp"
-                android:contentDescription=""
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.0"
-                app:layout_constraintStart_toEndOf="@+id/lblEnglish"
-                app:layout_constraintTop_toBottomOf="@+id/rbtnAfrikaans" />
+                <RadioButton
+                    android:id="@+id/rbtnAfrikaans"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/text_afr" />
+
+                <RadioButton
+                    android:id="@+id/rbtnEnglish"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/text_eng" />
+            </RadioGroup>
+
 
         </androidx.constraintlayout.widget.ConstraintLayout>
     </ScrollView>
