@@ -20,8 +20,36 @@
         android:id="@+id/nav_settings"
         android:name="com.frogstore.droneapp.Fragments.SettingsFragment"
         android:label="@string/menu_settings"
-        tools:layout="@layout/fragment_settings" />
+        tools:layout="@layout/fragment_settings" >
+        <action
+            android:id="@+id/action_nav_settings_to_accountDetailsFragment"
+            app:destination="@id/nav_accountDetails" />
+        <action
+            android:id="@+id/action_nav_settings_to_updatePasswordFragment"
+            app:destination="@id/nav_updatePass" />
+        <action
+            android:id="@+id/action_nav_settings_to_setFingerprintFragment"
+            app:destination="@id/nav_updateFingerprint" />
+    </fragment>
 
+    <fragment
+        android:id="@+id/nav_updateFingerprint"
+        android:name="com.frogstore.droneapp.Fragments.UpdateFingerprintFragment"
+        android:label="@string/menu_updatePrint"
+        tools:layout="@layout/fragment_update_fingerprint"
+        />
+    <fragment
+        android:id="@+id/nav_updatePass"
+        android:name="com.frogstore.droneapp.Fragments.UpdatePasswordFragment"
+        android:label="@string/menu_updatePass"
+        tools:layout="@layout/fragment_update_password"
+        />
+    <fragment
+        android:id="@+id/nav_accountDetails"
+        android:name="com.frogstore.droneapp.Fragments.AccountDetailsFragment"
+        android:label="@string/menu_Account"
+        tools:layout="@layout/fragment_account_details"
+        />
     <fragment
         android:id="@+id/nav_location"
         android:name="com.frogstore.droneapp.Fragments.MapsFragment"
