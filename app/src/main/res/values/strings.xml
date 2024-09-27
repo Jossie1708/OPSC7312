@@ -20,6 +20,8 @@
     <string name="large_text">
 
 
+
+
         "Material is the metaphor.\n\n"
 
         "A material metaphor is the unifying theory of a rationalized space and a system of motion."
@@ -108,6 +110,7 @@
         "For example, position the FAB to one side of stream of a cards so the FAB won’t interfere "
         "when a user tries to pick up one of cards.\n\n"
     </string>
+    <string name="web_client_id">906223466385-kujorsvip4fr3n0jj8drvcie6ismdhrd.apps.googleusercontent.com</string>
     <string name="title_activity_side_menu_nav_bar">SideMenuNavBarActivity</string>
 
     <string name="menu_home">Home</string>
