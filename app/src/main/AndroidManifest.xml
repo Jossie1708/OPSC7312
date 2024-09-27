@@ -21,7 +21,7 @@
             android:name=".SideMenuNavBarActivity"
             android:exported="false"
             android:label="@string/title_activity_side_menu_nav_bar"
-            android:theme="@style/Theme.DroneApp.NoActionBar" />
+            android:theme="@style/Theme.DroneApp" />
         <!--
              TODO: Before you run your application, you need a Google Maps API key.
 
