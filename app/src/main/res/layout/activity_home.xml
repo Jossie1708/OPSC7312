@@ -5,7 +5,7 @@
     android:id="@+id/main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#C5FDD3"
+    android:background="?attr/backgroundColor"
     tools:context=".HomeActivity">
 
     <FrameLayout
@@ -13,10 +13,13 @@
         android:layout_width="0dp"
         android:layout_height="573dp"
         android:layout_marginStart="1dp"
+        android:layout_marginTop="80dp"
         android:layout_marginEnd="1dp"
+        android:layout_marginBottom="78dp"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        tools:layout_editor_absoluteY="80dp">
+        app:layout_constraintTop_toTopOf="parent">
 
     </FrameLayout>
 </androidx.constraintlayout.widget.ConstraintLayout>
