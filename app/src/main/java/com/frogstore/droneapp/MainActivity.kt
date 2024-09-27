@@ -33,9 +33,12 @@ class MainActivity : AppCompatActivity() {
 
         setContentView(R.layout.activity_main)
 
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.CUPCAKE) {
-            window.navigationBarColor = ContextCompat.getColor(this, R.color.greenAccent)
-        }
+        // Set system UI colors based on the theme
+        updateSystemUiColors(isDarkTheme)
+//
+//        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.CUPCAKE) {
+//            window.navigationBarColor = ContextCompat.getColor(this, R.color.greenAccent)
+//        }
 
 
 
@@ -73,6 +76,23 @@ class MainActivity : AppCompatActivity() {
         })
 
 
+    }
+    private fun updateSystemUiColors(isDarkTheme: Boolean) {
+        val colorPrimary = if (isDarkTheme) {
+            ContextCompat.getColor(this, R.color.greenAccent) // Dark theme color
+        } else {
+            ContextCompat.getColor(this, R.color.greenAccent) // Light theme color
+        }
+
+        val statusBarColor = if (isDarkTheme) {
+            ContextCompat.getColor(this, R.color.greenAccent)
+        } else {
+            ContextCompat.getColor(this, R.color.greenAccent)
+        }
+
+        // Update system UI colors
+        //window.statusBarColor = statusBarColor
+        window.navigationBarColor = colorPrimary
     }
 
     private fun replaceFrag(fragment: Fragment) {

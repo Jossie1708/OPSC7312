@@ -53,10 +53,12 @@ class SideMenuNavBarActivity : AppCompatActivity() {
         }
         super.onCreate(savedInstanceState)
 
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.CUPCAKE) {
-            window.navigationBarColor = ContextCompat.getColor(this, R.color.toolsbarColor)
-            window.statusBarColor = ContextCompat.getColor(this, R.color.toolsbarColor)
-        }
+//        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.CUPCAKE) {
+//            window.navigationBarColor = ContextCompat.getColor(this, R.color.toolsbarColor)
+//            window.statusBarColor = ContextCompat.getColor(this, R.color.toolsbarColor)
+//        }
+        // Set system UI colors based on the theme
+        updateSystemUiColors(isDarkTheme)
 
         binding = ActivitySideMenuNavBarBinding.inflate(layoutInflater)
         setContentView(binding.root)
@@ -104,6 +106,23 @@ class SideMenuNavBarActivity : AppCompatActivity() {
 
         // Update the UI based on notifications
         updateNotificationUI()
+    }
+    private fun updateSystemUiColors(isDarkTheme: Boolean) {
+        val colorPrimary = if (isDarkTheme) {
+            ContextCompat.getColor(this, R.color.black) // Dark theme color
+        } else {
+            ContextCompat.getColor(this, R.color.darkGreen) // Light theme color
+        }
+
+        val statusBarColor = if (isDarkTheme) {
+            ContextCompat.getColor(this, R.color.black)
+        } else {
+            ContextCompat.getColor(this, R.color.darkGreen)
+        }
+
+        // Update system UI colors
+        window.statusBarColor = statusBarColor
+        window.navigationBarColor = colorPrimary
     }
 
     private fun setupPopupWindow() {
