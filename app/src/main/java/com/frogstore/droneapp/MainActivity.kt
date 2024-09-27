@@ -1,6 +1,5 @@
 package com.frogstore.droneapp
 
-import android.os.Build
 import android.os.Bundle
 import android.preference.PreferenceManager
 import androidx.activity.enableEdgeToEdge
@@ -35,12 +34,6 @@ class MainActivity : AppCompatActivity() {
 
         // Set system UI colors based on the theme
         updateSystemUiColors(isDarkTheme)
-//
-//        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.CUPCAKE) {
-//            window.navigationBarColor = ContextCompat.getColor(this, R.color.greenAccent)
-//        }
-
-
 
         // Handle window insets to avoid overlapping system bars
         ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main)) { v, insets ->
