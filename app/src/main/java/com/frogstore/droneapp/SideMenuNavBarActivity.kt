@@ -6,6 +6,7 @@ import android.content.pm.PackageManager
 import android.os.Build
 import android.os.Bundle
 import android.os.storage.StorageManager
+import android.preference.PreferenceManager
 import android.view.LayoutInflater
 import android.view.Menu
 import android.view.View
@@ -43,6 +44,13 @@ class SideMenuNavBarActivity : AppCompatActivity() {
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {
+        val sharedPreferences = PreferenceManager.getDefaultSharedPreferences(this)
+        val isDarkTheme = sharedPreferences.getBoolean("isDarkTheme", false)
+        if (isDarkTheme) {
+            setTheme(R.style.Theme_DroneApp_Dark)
+        } else {
+            setTheme(R.style.Theme_DroneApp)
+        }
         super.onCreate(savedInstanceState)
 
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.CUPCAKE) {

@@ -2,6 +2,7 @@ package com.frogstore.droneapp
 
 import android.os.Build
 import android.os.Bundle
+import android.preference.PreferenceManager
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.ContextCompat
@@ -21,11 +22,22 @@ class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
+        // Load theme before super.onCreate
+        val sharedPreferences = PreferenceManager.getDefaultSharedPreferences(this)
+        val isDarkTheme = sharedPreferences.getBoolean("isDarkTheme", false)
+        if (isDarkTheme) {
+            setTheme(R.style.Theme_DroneApp_Dark)
+        } else {
+            setTheme(R.style.Theme_DroneApp)
+        }
+
         setContentView(R.layout.activity_main)
 
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.CUPCAKE) {
             window.navigationBarColor = ContextCompat.getColor(this, R.color.greenAccent)
         }
+
+
 
         // Handle window insets to avoid overlapping system bars
         ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main)) { v, insets ->
