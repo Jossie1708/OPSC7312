@@ -5,7 +5,7 @@
     android:id="@+id/main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#FFFFFF"
+    android:background="?attr/backgroundColor"
     android:backgroundTintMode="src_over"
     tools:context=".MainActivity">
 
@@ -33,30 +33,29 @@
 
     <com.google.android.material.tabs.TabLayout
         android:id="@+id/tabLayout"
-        android:layout_width="415dp"
+        android:layout_width="match_parent"
         android:layout_height="72dp"
         android:layout_marginTop="4dp"
-        android:backgroundTint="#94E1B4"
+        android:background="?attr/colorPrimary"
+        app:tabIndicatorColor="?attr/colorOnPrimary"
+        app:tabSelectedTextColor="?attr/colorOnPrimary"
+        app:tabTextColor="@color/divider"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/imgLogBackground"
-        app:tabIndicatorColor="#033854"
-        app:tabSelectedTextColor="#033854"
-        app:tabTextColor="#727272">
+        app:layout_constraintTop_toBottomOf="@+id/imgLogBackground">
 
         <com.google.android.material.tabs.TabItem
             android:id="@+id/tabSignIn"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Sign in" />
+            android:text="@string/tab_sign_in" />
 
         <com.google.android.material.tabs.TabItem
             android:id="@+id/tabSignUp"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Sign Up" />
-
+            android:text="@string/tab_sign_up" />
     </com.google.android.material.tabs.TabLayout>
+
 
 </androidx.constraintlayout.widget.ConstraintLayout>
