@@ -16,13 +16,16 @@
             android:id="@+id/txtRegConfirm"
             android:layout_width="300dp"
             android:layout_height="45dp"
+            android:layout_marginStart="40dp"
             android:layout_marginTop="20dp"
+            android:drawableLeft="@drawable/ic_lock"
+            app:drawableTint="?attr/colorOnPrimary"
+            android:drawablePadding="10dp"
             android:ems="10"
             android:hint="@string/text_confirm_password"
             android:inputType="text|textPassword"
             android:textSize="16sp"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.691"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/txtRegPassword" />
 
@@ -30,13 +33,16 @@
             android:id="@+id/txtRegEmail"
             android:layout_width="300dp"
             android:layout_height="45dp"
+            android:layout_marginStart="40dp"
             android:layout_marginTop="16dp"
+            android:drawableLeft="@drawable/ic_email"
+            app:drawableTint="?attr/colorOnPrimary"
+            android:drawablePadding="10dp"
             android:ems="10"
             android:hint="@string/text_email"
             android:inputType="text|textEmailAddress"
             android:textSize="16sp"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.691"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
@@ -44,13 +50,16 @@
             android:id="@+id/txtRegUsername"
             android:layout_width="300dp"
             android:layout_height="45dp"
+            android:layout_marginStart="40dp"
             android:layout_marginTop="20dp"
+            android:drawableLeft="@drawable/ic_person"
+            app:drawableTint="?attr/colorOnPrimary"
+            android:drawablePadding="10dp"
             android:ems="10"
             android:hint="@string/text_username"
             android:inputType="text"
             android:textSize="16sp"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.691"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/txtRegEmail" />
 
@@ -58,13 +67,16 @@
             android:id="@+id/txtRegPassword"
             android:layout_width="300dp"
             android:layout_height="45dp"
+            android:layout_marginStart="40dp"
             android:layout_marginTop="20dp"
+            android:drawableLeft="@drawable/ic_lock"
+            app:drawableTint="?attr/colorOnPrimary"
+            android:drawablePadding="10dp"
             android:ems="10"
             android:hint="@string/text_password"
             android:inputType="text|textPassword"
             android:textSize="16sp"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.691"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/txtRegUsername" />
 
@@ -74,7 +86,7 @@
             android:layout_height="49dp"
             android:layout_marginTop="24dp"
             android:text="@string/text_register"
-            android:textColor="?attr/backgroundColor"
+            android:textColor="?attr/colorOnPrimary"
             android:textSize="18sp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
@@ -83,53 +95,6 @@
             app:layout_constraintTop_toBottomOf="@+id/txtRegConfirm"
             app:layout_constraintVertical_bias="0.0" />
 
-        <ImageView
-            android:id="@+id/imgRegEmail"
-            android:layout_width="41dp"
-            android:layout_height="22dp"
-            android:layout_marginStart="12dp"
-            android:layout_marginTop="36dp"
-            android:contentDescription="@string/app_name"
-            android:src="@drawable/ic_email"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
-
-        <ImageView
-            android:id="@+id/imgRegPerson"
-            android:layout_width="32dp"
-            android:layout_height="22dp"
-            android:layout_marginTop="40dp"
-            android:layout_marginEnd="15dp"
-            android:src="@drawable/ic_person"
-            android:contentDescription="@string/app_name"
-            app:layout_constraintEnd_toStartOf="@+id/txtRegUsername"
-            app:layout_constraintHorizontal_bias="0.941"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/imgRegEmail" />
-
-        <ImageView
-            android:id="@+id/imgRegLock"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="40dp"
-            android:src="@drawable/ic_lock"
-            android:contentDescription="@string/app_name"
-            app:layout_constraintEnd_toStartOf="@+id/txtRegPassword"
-            app:layout_constraintHorizontal_bias="0.531"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/imgRegPerson" />
-
-        <ImageView
-            android:id="@+id/imgRegLock2"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="40dp"
-            android:src="@drawable/ic_lock"
-            android:contentDescription="@string/app_name"
-            app:layout_constraintEnd_toStartOf="@+id/txtRegConfirm"
-            app:layout_constraintHorizontal_bias="0.531"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/imgRegLock" />
     </androidx.constraintlayout.widget.ConstraintLayout>
 
 </FrameLayout>

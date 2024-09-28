@@ -7,6 +7,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
+import android.widget.ImageButton
 import android.widget.RadioButton
 import android.widget.RadioGroup
 import android.widget.Switch
@@ -28,9 +29,9 @@ class SettingsFragment : Fragment() {
         // Inflate the layout for this fragment
         val layout = inflater.inflate(R.layout.fragment_settings, container, false)
 
-        val btnDetails = layout.findViewById<Button>(R.id.btnAccountDetails)
-        val btnPass = layout.findViewById<Button>(R.id.btnSetPassword)
-        val btnFingerprint = layout.findViewById<Button>(R.id.btnSetFingerprint)
+        val btnDetails = layout.findViewById<ImageButton>(R.id.btnAccountDetails)
+        val btnPass = layout.findViewById<ImageButton>(R.id.btnSetPassword)
+        val btnFingerprint = layout.findViewById<ImageButton>(R.id.btnSetFingerprint)
 
         // Initialize SharedPreferences
         sharedPreferences = PreferenceManager.getDefaultSharedPreferences(requireContext())
