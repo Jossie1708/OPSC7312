@@ -1,5 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <shape xmlns:android="http://schemas.android.com/apk/res/android">
-    <solid android:color="#288D8A" /> <!-- Replace with your desired color -->
-    <corners android:radius="19dp" /> <!-- Adjust the radius for curved corners -->
+    <solid android:color="?attr/colorSecondary" /> <!-- Replace with your desired color -->
+    <corners android:radius="60dp" /> <!-- Adjust the radius for curved corners -->
+<size android:height="30dp"></size>
+    <size android:width="70dp"></size>
+
 </shape>
