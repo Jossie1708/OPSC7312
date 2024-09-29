@@ -15,6 +15,7 @@ import android.widget.LinearLayout
 import android.widget.PopupWindow
 import android.widget.TextView
 import android.widget.Toast
+import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
 import androidx.cardview.widget.CardView
 import androidx.core.app.ActivityCompat
@@ -32,12 +33,14 @@ import com.frogstore.droneapp.Adapters.NotificationsAdapter
 import com.frogstore.droneapp.databinding.ActivitySideMenuNavBarBinding
 import java.io.File
 
+
 class SideMenuNavBarActivity : AppCompatActivity() {
     private lateinit var appBarConfiguration: AppBarConfiguration
     private lateinit var binding: ActivitySideMenuNavBarBinding
     private lateinit var popupWindow: PopupWindow
     private lateinit var notifications: ArrayList<String>
     private lateinit var imageList: ArrayList<String>
+    private val weatherViewModel: WeatherViewModel by viewModels()
 
     companion object {
         private const val REQUEST_CODE_PERMISSIONS = 1
@@ -52,6 +55,8 @@ class SideMenuNavBarActivity : AppCompatActivity() {
             setTheme(R.style.Theme_DroneApp)
         }
         super.onCreate(savedInstanceState)
+        // Fetch weather data
+        weatherViewModel.fetchWeatherData()
 
 //        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.CUPCAKE) {
 //            window.navigationBarColor = ContextCompat.getColor(this, R.color.toolsbarColor)

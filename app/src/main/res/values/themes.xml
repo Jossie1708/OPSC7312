@@ -1,3 +1,5 @@
 <resources xmlns:tools="http://schemas.android.com/tools">
-
+<style name="weather" parent="Theme.AppCompat.Light.NoActionBar">
+    <item name="colorPrimaryDark">@color/back_01</item>
+</style>
 </resources>

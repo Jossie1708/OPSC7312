@@ -1,6 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
+    //Home page colors for weather UI
+    <color name="black01">#FF000000</color>
+    <color name="white01">#FFFFFFFF</color>
+    <color name="back_01">#161c2a</color>
+    <color name="back_02">#1a2332</color>
+    <color name="yellow">#fdd020</color>
 
+    //Our colors
     <color name = "textColor">#126171</color>
     <color name = "divider">#818181</color>
     <color name = "toolsbarColor">#009688</color>

@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="?attr/backgroundColor"
+    android:background="@color/back_01"
     tools:context=".Fragments.HomeFragment">
 
 
@@ -12,56 +12,185 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
-        <TextView
-            android:id="@+id/txtHomeFragAtWork"
-            android:layout_width="0dp"
-            android:layout_height="0dp"
-            android:text="@string/hello_blank_fragment"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+        <ScrollView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
 
-        <TextView
-            android:id="@+id/name"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="154dp"
-            android:text="name"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical" >
 
-        <TextView
-            android:id="@+id/email"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="2dp"
-            android:layout_marginTop="41dp"
-            android:text="email"
-            app:layout_constraintStart_toStartOf="@+id/name"
-            app:layout_constraintTop_toBottomOf="@+id/name" />
+                <TextView
+                    android:id="@+id/address"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Today"
+                    android:textColor="@color/white"
+                    android:textAlignment="center"
+                    android:textStyle="bold"
+                    android:textSize="20sp"
+                    android:layout_marginTop="16dp"/>
 
-        <Button
-            android:id="@+id/signout"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="61dp"
-            android:text="Sign out"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/email" />
+                <TextView
+                    android:id="@+id/lblDate"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Mon June 17"
+                    android:textSize="14sp"
+                    android:textColor="@color/white"
+                    android:textAlignment="center"
+                    android:layout_marginTop="8dp"/>
 
-        <Button
-            android:id="@+id/WeatherApi"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="19dp"
-            android:layout_marginEnd="1dp"
-            android:text="Weather Api"
-            app:layout_constraintEnd_toEndOf="@+id/signout"
-            app:layout_constraintTop_toBottomOf="@+id/signout" />
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:background="@drawable/background_2"
+                    android:layout_margin="16dp"
+                    android:orientation="vertical">
 
+                    <ImageView
+                        android:id="@+id/imgWeatherDescription"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_margin="16dp"
+                        android:src="@drawable/cloudy_sunny" />
+
+                    <TextView
+                        android:id="@+id/lblWeatherDescription"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="Mostly Cloudy"
+                        android:textAlignment="center"
+                        android:textColor="@color/white"
+                        android:textSize="20sp"/>
+
+                    <TextView
+                        android:id="@+id/lblTemp"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="25C"
+                        android:textColor="@color/white"
+                        android:textAlignment="center"
+                        android:textSize="43sp"
+                        android:layout_marginTop="4dp"/>
+
+                    <TextView
+                        android:id="@+id/lblTempHigh"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="H:27 L:18"
+                        android:textSize="16sp"
+                        android:textColor="@color/white"
+                        android:textAlignment="center"/>
+                    <TextView
+                        android:id="@+id/lblTempLow"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="H:27 L:18"
+                        android:textSize="16sp"
+                        android:textColor="@color/white"
+                        android:textAlignment="center"/>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:orientation="horizontal">
+
+                        <LinearLayout
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_margin="16dp"
+                            android:layout_weight="0.333"
+                            android:orientation="vertical">
+
+                            <ImageView
+                                android:id="@+id/imgRain"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:src="@drawable/umbrella" />
+
+                            <TextView
+                                android:id="@+id/lblRainPercentage"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:text="23%"
+                                android:textAlignment="center"
+                                android:textColor="@color/white" />
+
+                            <TextView
+                                android:id="@+id/lblRain"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:text="Rain"
+                                android:textAlignment="center"
+                                android:textColor="@color/white" />
+                        </LinearLayout>
+
+                        <LinearLayout
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_margin="16dp"
+                            android:layout_weight="0.333"
+                            android:orientation="vertical">
+
+                            <ImageView
+                                android:id="@+id/imgWindSpeed"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:src="@drawable/wind" />
+
+                            <TextView
+                                android:id="@+id/lblWindSpeedKm"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:text="12 km/h"
+                                android:textAlignment="center"
+                                android:textColor="@color/white" />
+
+                            <TextView
+                                android:id="@+id/lblWindSpeed"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:text="Wind Speed"
+                                android:textAlignment="center"
+                                android:textColor="@color/white" />
+                        </LinearLayout>
+
+                        <LinearLayout
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_margin="16dp"
+                            android:layout_weight="0.333"
+                            android:orientation="vertical">
+
+                            <ImageView
+                                android:id="@+id/imgHumididty"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:src="@drawable/humidity" />
+
+                            <TextView
+                                android:id="@+id/lblHumididtyPercentage"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:text="18%"
+                                android:textAlignment="center"
+                                android:textColor="@color/white" />
+
+                            <TextView
+                                android:id="@+id/lblHumididty"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:text="Humidity"
+                                android:textAlignment="center"
+                                android:textColor="@color/white" />
+                        </LinearLayout>
+                    </LinearLayout>
+                </LinearLayout>
+
+            </LinearLayout>
+        </ScrollView>
     </androidx.constraintlayout.widget.ConstraintLayout>
 
 </FrameLayout>

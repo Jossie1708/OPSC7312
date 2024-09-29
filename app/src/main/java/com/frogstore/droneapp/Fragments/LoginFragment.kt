@@ -19,6 +19,7 @@ import com.frogstore.droneapp.SignUpResult
 import com.frogstore.droneapp.LoginViewModel
 import kotlinx.coroutines.launch
 import com.frogstore.droneapp.LoginAction
+import com.frogstore.droneapp.MainActivity2
 import com.frogstore.droneapp.SideMenuNavBarActivity
 
 // This Fragment handles user login by taking their credentials and verifying them
@@ -90,12 +91,12 @@ class LoginFragment : Fragment() {
 
                 // Navigate to the next screen (home screen or main app screen) after successful login
                 // Create an Intent to start the SideMenuNavBarActivity (the main application screen)
-                val intent = Intent(activity, SideMenuNavBarActivity::class.java)
-                // Start the new activity
+                val intent = Intent(requireActivity(), SideMenuNavBarActivity::class.java)
                 startActivity(intent)
 
+
                 // Finish the current activity to prevent the user from returning to the login screen
-                requireActivity().finish()
+                //requireActivity().finish()
             }
             // If sign-up failed (invalid credentials, server issue, etc.)
             SignUpResult.Failure -> {
