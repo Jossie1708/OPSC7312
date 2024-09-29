@@ -100,13 +100,13 @@ class SideMenuNavBarActivity : AppCompatActivity() {
     }
     private fun updateSystemUiColors(isDarkTheme: Boolean) {
         val colorPrimary = if (isDarkTheme) {
-            ContextCompat.getColor(this, R.color.black) // Dark theme color
+            ContextCompat.getColor(this, R.color.darkGreenAccent) // Dark theme color
         } else {
             ContextCompat.getColor(this, R.color.darkGreen) // Light theme color
         }
 
         val statusBarColor = if (isDarkTheme) {
-            ContextCompat.getColor(this, R.color.black)
+            ContextCompat.getColor(this, R.color.darkGreenAccent)
         } else {
             ContextCompat.getColor(this, R.color.darkGreen)
         }
