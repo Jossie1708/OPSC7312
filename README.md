@@ -14,7 +14,7 @@ The Drone App is a comprehensive mobile application designed for drone enthusias
 3. Image and Video Management: Organize and manage your drone-captured images and videos, featuring options for filtering, sorting, and sharing.
 4. Settings and Customization: Personalize your app experience with customizable settings, including theme selection, language preferences, and more.
 5. User Account Management: Securely manage your user account with features such as login, registration, and password recovery.
-6. 
+
 ![WhatsApp Image 2024-09-30 at 22 58 13_3f894021](https://github.com/user-attachments/assets/289e7332-b999-4743-ae70-305bf588bf6a)
 (Mock up Images, not final Design Images will be added in part 3)
 
