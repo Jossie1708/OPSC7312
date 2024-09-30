@@ -1,5 +1,5 @@
 # Drone App
-<img src="https://github.com/user-attachments/assets/36395a4b-3cd4-4832-93e0-8fb3036e1d9a" alt="WhatsApp Image" width="240" height="300" />
+<img src="https://github.com/user-attachments/assets/36395a4b-3cd4-4832-93e0-8fb3036e1d9a" alt="WhatsApp Image" width="300" height="400" />
 
 
 ## Overview
