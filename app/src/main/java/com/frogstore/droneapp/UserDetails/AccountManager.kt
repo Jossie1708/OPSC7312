@@ -1,4 +1,4 @@
-package com.frogstore.droneapp
+package com.frogstore.droneapp.UserDetails
 
 import android.app.Activity
 import androidx.credentials.CreatePasswordRequest

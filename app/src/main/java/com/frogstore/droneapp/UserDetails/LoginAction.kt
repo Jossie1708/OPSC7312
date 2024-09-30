@@ -1,4 +1,4 @@
-package com.frogstore.droneapp
+package com.frogstore.droneapp.UserDetails
 
 // `LoginAction` is an interface that represents different actions related to the login process.
 // These actions can be user-triggered events like changing the username, password, or toggling the registration mode.

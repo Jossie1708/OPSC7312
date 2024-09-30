@@ -10,12 +10,12 @@ import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
 import androidx.lifecycle.lifecycleScope
-import com.frogstore.droneapp.AccountManager
+import com.frogstore.droneapp.UserDetails.AccountManager
 import com.frogstore.droneapp.R
-import com.frogstore.droneapp.SignUpResult
-import com.frogstore.droneapp.LoginViewModel
+import com.frogstore.droneapp.UserDetails.SignUpResult
+import com.frogstore.droneapp.UserDetails.LoginViewModel
 import kotlinx.coroutines.launch
-import com.frogstore.droneapp.LoginAction
+import com.frogstore.droneapp.UserDetails.LoginAction
 
 // RegisterFragment is a fragment responsible for handling the user registration process.
 class RegisterFragment : Fragment() {
