@@ -60,4 +60,7 @@
     <string name="weather_wind">Wind</string>
     <string name="weather_min_temp">Min Temp:</string>
     <string name="weather_max_temp">Max Temp:</string>
+
+    <string name="weather_pressure">Druk</string>
+    <string name="weather_humidity">Humiditeit</string>
 </resources>
