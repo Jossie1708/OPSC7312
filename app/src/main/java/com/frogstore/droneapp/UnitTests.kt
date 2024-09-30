@@ -10,7 +10,7 @@ import androidx.test.ext.junit.runners.AndroidJUnit4
 import com.frogstore.droneapp.Activities.ImageViewerActivity
 import com.frogstore.droneapp.Activities.LocationActivity
 import com.frogstore.droneapp.Activities.MainActivity
-import com.frogstore.droneapp.Activities.SideMenuNavBarActivity
+import com.frogstore.droneapp.SideMenuNavBarActivity
 import com.frogstore.droneapp.Adapters.NotificationsAdapter
 import com.frogstore.droneapp.ImageAdapter
 import org.junit.Before

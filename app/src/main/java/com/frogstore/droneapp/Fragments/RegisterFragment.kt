@@ -13,12 +13,12 @@ import androidx.lifecycle.lifecycleScope
 import com.android.volley.RequestQueue
 import com.android.volley.toolbox.StringRequest
 import com.android.volley.toolbox.Volley
-import com.frogstore.droneapp.AccountManager
+import com.frogstore.droneapp.UserDetails.AccountManager
 import com.frogstore.droneapp.R
-import com.frogstore.droneapp.SignUpResult
-import com.frogstore.droneapp.LoginViewModel
+import com.frogstore.droneapp.UserDetails.SignUpResult
+import com.frogstore.droneapp.UserDetails.LoginViewModel
 import kotlinx.coroutines.launch
-import com.frogstore.droneapp.LoginAction
+import com.frogstore.droneapp.UserDetails.LoginAction
 import java.lang.reflect.Method
 import java.nio.charset.Charset
 
