@@ -1,13 +1,13 @@
 Drone App
 Overview
-The Drone App is a comprehensive mobile application designed for drone enthusiasts and professionals. The app provides a range of features to enhance the drone flying experience, including weather forecasts, location tracking, image and video management, and more.
+The Drone App is a comprehensive mobile application designed for drone enthusiasts and professionals. It offers a range of features to enhance the drone flying experience, including weather forecasts, location tracking, image and video management, and more.
 
 Features
 Weather Forecast: Get current and forecasted weather conditions for your location, ensuring safe and optimal flying conditions.
 Location Tracking: Track your drone's location in real-time, with the ability to set boundaries and receive alerts.
-Image and Video Management: Organize and manage your drone-captured images and videos, with features like filtering, sorting, and sharing.
+Image and Video Management: Organize and manage your drone-captured images and videos, featuring options for filtering, sorting, and sharing.
 Settings and Customization: Personalize your app experience with customizable settings, including theme selection, language preferences, and more.
-User Account Management: Securely manage your user account, with features like login, registration, and password recovery.
+User Account Management: Securely manage your user account with features such as login, registration, and password recovery.
 Technical Details
 Programming Languages: Kotlin, Java
 Development Frameworks: Android SDK, AndroidX
@@ -35,7 +35,7 @@ Contributing
 Contributions to the Drone App are welcome. See the CONTRIBUTING file for guidelines on how to contribute.
 
 Acknowledgments
-The Drone App uses various open-source libraries and tools. See the ACKNOWLEDGMENTS file for a list of acknowledgments.
+The Drone App utilizes various open-source libraries and tools. See the ACKNOWLEDGMENTS file for a complete list of acknowledgments.
 
 Contact
 For support, feedback, or questions, please contact us at support@droneapp.com.
