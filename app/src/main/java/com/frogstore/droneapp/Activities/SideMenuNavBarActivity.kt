@@ -45,7 +45,7 @@ class SideMenuNavBarActivity : AppCompatActivity() {
         private const val REQUEST_CODE_PERMISSIONS = 1
     }
 
-    override fun onCreate(savedInstanceState: Bundle?) {
+    public override fun onCreate(savedInstanceState: Bundle?) {
         val sharedPreferences = PreferenceManager.getDefaultSharedPreferences(this)
         val isDarkTheme = sharedPreferences.getBoolean("isDarkTheme", false)
         if (isDarkTheme) {

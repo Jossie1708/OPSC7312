@@ -8,7 +8,7 @@ import androidx.core.view.WindowInsetsCompat
 import com.frogstore.droneapp.R
 
 class LocationActivity : AppCompatActivity() {
-    override fun onCreate(savedInstanceState: Bundle?) {
+    public override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
         setContentView(R.layout.activity_location)

@@ -19,7 +19,7 @@ class MainActivity : AppCompatActivity() {
     private val registerFragment = RegisterFragment()
     private val fingerprintFragment = FingerprintFragment()
 
-    override fun onCreate(savedInstanceState: Bundle?) {
+    public override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
         // Load theme before super.onCreate
