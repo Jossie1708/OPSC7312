@@ -67,6 +67,9 @@ android {
 dependencies {
   //  implementation("androidx.biometric:biometric:1.4.0-alpha02")
 // implementation("androidx.biometric:biometric-ktx:1.4.0-alpha02")
+
+    implementation ("com.squareup.picasso:picasso:2.8")
+    implementation ("com.android.volley:volley:1.2.1")
     implementation(libs.androidx.core.ktx)
     implementation(libs.androidx.appcompat)
     implementation(libs.androidx.lifecycle.livedata.ktx)

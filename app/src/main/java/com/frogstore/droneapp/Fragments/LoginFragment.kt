@@ -14,6 +14,8 @@ import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
 import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
+import com.android.volley.RequestQueue
+import com.android.volley.toolbox.Volley
 import com.frogstore.droneapp.AccountManager
 import com.frogstore.droneapp.R
 import com.frogstore.droneapp.SignUpResult
@@ -31,6 +33,9 @@ class LoginFragment : Fragment() {
 
     // ViewModel is shared across multiple fragments; it manages UI-related data in a lifecycle-conscious way
     private val loginViewModel: LoginViewModel by activityViewModels()
+    private lateinit var requestQueue: RequestQueue
+
+
 
     // This method inflates the login screen and sets up event listeners
     override fun onCreateView(
@@ -46,6 +51,10 @@ class LoginFragment : Fragment() {
         val passwordField = layout.findViewById<EditText>(R.id.txtLoginPassword)
 
         val fingerprint = layout.findViewById<TextView>(R.id.lblLoginFingerprint)
+
+        val url = "https://api address here"
+        // Initialize the RequestQueue for making network requests
+        requestQueue = Volley.newRequestQueue(requireContext())
 
         fingerprint.setOnClickListener{
             Toast.makeText(requireContext(), "Fingerprint feature coming soon!", Toast.LENGTH_SHORT).show()
@@ -86,6 +95,8 @@ class LoginFragment : Fragment() {
         // Return the inflated layout as the view for this fragment
         return layout
     }
+
+
 
     private fun isValidEmail(email: String): Boolean {
         return android.util.Patterns.EMAIL_ADDRESS.matcher(email).matches()
