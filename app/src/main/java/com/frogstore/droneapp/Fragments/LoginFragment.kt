@@ -20,6 +20,7 @@ import com.frogstore.droneapp.LoginViewModel
 import kotlinx.coroutines.launch
 import com.frogstore.droneapp.LoginAction
 import com.frogstore.droneapp.SideMenuNavBarActivity
+import com.frogstore.droneapp.UserSessionManager
 
 // This Fragment handles user login by taking their credentials and verifying them
 class LoginFragment : Fragment() {
@@ -101,8 +102,14 @@ class LoginFragment : Fragment() {
                 // Notify the ViewModel that the user has signed up successfully
                 loginViewModel.onAction(LoginAction.OnSignUp(result))
 
+
                 // Show a toast message to inform the user that login was successful
                 Toast.makeText(requireContext(), "Login successful", Toast.LENGTH_SHORT).show()
+
+                // Initialize UserSessionManager
+                val userSessionManager = UserSessionManager(requireContext())
+                // Save the user session (you might need to extract email from result)
+                userSessionManager.saveUserSession(result.username, result.username)
 
                 // Navigate to the next screen (home screen or main app screen) after successful login
                 // Create an Intent to start the SideMenuNavBarActivity (the main application screen)

@@ -109,15 +109,11 @@ class SideMenuNavBarActivity : AppCompatActivity() {
         updateHeader()
     }
     private fun updateHeader() {
-        // Configure Google Sign-In
-        val gso = GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
-            .requestEmail()
-            .build()
+        // Initialize UserSessionManager
+        val userSessionManager = UserSessionManager(this)
 
-        googleSignInClient = GoogleSignIn.getClient(this, gso)
-
-        // Get the signed-in account information
-        val account: GoogleSignInAccount? = GoogleSignIn.getLastSignedInAccount(this)
+        // Retrieve the user session
+        val loginState = userSessionManager.getUserSession()
 
         // Initialize the TextViews from the header layout
         val navView = binding.navView // Assuming navView is your NavigationView
@@ -125,17 +121,18 @@ class SideMenuNavBarActivity : AppCompatActivity() {
         name = headerView.findViewById(R.id.txtLoginUsername)
         email = headerView.findViewById(R.id.txtLoginEmail)
 
-        account?.let {
-            val personName = it.displayName
-            val personEmail = it.email
-            name.text = personName ?: "" // Set name, or empty if null
-            email.text = personEmail ?: "" // Set email, or empty if null
+        // Check if user session is available
+        loginState?.let {
+            // Set the name and email from the user session
+            name.text = it.loggedInUser // Assuming this is the username
+            email.text = it.email//it.email // Assuming this is the user's email
         } ?: run {
             // Handle the case where the user is not signed in
-            name.text = "Guest" // Default name
-            email.text = "Not signed in" // Default email
+            name.text = getString(R.string.sign_in_name) // Default name
+            email.text = getString(R.string.sign_in_email) // Default email
         }
     }
+
 
     private fun updateSystemUiColors(isDarkTheme: Boolean) {
         val colorPrimary = if (isDarkTheme) {

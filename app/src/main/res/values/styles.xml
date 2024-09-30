@@ -24,7 +24,7 @@
 
     <!-- Dark Theme Customization -->
     <style name="Base.Theme.DroneApp.Dark" parent="Theme.Material3.DayNight.NoActionBar">
-        <item name="textFillColor">@color/textColor</item>
+        <item name="textFillColor">@color/white</item>
         <item name="backgroundColor">@color/black</item>
 
         <item name="colorPrimary">@color/darkGreen</item>

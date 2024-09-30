@@ -2,7 +2,7 @@
 <resources>
 
     <color name = "textColor">#126171</color>
-    <color name = "divider">#818181</color>
+    <color name = "divider">#404040</color>
     <color name = "toolsbarColor">#009688</color>
 
     <color name="lightGreen">#94E1B4</color>

@@ -51,4 +51,7 @@
     <string name="menu_controller">Kontroleerder</string>
     <string name="menu_notification">" Kennisgewing"</string>
     <string name="menu_location">Ligging</string>
+
+    <string name="sign_in_name">Gas</string>
+    <string name="sign_in_email">Nie ingeteken nie</string>
 </resources>
