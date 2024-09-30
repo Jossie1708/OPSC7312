@@ -6,19 +6,19 @@
     android:layout_height="match_parent"
     android:background="?attr/backgroundColor"
     tools:context=".Fragments.HomeFragment">
-<ProgressBar
-android:id="@+id/loader"
-android:layout_width="wrap_content"
-android:layout_height="wrap_content"
-android:layout_centerInParent="true"
-android:visibility="gone" />
+    <ProgressBar
+        android:id="@+id/loader"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerInParent="true"
+        android:visibility="gone" />
 
-<TextView
-android:id="@+id/errorText"
-android:layout_width="wrap_content"
-android:layout_height="wrap_content"
-android:text="Error retrieving data"
-android:visibility="gone" />
+    <TextView
+        android:id="@+id/errorText"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Error retrieving data"
+        android:visibility="gone" />
 
     <ScrollView
         android:layout_width="match_parent"
