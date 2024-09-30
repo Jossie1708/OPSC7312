@@ -1,5 +1,6 @@
 # Drone App
-![WhatsApp Image 2024-09-30 at 22 58 13_b95820e2](https://github.com/user-attachments/assets/36395a4b-3cd4-4832-93e0-8fb3036e1d9a)
+<img src="https://github.com/user-attachments/assets/36395a4b-3cd4-4832-93e0-8fb3036e1d9a" alt="WhatsApp Image" width="500" />
+
 
 ## Overview
 The Drone App is a comprehensive mobile application designed for drone enthusiasts and professionals. It offers a range of features to enhance the drone flying experience, including weather forecasts, location tracking, image and video management, and more.
