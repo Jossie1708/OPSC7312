@@ -64,5 +64,8 @@
     <string name="menu_notification">Notification</string>
     <string name="menu_location">Location</string>
 
+    <string name="sign_in_name">Guest</string>
+    <string name="sign_in_email">Not signed in</string>
+
 
 </resources>
