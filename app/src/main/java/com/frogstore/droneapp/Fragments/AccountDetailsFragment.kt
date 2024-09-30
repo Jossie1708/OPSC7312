@@ -14,7 +14,7 @@ import com.android.volley.RequestQueue
 import com.android.volley.toolbox.StringRequest
 import com.android.volley.toolbox.Volley
 import com.frogstore.droneapp.R
-import com.frogstore.droneapp.UserSessionManager
+import com.frogstore.droneapp.UserDetails.UserSessionManager
 import com.frogstore.droneapp.databinding.ActivitySideMenuNavBarBinding
 import org.json.JSONException
 

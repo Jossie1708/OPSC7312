@@ -28,6 +28,7 @@ import com.android.volley.RequestQueue
 import com.android.volley.toolbox.StringRequest
 import com.android.volley.toolbox.Volley
 import com.frogstore.droneapp.Adapters.NotificationsAdapter
+import com.frogstore.droneapp.UserDetails.UserSessionManager
 import com.frogstore.droneapp.databinding.ActivitySideMenuNavBarBinding
 import com.google.android.gms.auth.api.signin.GoogleSignIn
 import com.google.android.gms.auth.api.signin.GoogleSignInAccount
@@ -55,7 +56,7 @@ class SideMenuNavBarActivity : AppCompatActivity() {
         private const val REQUEST_CODE_PERMISSIONS = 1
     }
 
-    override fun onCreate(savedInstanceState: Bundle?) {
+    public override fun onCreate(savedInstanceState: Bundle?) {
         val sharedPreferences = PreferenceManager.getDefaultSharedPreferences(this)
         val isDarkTheme = sharedPreferences.getBoolean("isDarkTheme", false)
         if (isDarkTheme) {
