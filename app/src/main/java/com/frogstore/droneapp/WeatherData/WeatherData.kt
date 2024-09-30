@@ -1,4 +1,4 @@
-package com.frogstore.droneapp
+package com.frogstore.droneapp.WeatherData
 
 data class WeatherData(
     val address: String,

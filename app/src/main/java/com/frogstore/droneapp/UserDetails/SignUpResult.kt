@@ -1,4 +1,4 @@
-package com.frogstore.droneapp
+package com.frogstore.droneapp.UserDetails
 
 // Sealed interface `SignUpResult` represents the possible outcomes of a sign-up or login process.
 // This sealed interface ensures that all possible outcomes are known and handled explicitly in the code.

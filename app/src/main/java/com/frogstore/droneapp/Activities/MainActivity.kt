@@ -1,4 +1,4 @@
-package com.frogstore.droneapp
+package com.frogstore.droneapp.Activities
 
 import android.os.Bundle
 import android.preference.PreferenceManager
@@ -11,6 +11,7 @@ import androidx.fragment.app.Fragment
 import com.frogstore.droneapp.Fragments.FingerprintFragment
 import com.frogstore.droneapp.Fragments.LoginFragment
 import com.frogstore.droneapp.Fragments.RegisterFragment
+import com.frogstore.droneapp.R
 import com.google.android.material.tabs.TabLayout
 
 class MainActivity : AppCompatActivity() {

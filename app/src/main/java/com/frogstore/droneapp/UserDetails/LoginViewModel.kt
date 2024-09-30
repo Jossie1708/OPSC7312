@@ -1,6 +1,5 @@
-package com.frogstore.droneapp
+package com.frogstore.droneapp.UserDetails
 
-import UserSessionManager
 import android.content.Context
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
@@ -12,10 +11,10 @@ import androidx.lifecycle.ViewModel
 class LoginViewModel(private val context: Context) : ViewModel() {
 
     val userSessionManager = UserSessionManager(context)
-    fun login(username: String, password: String) {
-        if (userSessionManager.login(username, password)) {
+    fun login(username: String, email: String) {
+        if (userSessionManager.login(username, email)) {
             // Login successful, save user session
-            userSessionManager.saveUserSession(username)
+            userSessionManager.saveUserSession(username, email)
         } else {
             // Login failed, handle error
         }
@@ -28,7 +27,6 @@ class LoginViewModel(private val context: Context) : ViewModel() {
     fun isUserLoggedIn(): Boolean {
         return userSessionManager.isUserLoggedIn()
     }
-
 
     // `state` holds the current login state, which is of type `LoginState`.
     // `mutableStateOf` creates a state variable that Compose can track for changes.
