@@ -1,0 +1,29 @@
+name: Android Unit Tests
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  build-and-test:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+
+      - name: Set up Android SDK
+        uses: actions/setup-android@v2
+        with:
+          android-version: '31'
+          build-tools-version: '31.0.0'
+
+      - name: Run unit tests
+        run: |
+          ./gradlew testDebugUnitTest
+
+      - name: Upload test results
+        uses: actions/upload-artifact@v2
+        with:
+          name: test-results
+          path: app/build/test-results/testDebugUnitTest/results.xml
