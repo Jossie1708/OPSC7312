@@ -67,5 +67,11 @@
     <string name="sign_in_name">Guest</string>
     <string name="sign_in_email">Not signed in</string>
 
+    <string name="weather_sunrise">Sunrise</string>
+    <string name="weather_sunset">Sunset</string>
+    <string name="weather_wind">Wind</string>
+    <string name="weather_min_temp">Min Temp:</string>
+    <string name="weather_max_temp">Max Temp:</string>
+
 
 </resources>
