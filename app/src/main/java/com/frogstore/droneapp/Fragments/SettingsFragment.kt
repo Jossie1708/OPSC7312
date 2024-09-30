@@ -11,6 +11,7 @@ import android.widget.ImageButton
 import android.widget.RadioButton
 import android.widget.RadioGroup
 import android.widget.Switch
+import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
 import com.frogstore.droneapp.R
@@ -32,6 +33,12 @@ class SettingsFragment : Fragment() {
         val btnDetails = layout.findViewById<ImageButton>(R.id.btnAccountDetails)
         val btnPass = layout.findViewById<ImageButton>(R.id.btnSetPassword)
         val btnFingerprint = layout.findViewById<ImageButton>(R.id.btnSetFingerprint)
+        val switchFingerPrint = layout.findViewById<Switch>(R.id.useTouchIDSwitch)
+
+       // switchFingerPrint.isEnabled = false;
+        switchFingerPrint.setOnClickListener{
+            Toast.makeText(requireContext(), "Fingerprint feature coming soon!", Toast.LENGTH_SHORT).show()
+        }
 
         // Initialize SharedPreferences
         sharedPreferences = PreferenceManager.getDefaultSharedPreferences(requireContext())
@@ -73,7 +80,7 @@ class SettingsFragment : Fragment() {
         }
 
         btnFingerprint.setOnClickListener {
-            findNavController().navigate(R.id.action_nav_settings_to_setFingerprintFragment)
+            Toast.makeText(requireContext(), "Fingerprint feature coming soon!", Toast.LENGTH_SHORT).show()
         }
 
         // Return the inflated layout

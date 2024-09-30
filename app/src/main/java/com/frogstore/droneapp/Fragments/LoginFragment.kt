@@ -8,17 +8,20 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
 import android.widget.EditText
+import android.widget.TextView
 import android.widget.Toast
 import androidx.fragment.app.Fragment
+import androidx.fragment.app.activityViewModels
 import androidx.lifecycle.lifecycleScope
-import com.frogstore.droneapp.UserDetails.AccountManager
+import androidx.navigation.fragment.findNavController
+import com.frogstore.droneapp.AccountManager
 import com.frogstore.droneapp.R
-import com.frogstore.droneapp.UserDetails.SignUpResult
-import com.frogstore.droneapp.UserDetails.LoginViewModel
+import com.frogstore.droneapp.SignUpResult
+import com.frogstore.droneapp.LoginViewModel
 import kotlinx.coroutines.launch
-import com.frogstore.droneapp.UserDetails.LoginAction
-import com.frogstore.droneapp.Activities.SideMenuNavBarActivity
-import com.frogstore.droneapp.UserDetails.UserSessionManager
+import com.frogstore.droneapp.LoginAction
+import com.frogstore.droneapp.SideMenuNavBarActivity
+import com.frogstore.droneapp.UserSessionManager
 
 // This Fragment handles user login by taking their credentials and verifying them
 class LoginFragment : Fragment() {
@@ -27,14 +30,13 @@ class LoginFragment : Fragment() {
     private lateinit var accountManager: AccountManager
 
     // ViewModel is shared across multiple fragments; it manages UI-related data in a lifecycle-conscious way
-    private lateinit var loginViewModel: LoginViewModel
+    private val loginViewModel: LoginViewModel by activityViewModels()
 
     // This method inflates the login screen and sets up event listeners
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        loginViewModel = LoginViewModel(requireContext())
         // Inflate the layout for the login fragment from XML
         val layout = inflater.inflate(R.layout.fragment_login, container, false)
 
@@ -43,13 +45,11 @@ class LoginFragment : Fragment() {
         val emailField = layout.findViewById<EditText>(R.id.txtLoginEmail)
         val passwordField = layout.findViewById<EditText>(R.id.txtLoginPassword)
 
-        if (loginViewModel.isUserLoggedIn()) {
-            // User is logged in, navigate to main screen
-            val intent = Intent(activity, SideMenuNavBarActivity::class.java)
-            startActivity(intent)
-            requireActivity().finish()
-        }
+        val fingerprint = layout.findViewById<TextView>(R.id.lblLoginFingerprint)
 
+        fingerprint.setOnClickListener{
+            Toast.makeText(requireContext(), "Fingerprint feature coming soon!", Toast.LENGTH_SHORT).show()
+        }
         // AccountManager is used to manage user accounts (e.g., sign-up, login)
         // It is initialized with the context of the current activity
         accountManager = AccountManager(requireActivity())
