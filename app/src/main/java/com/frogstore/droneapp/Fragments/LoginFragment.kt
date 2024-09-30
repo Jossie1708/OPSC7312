@@ -60,6 +60,10 @@ class LoginFragment : Fragment() {
                 // Return early to avoid attempting to login with missing data
                 return@setOnClickListener
             }
+            if (!isValidEmail(username)) {
+                Toast.makeText(requireContext(), "Please enter a valid email address.", Toast.LENGTH_SHORT).show()
+                return@setOnClickListener
+            }
 
             // Use Kotlin Coroutines to handle asynchronous tasks like logging in
             // `lifecycleScope.launch` starts a coroutine tied to the lifecycle of the fragment
@@ -74,6 +78,10 @@ class LoginFragment : Fragment() {
 
         // Return the inflated layout as the view for this fragment
         return layout
+    }
+
+    private fun isValidEmail(email: String): Boolean {
+        return android.util.Patterns.EMAIL_ADDRESS.matcher(email).matches()
     }
 
     // This method processes the result of the sign-up/login process
