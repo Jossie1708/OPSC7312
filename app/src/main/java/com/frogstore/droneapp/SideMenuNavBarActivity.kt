@@ -25,9 +25,17 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.frogstore.droneapp.Adapters.NotificationsAdapter
 import com.frogstore.droneapp.databinding.ActivitySideMenuNavBarBinding
+import com.google.android.gms.auth.api.signin.GoogleSignIn
+import com.google.android.gms.auth.api.signin.GoogleSignInAccount
+import com.google.android.gms.auth.api.signin.GoogleSignInClient
+import com.google.android.gms.auth.api.signin.GoogleSignInOptions
 import java.io.File
 
 class SideMenuNavBarActivity : AppCompatActivity() {
+    private lateinit var googleSignInClient: GoogleSignInClient
+    private lateinit var name: TextView
+    private lateinit var email: TextView
+
     private lateinit var appBarConfiguration: AppBarConfiguration
     private lateinit var binding: ActivitySideMenuNavBarBinding
     private lateinit var popupWindow: PopupWindow
@@ -97,7 +105,38 @@ class SideMenuNavBarActivity : AppCompatActivity() {
 
         // Update the UI based on notifications
         updateNotificationUI()
+
+        updateHeader()
     }
+    private fun updateHeader() {
+        // Configure Google Sign-In
+        val gso = GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
+            .requestEmail()
+            .build()
+
+        googleSignInClient = GoogleSignIn.getClient(this, gso)
+
+        // Get the signed-in account information
+        val account: GoogleSignInAccount? = GoogleSignIn.getLastSignedInAccount(this)
+
+        // Initialize the TextViews from the header layout
+        val navView = binding.navView // Assuming navView is your NavigationView
+        val headerView = navView.getHeaderView(0) // Get the first header view
+        name = headerView.findViewById(R.id.txtLoginUsername)
+        email = headerView.findViewById(R.id.txtLoginEmail)
+
+        account?.let {
+            val personName = it.displayName
+            val personEmail = it.email
+            name.text = personName ?: "" // Set name, or empty if null
+            email.text = personEmail ?: "" // Set email, or empty if null
+        } ?: run {
+            // Handle the case where the user is not signed in
+            name.text = "Guest" // Default name
+            email.text = "Not signed in" // Default email
+        }
+    }
+
     private fun updateSystemUiColors(isDarkTheme: Boolean) {
         val colorPrimary = if (isDarkTheme) {
             ContextCompat.getColor(this, R.color.darkGreenAccent) // Dark theme color
