@@ -151,6 +151,7 @@
                 android:background="@drawable/switch_background"
                 android:text=""
                 android:textOn="On"
+                android:thumbTint="?attr/android:navigationBarColor"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/view3"
@@ -238,33 +239,9 @@
                 android:layout_marginEnd="25dp"
                 android:background="@drawable/switch_background"
                 android:text=""
+                android:thumbTint="?attr/android:navigationBarColor"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/btnSetPassword" />
-
-            <RadioGroup
-                android:id="@+id/radioGroupLanguages"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="160dp"
-                android:layout_marginTop="39dp"
-                android:layout_marginBottom="19dp"
-                android:orientation="vertical"
-                app:layout_constraintBottom_toTopOf="@+id/view2"
-                app:layout_constraintStart_toEndOf="@+id/lblAfrikaans"
-                app:layout_constraintTop_toBottomOf="@+id/view">
-
-                <RadioButton
-                    android:id="@+id/rbtnAfrikaans"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="@string/text_afr" />
-
-                <RadioButton
-                    android:id="@+id/rbtnEnglish"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:text="@string/text_eng" />
-            </RadioGroup>
 
             <ImageButton
                 android:id="@+id/btnAccountDetails"
@@ -303,6 +280,33 @@
                 app:drawableTint="?attr/colorOnPrimary"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/view2" />
+
+            <RadioGroup
+                android:id="@+id/radioGroupLanguages"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="53dp"
+                android:layout_marginEnd="40dp"
+                android:layout_marginBottom="19dp"
+                android:orientation="vertical"
+                app:layout_constraintBottom_toTopOf="@+id/view2"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/view">
+
+                <RadioButton
+                    android:id="@+id/rbtnAfrikaans"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    />
+
+                <RadioButton
+                    android:id="@+id/rbtnEnglish"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    tools:layout_editor_absoluteX="305dp"
+                    tools:layout_editor_absoluteY="226dp"
+                    />
+            </RadioGroup>
 
 
         </androidx.constraintlayout.widget.ConstraintLayout>
