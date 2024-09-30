@@ -8,6 +8,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
 import android.widget.EditText
+import android.widget.TextView
 import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
@@ -44,6 +45,11 @@ class LoginFragment : Fragment() {
         val emailField = layout.findViewById<EditText>(R.id.txtLoginEmail)
         val passwordField = layout.findViewById<EditText>(R.id.txtLoginPassword)
 
+        val fingerprint = layout.findViewById<TextView>(R.id.lblLoginFingerprint)
+
+        fingerprint.setOnClickListener{
+            Toast.makeText(requireContext(), "Fingerprint feature coming soon!", Toast.LENGTH_SHORT).show()
+        }
         // AccountManager is used to manage user accounts (e.g., sign-up, login)
         // It is initialized with the context of the current activity
         accountManager = AccountManager(requireActivity())

@@ -83,8 +83,7 @@ class HomeFragment : Fragment() {
                 val pressure = main.getString("pressure")
                 val humidity = main.getString("humidity")
 
-                val sunrise: Long = sys.getLong("sunrise")
-                val sunset: Long = sys.getLong("sunset")
+
                 val windSpeed = wind.getString("speed")
                 val weatherDescription = weather.getString("description")
 
@@ -97,15 +96,10 @@ class HomeFragment : Fragment() {
                 layout.findViewById<TextView>(R.id.temp).text = temp
                 layout.findViewById<TextView>(R.id.temp_min).text = tempMin
                 layout.findViewById<TextView>(R.id.temp_max).text = tempMax
-                layout.findViewById<TextView>(R.id.sunrise).text = SimpleDateFormat("hh:mm a", Locale.ENGLISH).format(
-                    Date(sunrise * 1000)
-                )
-                layout.findViewById<TextView>(R.id.sunset).text = SimpleDateFormat("hh:mm a", Locale.ENGLISH).format(
-                    Date(sunset * 1000)
-                )
+
                 layout.findViewById<TextView>(R.id.wind).text = windSpeed
-                layout.findViewById<TextView>(R.id.pressure).text = pressure
-                layout.findViewById<TextView>(R.id.humidity).text = humidity
+                layout.findViewById<TextView>(R.id.txtPressure).text = pressure
+                layout.findViewById<TextView>(R.id.txtHumidity).text = humidity
 
                 // Hide ProgressBar and show main container
                 layout.findViewById<ProgressBar>(R.id.loader).visibility = View.GONE
