@@ -1,9 +1,11 @@
 # Drone App
-<img src="https://github.com/user-attachments/assets/36395a4b-3cd4-4832-93e0-8fb3036e1d9a" alt="WhatsApp Image" width="300" height="400" />
+
+![WhatsApp Image 2024-09-30 at 22 58 13_3f894021](https://github.com/user-attachments/assets/36395a4b-3cd4-4832-93e0-8fb3036e1d9a)
 
 
 ## Overview
 The Drone App is a comprehensive mobile application designed for drone enthusiasts and professionals. It offers a range of features to enhance the drone flying experience, including weather forecasts, location tracking, image and video management, and more.
+
 ![Uploading WhatsApp Image 2024-09-30 at 22.58.12_c09418b3.jpg…]()
 
 ## Features
@@ -12,6 +14,7 @@ The Drone App is a comprehensive mobile application designed for drone enthusias
 3. Image and Video Management: Organize and manage your drone-captured images and videos, featuring options for filtering, sorting, and sharing.
 4. Settings and Customization: Personalize your app experience with customizable settings, including theme selection, language preferences, and more.
 5. User Account Management: Securely manage your user account with features such as login, registration, and password recovery.
+6. 
 ![WhatsApp Image 2024-09-30 at 22 58 13_3f894021](https://github.com/user-attachments/assets/289e7332-b999-4743-ae70-305bf588bf6a)
 
 ## Technical Details
@@ -19,28 +22,33 @@ Programming Languages: Kotlin, Java
 Development Frameworks: Android SDK, AndroidX
 Libraries and Tools: Glide, Retrofit, OkHttp, Android Credential Manager
 Database: Azure SQL
+
 ![WhatsApp Image 2024-09-30 at 22 58 13_1353b391](https://github.com/user-attachments/assets/6e7fb68f-b8d0-4e7c-9920-94a1e4235fb7)
 
 ## System Requirements
 Operating System: Android 10.0 (API level 29) or later
 Device: Android smartphone or tablet with a minimum screen resolution of 1080p
 Internet Connection: Required for weather forecasts, location tracking, and other online features
+
 ![WhatsApp Image 2024-09-30 at 22 58 13_5223e212](https://github.com/user-attachments/assets/20e35526-f961-4f3c-93d1-07e177d5e62b)
 
 ## Installation
 Download the Drone App from the Google Play Store.
 Install the app on your Android device.
 Launch the app and follow the onboarding process to set up your account and customize your settings.
+
 ![WhatsApp Image 2024-09-30 at 22 58 12_abc9f6c5](https://github.com/user-attachments/assets/8cc06156-007c-4166-b3da-5ac972e19134)
 
 ## Usage
 Launch the app and navigate to the main dashboard.
 Use the navigation menu to access various features, such as weather forecasts, location tracking, and image and video management.
 Customize your settings and preferences as needed.
+
 ![WhatsApp Image 2024-09-30 at 22 58 12_0654107b](https://github.com/user-attachments/assets/84927eeb-7ad2-4dc0-9e05-4063e2009558)
 
 ## Troubleshooting
 Error Reporting: Report any errors or bugs to our support team for prompt resolution.
+
 ![WhatsApp Image 2024-09-30 at 22 58 12_c5f2efbc](https://github.com/user-attachments/assets/7b91dca6-ca44-493c-948b-40ce840cdb59)
 
 ## License
