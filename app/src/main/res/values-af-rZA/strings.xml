@@ -54,4 +54,10 @@
 
     <string name="sign_in_name">Gas</string>
     <string name="sign_in_email">Nie ingeteken nie</string>
+
+    <string name="weather_sunrise">Sonopkoms</string>
+    <string name="weather_sunset">Sonsondergang</string>
+    <string name="weather_wind">Wind</string>
+    <string name="weather_min_temp">Min Temp:</string>
+    <string name="weather_max_temp">Max Temp:</string>
 </resources>
