@@ -5,6 +5,7 @@ import android.content.pm.PackageManager
 import android.os.Bundle
 import android.os.storage.StorageManager
 import android.preference.PreferenceManager
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.Menu
 import android.view.View
@@ -23,13 +24,19 @@ import androidx.navigation.ui.setupActionBarWithNavController
 import androidx.navigation.ui.setupWithNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import com.android.volley.RequestQueue
+import com.android.volley.toolbox.StringRequest
+import com.android.volley.toolbox.Volley
 import com.frogstore.droneapp.Adapters.NotificationsAdapter
 import com.frogstore.droneapp.databinding.ActivitySideMenuNavBarBinding
 import com.google.android.gms.auth.api.signin.GoogleSignIn
 import com.google.android.gms.auth.api.signin.GoogleSignInAccount
 import com.google.android.gms.auth.api.signin.GoogleSignInClient
 import com.google.android.gms.auth.api.signin.GoogleSignInOptions
+import org.json.JSONException
 import java.io.File
+import java.nio.charset.Charset
+import org.json.JSONObject
 
 class SideMenuNavBarActivity : AppCompatActivity() {
     private lateinit var googleSignInClient: GoogleSignInClient
@@ -41,6 +48,8 @@ class SideMenuNavBarActivity : AppCompatActivity() {
     private lateinit var popupWindow: PopupWindow
     private lateinit var notifications: ArrayList<String>
     private lateinit var imageList: ArrayList<String>
+
+    private lateinit var requestQueue: RequestQueue
 
     companion object {
         private const val REQUEST_CODE_PERMISSIONS = 1
@@ -58,6 +67,9 @@ class SideMenuNavBarActivity : AppCompatActivity() {
 
         // Set system UI colors based on the theme
         updateSystemUiColors(isDarkTheme)
+
+        // Initialize the RequestQueue for making network requests
+        requestQueue = Volley.newRequestQueue(this)
 
         binding = ActivitySideMenuNavBarBinding.inflate(layoutInflater)
         setContentView(binding.root)
@@ -108,6 +120,37 @@ class SideMenuNavBarActivity : AppCompatActivity() {
 
         updateHeader()
     }
+    private fun getUsername() {
+        val url = "https://frogtrackapi2-bjaufahwavexambv.eastasia-01.azurewebsites.net/getUsername?email=${email.text}"
+
+        val stringRequest = object : StringRequest(
+            Method.GET, url,
+            { response ->
+                Log.d("API Response", response) // Log the response
+                try {
+                    // Remove quotes if the response is a simple string
+                    val username = response.replace("\"", "") // Remove double quotes
+                    name.text = username
+                    Toast.makeText(this, "Username retrieved successfully", Toast.LENGTH_SHORT).show()
+                } catch (e: JSONException) {
+                    Toast.makeText(this, "Invalid response format: $response", Toast.LENGTH_SHORT).show()
+                }
+            },
+            { error ->
+                Toast.makeText(this, "Error retrieving username: ${error.message}", Toast.LENGTH_SHORT).show()
+            }) {
+            override fun getHeaders(): Map<String, String> {
+                val headers = HashMap<String, String>()
+                headers["Content-Type"] = "application/json"
+                return headers
+            }
+        }
+
+        requestQueue.add(stringRequest)
+    }
+
+
+
     private fun updateHeader() {
         // Initialize UserSessionManager
         val userSessionManager = UserSessionManager(this)
@@ -123,9 +166,9 @@ class SideMenuNavBarActivity : AppCompatActivity() {
 
         // Check if user session is available
         loginState?.let {
-            // Set the name and email from the user session
-            name.text = it.loggedInUser // Assuming this is the username
-            email.text = it.email//it.email // Assuming this is the user's email
+            // Set the email from the user session and call getUsername to retrieve the username
+            email.text = it.loggedInUser // Assuming this is the user's email
+            getUsername() // Fetch and display the username
         } ?: run {
             // Handle the case where the user is not signed in
             name.text = getString(R.string.sign_in_name) // Default name

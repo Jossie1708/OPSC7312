@@ -3,6 +3,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:background="?attr/backgroundColor"
     tools:context=".Fragments.ControllerFragment">
 
@@ -24,44 +25,49 @@
 
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="60dp"
             android:layout_marginBottom="4dp"
             android:gravity="center">
 
             <ImageButton
                 android:id="@+id/btnForward"
-                android:layout_width="64dp"
-                android:layout_height="wrap_content"
+                android:layout_width="wrap_content"
+                android:layout_height="40dp"
                 android:layout_margin="8dp"
                 android:background="@drawable/settingsbuttonlayout"
+                app:drawableTint="?attr/colorOnPrimary"
                 android:text="@string/controller_forward"
                 tools:src="@drawable/ic_up" />
 
             <ImageButton
                 android:id="@+id/btnLeft"
-                android:layout_width="64dp"
-                android:layout_height="wrap_content"
+                android:layout_width="wrap_content"
+                android:layout_height="40dp"
                 android:layout_margin="8dp"
                 android:background="@drawable/settingsbuttonlayout"
+                app:drawableTint="?attr/colorOnPrimary"
                 android:text="@string/controller_left"
                 tools:src="@drawable/ic_left" />
 
             <ImageButton
                 android:id="@+id/btnRight"
-                android:layout_width="64dp"
-                android:layout_height="wrap_content"
+                android:layout_width="wrap_content"
+                android:layout_height="40dp"
                 android:background="@drawable/settingsbuttonlayout"
+                app:drawableTint="?attr/colorOnPrimary"
+
                 android:layout_margin="8dp"
                 android:text="@string/controller_right"
                 tools:src="@drawable/ic_right" />
 
             <ImageButton
                 android:id="@+id/btnReverse"
-                android:layout_width="64dp"
-                android:layout_height="wrap_content"
+                android:layout_width="wrap_content"
+                android:layout_height="40dp"
                 android:layout_margin="8dp"
                 android:background="@drawable/settingsbuttonlayout"
                 android:text="@string/controller_reverse"
+                app:drawableTint="?attr/colorOnPrimary"
                 tools:src="@drawable/ic_down" />
         </LinearLayout>
 
@@ -73,18 +79,20 @@
             <ImageButton
                 android:id="@+id/btnFlyHigher"
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                android:layout_height="40dp"
                 android:layout_margin="8dp"
                 android:background="@drawable/settingsbuttonlayout"
+                app:drawableTint="?attr/colorOnPrimary"
                 android:src="@drawable/ic_go_up"
                 android:text="@string/controller_up" />
 
             <ImageButton
                 android:id="@+id/btnFlyLower"
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                android:layout_height="40dp"
                 android:layout_margin="8dp"
                 android:background="@drawable/settingsbuttonlayout"
+                app:drawableTint="?attr/colorOnPrimary"
                 android:text="@string/controller_down"
                 tools:src="@drawable/ic_go_down" />
 
