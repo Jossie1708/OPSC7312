@@ -132,8 +132,8 @@ class SideMenuNavBarActivity : AppCompatActivity() {
             email.text = personEmail ?: "" // Set email, or empty if null
         } ?: run {
             // Handle the case where the user is not signed in
-            name.text = "Guest" // Default name
-            email.text = "Not signed in" // Default email
+            name.text = "@string/sign_in_name"// Default name
+            email.text = "@string/sign_in_email" // Default email
         }
     }
 

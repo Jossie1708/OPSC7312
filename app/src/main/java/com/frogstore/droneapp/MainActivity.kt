@@ -72,13 +72,13 @@ class MainActivity : AppCompatActivity() {
     }
     private fun updateSystemUiColors(isDarkTheme: Boolean) {
         val colorPrimary = if (isDarkTheme) {
-            ContextCompat.getColor(this, R.color.greenAccent) // Dark theme color
+            ContextCompat.getColor(this, R.color.darkGreenAccent) // Dark theme color
         } else {
             ContextCompat.getColor(this, R.color.greenAccent) // Light theme color
         }
 
         val statusBarColor = if (isDarkTheme) {
-            ContextCompat.getColor(this, R.color.greenAccent)
+            ContextCompat.getColor(this, R.color.darkGreenAccent)
         } else {
             ContextCompat.getColor(this, R.color.greenAccent)
         }
