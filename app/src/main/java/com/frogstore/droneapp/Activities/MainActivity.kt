@@ -1,4 +1,4 @@
-package com.frogstore.droneapp
+package com.frogstore.droneapp.Activities
 
 import android.os.Bundle
 import android.preference.PreferenceManager
@@ -11,6 +11,7 @@ import androidx.fragment.app.Fragment
 import com.frogstore.droneapp.Fragments.FingerprintFragment
 import com.frogstore.droneapp.Fragments.LoginFragment
 import com.frogstore.droneapp.Fragments.RegisterFragment
+import com.frogstore.droneapp.R
 import com.google.android.material.tabs.TabLayout
 
 class MainActivity : AppCompatActivity() {
@@ -18,7 +19,7 @@ class MainActivity : AppCompatActivity() {
     private val registerFragment = RegisterFragment()
     private val fingerprintFragment = FingerprintFragment()
 
-    override fun onCreate(savedInstanceState: Bundle?) {
+    public override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
         // Load theme before super.onCreate

@@ -1,4 +1,4 @@
-package com.frogstore.droneapp
+package com.frogstore.droneapp.UserDetails
 
 import androidx.activity.ComponentActivity
 import androidx.compose.foundation.layout.*

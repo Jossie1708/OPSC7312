@@ -6,7 +6,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="?attr/backgroundColor"
-    tools:context=".SettingsActivity">
+    tools:context=".Activities.SettingsActivity">
 
     <FrameLayout
         android:id="@+id/frSettings"

@@ -1,8 +1,6 @@
-package com.frogstore.droneapp
+package com.frogstore.droneapp.UserDetails
 import android.content.Context
 import android.content.SharedPreferences
-import com.frogstore.droneapp.LoginState
-import com.frogstore.droneapp.SignUpResult
 
 class UserSessionManager(private val context: Context) {
 
