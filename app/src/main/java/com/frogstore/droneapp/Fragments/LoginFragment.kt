@@ -28,13 +28,14 @@ class LoginFragment : Fragment() {
     private lateinit var accountManager: AccountManager
 
     // ViewModel is shared across multiple fragments; it manages UI-related data in a lifecycle-conscious way
-    private val loginViewModel: LoginViewModel by activityViewModels()
+    private lateinit var loginViewModel: LoginViewModel
 
     // This method inflates the login screen and sets up event listeners
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
+        loginViewModel = LoginViewModel(requireContext())
         // Inflate the layout for the login fragment from XML
         val layout = inflater.inflate(R.layout.fragment_login, container, false)
 
@@ -42,6 +43,13 @@ class LoginFragment : Fragment() {
         val btnLogin = layout.findViewById<Button>(R.id.btnLogin)
         val emailField = layout.findViewById<EditText>(R.id.txtLoginEmail)
         val passwordField = layout.findViewById<EditText>(R.id.txtLoginPassword)
+
+        if (loginViewModel.isUserLoggedIn()) {
+            // User is logged in, navigate to main screen
+            val intent = Intent(activity, SideMenuNavBarActivity::class.java)
+            startActivity(intent)
+            requireActivity().finish()
+        }
 
         // AccountManager is used to manage user accounts (e.g., sign-up, login)
         // It is initialized with the context of the current activity

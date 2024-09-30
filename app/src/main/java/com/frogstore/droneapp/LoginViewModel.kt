@@ -1,5 +1,7 @@
 package com.frogstore.droneapp
 
+import UserSessionManager
+import android.content.Context
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.setValue
@@ -7,7 +9,26 @@ import androidx.lifecycle.ViewModel
 
 // The `LoginViewModel` class extends the `ViewModel` class, meaning it manages UI-related data in a lifecycle-conscious way.
 // This class stores the state for the login process and handles actions that affect the UI state, such as input changes and sign-up results.
-class LoginViewModel : ViewModel() {
+class LoginViewModel(private val context: Context) : ViewModel() {
+
+    val userSessionManager = UserSessionManager(context)
+    fun login(username: String, password: String) {
+        if (userSessionManager.login(username, password)) {
+            // Login successful, save user session
+            userSessionManager.saveUserSession(username)
+        } else {
+            // Login failed, handle error
+        }
+    }
+
+    fun getUserSession(): LoginState? {
+        return userSessionManager.getUserSession()
+    }
+
+    fun isUserLoggedIn(): Boolean {
+        return userSessionManager.isUserLoggedIn()
+    }
+
 
     // `state` holds the current login state, which is of type `LoginState`.
     // `mutableStateOf` creates a state variable that Compose can track for changes.
