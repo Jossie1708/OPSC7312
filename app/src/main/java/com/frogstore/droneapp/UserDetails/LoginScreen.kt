@@ -85,7 +85,8 @@ fun LoginScreen(
                         // If the switch is set to "Register", call the `signUp` method from `AccountManager`.
                         val result = accountManager.signUp(
                             username = state.username, // Pass the entered username.
-                            password = state.password  // Pass the entered password.
+                            password = state.password,
+                            email = state.email// Pass the entered password.
                         )
                         // After signing up, trigger the `OnSignUp` action with the result.
                         onAction(LoginAction.OnSignUp(result))

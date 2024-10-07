@@ -2,13 +2,11 @@ package com.frogstore.droneapp.UserDetails
 import android.content.Context
 import android.content.SharedPreferences
 
-class UserSessionManager(private val context: Context) {
+class UserSessionManager(context: Context) {
 
     private val sharedPreferences: SharedPreferences = context.getSharedPreferences("user_session", Context.MODE_PRIVATE)
 
     fun login(username: String, email: String): Boolean {
-        // Call the login API or perform login logic here
-        // For demonstration purposes, we'll assume the login is successful
         val isLoggedIn = true
 
         if (isLoggedIn) {
@@ -32,12 +30,12 @@ class UserSessionManager(private val context: Context) {
     }
 
     fun getUserSession(): LoginState? {
-        val username = sharedPreferences.getString("username", null)
-        val email = sharedPreferences.getString("email", null)
+        val username = sharedPreferences.getString("username", "")
+        val email = sharedPreferences.getString("email", "")
         val isLoggedIn = sharedPreferences.getBoolean("is_logged_in", false)
 
         if (username != null && email != null && isLoggedIn) {
-            return LoginState(loggedInUser= username, email)
+            return LoginState(loggedInUser  = username, email = email)
         } else {
             return null
         }

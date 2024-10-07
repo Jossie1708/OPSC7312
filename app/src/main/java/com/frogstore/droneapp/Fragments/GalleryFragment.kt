@@ -3,6 +3,7 @@ package com.frogstore.droneapp
 
 import android.content.Intent
 import android.os.Bundle
+import android.os.Environment
 import android.os.storage.StorageManager
 import android.view.LayoutInflater
 import android.view.View
@@ -38,11 +39,8 @@ class GalleryFragment : Fragment() {
 
         return layout
     }
-
     private fun loadImagesFromFolder() {
-        val storageManager = requireContext().getSystemService(StorageManager::class.java)
-        val storageVolume = storageManager?.storageVolumes?.get(0)
-        val folderPath = storageVolume?.directory?.path + "/DCIM/100PINT/Pins" // Specify your folder path here
+        val folderPath = Environment.getExternalStorageDirectory().path + "/DCIM/100PINT/Pins" // Specify your folder path here
         val folder = File(folderPath)
 
         if (folder.exists() && folder.isDirectory) {
