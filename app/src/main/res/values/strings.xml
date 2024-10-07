@@ -75,6 +75,8 @@
     <string name="weather_pressure">Pressure</string>
     <string name="weather_humidity">Humidity</string>
 
+    <string name="feature_coming_soon">Feature Coming Soon!</string>
+
 
 
 </resources>

@@ -63,4 +63,6 @@
 
     <string name="weather_pressure">Druk</string>
     <string name="weather_humidity">Humiditeit</string>
+
+    <string name="feature_coming_soon">funksie kom binnekort!</string>
 </resources>
