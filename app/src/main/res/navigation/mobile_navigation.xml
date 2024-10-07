@@ -65,7 +65,7 @@
         />
     <activity
         android:id="@+id/sideMenuNavBarActivity"
-        android:name="com.frogstore.droneapp.Activities.SideMenuNavBarActivity"
+        android:name="com.frogstore.droneapp.SideMenuNavBarActivity"
         android:label="SideMenuNavBarActivity"
         tools:layout="@layout/activity_side_menu_nav_bar" />
     <activity
@@ -74,5 +74,6 @@
         android:label="@string/menu_controller"
         tools:layout="@layout/activity_home"
         />
+
 
 </navigation>
