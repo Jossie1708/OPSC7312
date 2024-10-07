@@ -15,7 +15,7 @@ data class LoginState(
     // It has a default value of "pass", again potentially for testing purposes.
     val password: String = "pass",
 
-    val email: String = "email",
+    val email: String = "",
 
     // `errorMessage` holds any error message that needs to be displayed in case of login failure, signup failure, or other issues.
     // It is nullable (`String?`) because there may be times when no error message is needed, in which case it will be null.

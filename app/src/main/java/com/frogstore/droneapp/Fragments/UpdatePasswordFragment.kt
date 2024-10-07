@@ -13,6 +13,7 @@ import com.android.volley.RequestQueue
 import com.android.volley.toolbox.StringRequest
 import com.android.volley.toolbox.Volley
 import com.frogstore.droneapp.R
+import com.frogstore.droneapp.UserDetails.LoginViewModel
 import com.frogstore.droneapp.UserDetails.UserSessionManager
 import org.json.JSONException
 
@@ -41,8 +42,12 @@ class UpdatePasswordFragment : Fragment() {
         buttonUpdatePassword.setOnClickListener {
             val oldPassword = editTextOldPassword.text.toString()
             val newPassword = editTextNewPassword.text.toString()
-            val userSessionManager = UserSessionManager(requireContext())
-            val email = userSessionManager.getUserSession()?.loggedInUser // Get the logged-in user's email
+            // Initialize LoginViewModel
+            val loginViewModel = LoginViewModel(requireActivity().application)
+
+            // Retrieve the user session
+            val loginState = loginViewModel.getUserSession()
+            val email = loginState?.email // Get the logged-in user's email
 
             if (email != null && oldPassword.isNotEmpty() && newPassword.isNotEmpty()) {
                 updatePassword(email, oldPassword, newPassword)

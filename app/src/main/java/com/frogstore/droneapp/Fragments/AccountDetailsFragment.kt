@@ -14,6 +14,7 @@ import com.android.volley.RequestQueue
 import com.android.volley.toolbox.StringRequest
 import com.android.volley.toolbox.Volley
 import com.frogstore.droneapp.R
+import com.frogstore.droneapp.UserDetails.LoginViewModel
 import com.frogstore.droneapp.UserDetails.UserSessionManager
 import com.frogstore.droneapp.databinding.ActivitySideMenuNavBarBinding
 import org.json.JSONException
@@ -22,6 +23,7 @@ class AccountDetailsFragment : Fragment() {
 
     private lateinit var requestQueue: RequestQueue
     private lateinit var editTextNewUsername: EditText
+    private lateinit var editTextEmail: EditText
     private lateinit var buttonUpdateUsername: Button
     private lateinit var binding: ActivitySideMenuNavBarBinding
     private lateinit var name: TextView
@@ -37,6 +39,17 @@ class AccountDetailsFragment : Fragment() {
         // Initialize the UI components
         editTextNewUsername = layout.findViewById(R.id.txtAccUsername)
         buttonUpdateUsername = layout.findViewById(R.id.btnUpdateAccountDetails)
+        editTextEmail = layout.findViewById(R.id.txtAccEmail)
+
+        val loginViewModel = LoginViewModel(requireActivity().application)
+
+        // Retrieve the user session
+        val loginState = loginViewModel.getUserSession()
+        val email = loginState?.email // Get the logged-in user's email
+
+        // Load the user's email into the editText and disable it
+        editTextEmail.setText(email)
+        editTextEmail.isEnabled = false
 
         // Initialize the RequestQueue for making network requests
         requestQueue = Volley.newRequestQueue(requireContext())
@@ -46,10 +59,8 @@ class AccountDetailsFragment : Fragment() {
 
         buttonUpdateUsername.setOnClickListener {
             val newUsername = editTextNewUsername.text.toString()
-            val userSessionManager = UserSessionManager(requireContext())
-            val email = userSessionManager.getUserSession()?.loggedInUser // Get the logged-in user's email
 
-            if (email != null && newUsername.isNotEmpty()) {
+            if (newUsername.isNotEmpty()) {
                 updateUsername(email, newUsername)
             } else {
                 Toast.makeText(requireContext(), "Please enter a valid username", Toast.LENGTH_SHORT).show()
@@ -59,35 +70,11 @@ class AccountDetailsFragment : Fragment() {
         return layout
     }
 
-    private fun updateHeader(newUsername: String) {
-        // Initialize UserSessionManager
-        val userSessionManager = UserSessionManager(requireContext())
-
-        // Retrieve the user session
-        val loginState = userSessionManager.getUserSession()
-
-        // Initialize the TextViews from the header layout
-        val navView = binding.navView // Assuming navView is your NavigationView
-        val headerView = navView.getHeaderView(0) // Get the first header view
-        name = headerView.findViewById(R.id.txtLoginUsername)
-        email = headerView.findViewById(R.id.txtLoginEmail)
-
-        // Check if user session is available
-        loginState?.let {
-            email.text = it.loggedInUser // Assuming this is the user's email
-            name.text = newUsername // Display the updated username
-        } ?: run {
-            // Handle the case where the user is not signed in
-            name.text = getString(R.string.sign_in_name) // Default name
-            email.text = getString(R.string.sign_in_email) // Default email
-        }
-    }
-
-    private fun updateUsername(email: String, newUsername: String) {
+    private fun updateUsername(email: String?, newUsername: String) {
         val url = "https://frogtrackapi2-bjaufahwavexambv.eastasia-01.azurewebsites.net/updateUsername?email=$email&newUsername=$newUsername"
 
         val params = HashMap<String, String>()
-        params["email"] = email
+        params["email"] = email ?: ""
         params["newUsername"] = newUsername
 
         val stringRequest = object : StringRequest(
@@ -95,10 +82,15 @@ class AccountDetailsFragment : Fragment() {
             { response ->
                 Log.d("API Response", response) // Log the response
                 try {
-                    val username = response.replace("\"", "") // Remove double quotes
+                    val username = newUsername
                     Toast.makeText(requireContext(), "Username updated to $username", Toast.LENGTH_SHORT).show()
 
-                    updateHeader(newUsername)
+                    // Update the user's session with the new username
+                    val loginViewModel = LoginViewModel(requireActivity().application)
+                    email?.let { loginViewModel.login(username, it) }
+                    // Restart the activity to apply changes
+                    requireActivity().recreate()
+
                 } catch (e: JSONException) {
                     Log.e("JSON Error", "Invalid response format: $response", e)
                     Toast.makeText(requireContext(), "Invalid response format: $response", Toast.LENGTH_SHORT).show()
@@ -121,4 +113,5 @@ class AccountDetailsFragment : Fragment() {
 
         requestQueue.add(stringRequest)
     }
+
 }

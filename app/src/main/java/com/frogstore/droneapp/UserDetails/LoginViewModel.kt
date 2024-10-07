@@ -1,19 +1,26 @@
 package com.frogstore.droneapp.UserDetails
 
+import android.app.Application
 import android.content.Context
+import android.widget.Toast
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.setValue
+import androidx.core.content.ContentProviderCompat.requireContext
+import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.ViewModel
 
 // The `LoginViewModel` class extends the `ViewModel` class, meaning it manages UI-related data in a lifecycle-conscious way.
 // This class stores the state for the login process and handles actions that affect the UI state, such as input changes and sign-up results.
-class LoginViewModel(private val context: Context) : ViewModel() {
+class LoginViewModel(application: Application) : AndroidViewModel(application) {
+
+    private val context = application
 
     val userSessionManager = UserSessionManager(context)
     fun login(username: String, email: String) {
         if (userSessionManager.login(username, email)) {
             // Login successful, save user session
+
             userSessionManager.saveUserSession(username, email)
         } else {
             // Login failed, handle error
@@ -47,6 +54,7 @@ class LoginViewModel(private val context: Context) : ViewModel() {
 
             // Handle the action for sign-up result.
             is LoginAction.OnSignUp -> {
+
                 // The result of the sign-up process is checked with another `when` expression.
                 when (action.result) {
                     // If sign-up was cancelled, update the state with an appropriate error message.
@@ -56,7 +64,7 @@ class LoginViewModel(private val context: Context) : ViewModel() {
                         )
                     }
                     // If sign-up failed, update the state with a failure error message.
-                    SignUpResult.Failure -> {
+                    is SignUpResult.Failure -> {
                         state = state.copy(
                             errorMessage = "Sign up failed" // Set an error message for the failed sign-up.
                         )
@@ -64,8 +72,10 @@ class LoginViewModel(private val context: Context) : ViewModel() {
                     // If sign-up was successful, update the state with the logged-in user's username.
                     is SignUpResult.Success -> {
                         state = state.copy(
-                            loggedInUser = action.result.username // Store the username of the successfully logged-in user.
+                            loggedInUser = action.result.username// Store the username of the successfully logged-in user.
                         )
+                        storeUserInSSO(action.result.username, action.result.email)
+
                     }
                 }
             }
@@ -82,5 +92,12 @@ class LoginViewModel(private val context: Context) : ViewModel() {
                 state = state.copy(username = action.username)
             }
         }
+    }
+    private fun storeUserInSSO(username: String, email: String) {
+        // Initialize the UserSessionManager
+        val userSessionManager = UserSessionManager(context)
+
+        // Store the user details in the SSO
+        userSessionManager.login(username, email)
     }
 }

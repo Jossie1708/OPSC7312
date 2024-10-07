@@ -1,6 +1,8 @@
 package com.frogstore.droneapp.Fragments
 
 import android.os.Bundle
+import android.util.Log
+import android.util.Log.e
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -19,8 +21,11 @@ import com.frogstore.droneapp.UserDetails.SignUpResult
 import com.frogstore.droneapp.UserDetails.LoginViewModel
 import kotlinx.coroutines.launch
 import com.frogstore.droneapp.UserDetails.LoginAction
+import com.frogstore.droneapp.UserDetails.LoginViewModelFactory
+import com.frogstore.droneapp.UserDetails.UserSessionManager
 import java.lang.reflect.Method
 import java.nio.charset.Charset
+
 
 // RegisterFragment is a fragment responsible for handling the user registration process.
 class RegisterFragment : Fragment() {
@@ -28,7 +33,7 @@ class RegisterFragment : Fragment() {
     private lateinit var accountManager: AccountManager
 
     // Shared ViewModel to manage the login-related data across activities and fragments.
-    private val loginViewModel: LoginViewModel by activityViewModels()
+    private val loginViewModel: LoginViewModel by activityViewModels { LoginViewModelFactory(requireContext()) }
 
     private lateinit var requestQueue: RequestQueue
     private lateinit var username: String
@@ -75,13 +80,10 @@ class RegisterFragment : Fragment() {
 
             // Check if the entered password matches the confirmed password.
             if (password == confirmPassword) {
-                // If the passwords match, launch a coroutine to handle the sign-up process asynchronously
                 lifecycleScope.launch {
-                    // Use the accountManager to perform the sign-up operation with the provided username and password.
-                    val result = accountManager.signUp(username, password)
-                    // Handle the result of the sign-up process.
+                    val result = accountManager.signUp(username, password, email) // Pass email to signUp
+
                     handleSignUpResult(result)
-                    storeInformation()
                 }
             } else {
                 // If the passwords do not match, show a toast message to inform the user.
@@ -98,10 +100,11 @@ class RegisterFragment : Fragment() {
             // If the sign-up is successful:
             is SignUpResult.Success -> {
                 // Notify the shared ViewModel that the sign-up was successful.
+
                 loginViewModel.onAction(LoginAction.OnSignUp(result))
                 // Display a success message to the user.
                 Toast.makeText(requireContext(), "Registration successful", Toast.LENGTH_SHORT).show()
-
+                storeInformation()
             }
             // If the sign-up fails:
             SignUpResult.Failure -> {
@@ -131,11 +134,14 @@ class RegisterFragment : Fragment() {
             Method.POST, url,
             { response ->
                 // Handle the response from the server
-                Toast.makeText(requireContext(), "User data stored successfully", Toast.LENGTH_SHORT).show()
+                Toast.makeText(requireContext(), "User  data stored successfully", Toast.LENGTH_SHORT).show()
+                // Store the user details in the SSO
+              //  storeUserInSSO()
             },
             { error ->
                 // Handle the error response
-                Toast.makeText(requireContext(), "Error storing user data: ${error.message}", Toast.LENGTH_SHORT).show()
+                Toast.makeText(requireContext(), "Error storing user data: ${error.toString()}", Toast.LENGTH_SHORT).show()
+                Log.e("RegisterFragment", "Error storing user data: ${error.toString()}")
             }) {
             override fun getBody(): ByteArray {
                 return jsonBody.toByteArray(Charset.defaultCharset())
@@ -152,4 +158,11 @@ class RegisterFragment : Fragment() {
         requestQueue.add(stringRequest)
     }
 
+    private fun storeUserInSSO() {
+        // Initialize the UserSessionManager
+        val userSessionManager = UserSessionManager(requireContext())
+
+        // Store the user details in the SSO
+        userSessionManager.login(username, email)
+    }
 }
