@@ -65,8 +65,8 @@ android {
 }
 
 dependencies {
-  //  implementation("androidx.biometric:biometric:1.4.0-alpha02")
-// implementation("androidx.biometric:biometric-ktx:1.4.0-alpha02")
+    implementation (libs.picasso)
+    implementation (libs.volley)
     implementation(libs.androidx.core.ktx)
     implementation(libs.androidx.appcompat)
     implementation(libs.androidx.lifecycle.livedata.ktx)
@@ -75,37 +75,32 @@ dependencies {
     implementation(libs.androidx.ui.tooling.preview)
     implementation(libs.androidx.navigation.compose)
     implementation(libs.androidx.preference.ktx)
+    implementation(libs.testng)
+    implementation(libs.testng)
+    implementation(libs.testng)
+    implementation(libs.core.ktx)
+    implementation(libs.androidx.junit.ktx)
     testImplementation(libs.junit)
     androidTestImplementation(libs.androidx.junit)
     androidTestImplementation(libs.androidx.espresso.core)
     debugImplementation(libs.androidx.ui.tooling)
     debugImplementation(libs.androidx.ui.test.manifest)
-
-
-    implementation("com.github.bumptech.glide:glide:4.16.0")
+    implementation(libs.mockito.kotlin)
+    implementation(libs.glide)
     implementation(libs.play.services.maps)
     implementation(libs.googleid)
     implementation(libs.androidx.runtime.android)
     implementation(libs.androidx.foundation.layout.android)
     implementation(libs.androidx.material3.android)
-
-
-    // Add RecyclerView dependency
-    implementation("androidx.recyclerview:recyclerview:1.3.2") // Use the latest stable version
-    implementation("com.google.android.gms:play-services-maps:19.0.0")
-
-    implementation("org.jetbrains.kotlinx:kotlinx-coroutines-core:1.8.1")
-    implementation("org.jetbrains.kotlinx:kotlinx-serialization-json:1.7.1")
-    implementation("androidx.credentials:credentials:1.5.0-alpha05")
-    implementation("androidx.credentials:credentials-play-services-auth:1.5.0-alpha05")
-    implementation ("com.google.android.gms:play-services-auth:21.2.0")
-   // implementation("com.google.android.libraries.identity.googleid:googleid:1.1.1")
-  //  implementation("com.google.android.libraries.identity:identity:1.1.1")
-    // Set Compose Compiler Extension
-    implementation("androidx.compose.compiler:compiler:1.4.5") // Use the appropriate version
-
-    implementation("androidx.lifecycle:lifecycle-runtime-ktx:2.8.6")
-    implementation("androidx.activity:activity-compose:1.9.2")
+    implementation(libs.play.services.maps)
+    implementation(libs.kotlinx.coroutines.core)
+    implementation(libs.kotlinx.serialization.json)
+    implementation(libs.androidx.credentials)
+    implementation(libs.androidx.credentials.play.services.auth)
+    implementation (libs.play.services.auth)
+    implementation(libs.androidx.compiler)
+    implementation(libs.androidx.lifecycle.runtime.ktx)
+    implementation(libs.androidx.activity.compose)
     implementation(libs.androidx.core.ktx)
     implementation(libs.androidx.appcompat)
     implementation(libs.material)
@@ -119,4 +114,5 @@ dependencies {
     testImplementation(libs.junit)
     androidTestImplementation(libs.androidx.junit)
     androidTestImplementation(libs.androidx.espresso.core)
+    implementation("com.google.guava:listenablefuture:9999.0-empty-to-avoid-conflict-with-guava")
 }

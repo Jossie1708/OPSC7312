@@ -3,18 +3,18 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:background="?attr/backgroundColor"
     tools:context=".Fragments.ControllerFragment">
 
     <!-- Video feed display -->
 
-    <!-- Control buttons -->
-    <SurfaceView
-        android:id="@+id/surfaceView"
+    <TextureView
+        android:id="@+id/textureView"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_gravity="center" />
+        android:layout_height="match_parent" />
 
+    <!-- Control buttons -->
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -25,68 +25,18 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginBottom="4dp"
             android:gravity="center">
 
-            <ImageButton
-                android:id="@+id/btnForward"
-                android:layout_width="64dp"
-                android:layout_height="wrap_content"
-                android:layout_margin="8dp"
-                android:background="@drawable/settingsbuttonlayout"
-                android:text="@string/controller_forward"
-                tools:src="@drawable/ic_up" />
-
-            <ImageButton
-                android:id="@+id/btnLeft"
-                android:layout_width="64dp"
-                android:layout_height="wrap_content"
-                android:layout_margin="8dp"
-                android:background="@drawable/settingsbuttonlayout"
-                android:text="@string/controller_left"
-                tools:src="@drawable/ic_left" />
-
-            <ImageButton
-                android:id="@+id/btnRight"
-                android:layout_width="64dp"
-                android:layout_height="wrap_content"
-                android:background="@drawable/settingsbuttonlayout"
-                android:layout_margin="8dp"
-                android:text="@string/controller_right"
-                tools:src="@drawable/ic_right" />
-
-            <ImageButton
-                android:id="@+id/btnReverse"
-                android:layout_width="64dp"
-                android:layout_height="wrap_content"
-                android:layout_margin="8dp"
-                android:background="@drawable/settingsbuttonlayout"
-                android:text="@string/controller_reverse"
-                tools:src="@drawable/ic_down" />
-        </LinearLayout>
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:gravity="center">
-
-            <ImageButton
-                android:id="@+id/btnFlyHigher"
+            <TextView
+                android:id="@+id/textView"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_margin="8dp"
-                android:background="@drawable/settingsbuttonlayout"
-                android:src="@drawable/ic_go_up"
-                android:text="@string/controller_up" />
-
-            <ImageButton
-                android:id="@+id/btnFlyLower"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_margin="8dp"
-                android:background="@drawable/settingsbuttonlayout"
-                android:text="@string/controller_down"
-                tools:src="@drawable/ic_go_down" />
+                android:background="#AA000000"
+                android:padding="8dp"
+                android:layout_weight="1"
+                android:textColor="#FFFFFF"
+                android:textSize="18sp"
+                android:text="@string/feature_coming_soon" />
 
             <TextView
                 android:id="@+id/statusTextView"

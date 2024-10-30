@@ -63,12 +63,17 @@
         android:label="@string/menu_controller"
         tools:layout="@layout/fragment_controller"
         />
-
+    <activity
+        android:id="@+id/sideMenuNavBarActivity"
+        android:name="com.frogstore.droneapp.SideMenuNavBarActivity"
+        android:label="SideMenuNavBarActivity"
+        tools:layout="@layout/activity_side_menu_nav_bar" />
     <activity
         android:id="@+id/nav_logout"
-        android:name="com.frogstore.droneapp.MainActivity"
+        android:name="com.frogstore.droneapp.Activities.MainActivity"
         android:label="@string/menu_controller"
         tools:layout="@layout/activity_home"
         />
+
 
 </navigation>
