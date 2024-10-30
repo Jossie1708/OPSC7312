@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "266453904291",
+    "project_id": "sign-in-opsc",
+    "storage_bucket": "sign-in-opsc.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:266453904291:android:ead0add7c0ed38fc788816",
+        "android_client_info": {
+          "package_name": "com.frogstore.droneapp"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "266453904291-0313i7jjt13ndgcb3937o3uau3eca7gv.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBTAkB9hzMAo-K_HxZ4RDGAZbt9Spp_TB8"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "266453904291-0313i7jjt13ndgcb3937o3uau3eca7gv.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
