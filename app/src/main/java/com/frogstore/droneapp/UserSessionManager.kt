@@ -9,8 +9,6 @@ class UserSessionManager(private val context: Context) {
     private val sharedPreferences: SharedPreferences = context.getSharedPreferences("user_session", Context.MODE_PRIVATE)
 
     fun login(username: String, email: String): Boolean {
-        // Call the login API or perform login logic here
-        // For demonstration purposes, we'll assume the login is successful
         val isLoggedIn = true
 
         if (isLoggedIn) {
