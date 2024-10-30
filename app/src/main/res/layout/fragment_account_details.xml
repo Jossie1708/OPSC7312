@@ -50,23 +50,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             tools:layout_editor_absoluteX="59dp"
-            tools:layout_editor_absoluteY="554dp">
-
-            <com.google.android.material.chip.Chip
-                android:id="@+id/chip"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content" />
-
-            <com.google.android.material.chip.Chip
-                android:id="@+id/chip2"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content" />
-
-            <com.google.android.material.chip.Chip
-                android:id="@+id/chip3"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content" />
-        </com.google.android.material.chip.ChipGroup>
+            tools:layout_editor_absoluteY="554dp"/>
 
         <TextView
             android:id="@+id/lblAccUsername"
@@ -135,5 +119,13 @@
             android:src="@drawable/edit"
             tools:layout_editor_absoluteX="297dp"
             tools:layout_editor_absoluteY="444dp" />
+
+        <Button
+            android:id="@+id/btnUpdateAccountDetails"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Button"
+            tools:layout_editor_absoluteX="147dp"
+            tools:layout_editor_absoluteY="552dp" />
     </androidx.constraintlayout.widget.ConstraintLayout>
 </FrameLayout>

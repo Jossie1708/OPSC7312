@@ -38,20 +38,19 @@
         android:layout_width="43dp"
         android:layout_height="32dp"
         android:layout_marginTop="28dp"
-        android:background="@android:color/transparent"
         android:layout_marginRight="15dp"
-    android:gravity="center"
-    android:maxLength="0"
-    app:cornerRadius="60dp"
-    app:icon="@drawable/left_arrow"
-    app:iconGravity="textEnd"
-    app:iconPadding="8dp"
-    app:iconSize="30dp"
-    app:iconTint="#FFFFFF"
-    app:layout_constraintEnd_toStartOf="@+id/txtNoteHeading"
-    app:layout_constraintHorizontal_bias="0.443"
-    app:layout_constraintStart_toStartOf="@+id/topBarNotify"
-    app:layout_constraintTop_toTopOf="parent" />
+        android:background="@android:color/transparent"
+        android:gravity="center"
+        android:maxLength="0"
+        app:cornerRadius="60dp"
+        app:iconGravity="textEnd"
+        app:iconPadding="8dp"
+        app:iconSize="30dp"
+        app:iconTint="#FFFFFF"
+        app:layout_constraintEnd_toStartOf="@+id/txtNoteHeading"
+        app:layout_constraintHorizontal_bias="0.443"
+        app:layout_constraintStart_toStartOf="@+id/topBarNotify"
+        app:layout_constraintTop_toTopOf="parent" />
 
 
     <androidx.constraintlayout.widget.ConstraintLayout
