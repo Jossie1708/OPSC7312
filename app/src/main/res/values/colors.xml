@@ -7,4 +7,12 @@
     <color name = "textColor">#126171</color>
     <color name = "divider">#818181</color>
 
+
+    <color name = "darkGreen">#126171</color>
+    <color name = "greenAccent">#818181</color>
+    <color name = "lightBackground">#818181</color>
+    <color name = "darkGreenAccent">#126171</color>
+    <color name = "toolsbarColor">#126171</color>
+
+
 </resources>
