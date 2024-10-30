@@ -55,6 +55,11 @@ class LoginFragment : Fragment() {
         val passwordField = layout.findViewById<EditText>(R.id.txtLoginPassword)
 
         val fingerprint = layout.findViewById<TextView>(R.id.lblLoginFingerprint)
+        val lblForgotPassword = layout.findViewById<TextView>(R.id.lblForgotPassword)
+
+        lblForgotPassword.setOnClickListener {
+            Toast.makeText(requireContext(), "Feature coming soon in part 3!", Toast.LENGTH_SHORT).show()
+        }
 
 
         // Initialize the RequestQueue for making network requests

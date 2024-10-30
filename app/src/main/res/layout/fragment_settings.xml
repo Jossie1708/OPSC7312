@@ -4,311 +4,373 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="?attr/backgroundColor"
-    tools:context=".Fragments.SettingsFragment">
+    android:background="#C5FDD3"
+    tools:context=".SettingsFragment">
 
-    <ScrollView
+    <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:padding="5dp">
+        android:layout_height="match_parent">
 
-        <androidx.constraintlayout.widget.ConstraintLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content">
+        <com.google.android.material.bottomappbar.BottomAppBar
+            android:id="@+id/topBarSettings"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_gravity="bottom"
+            android:background="#69C5A0"
+            app:backgroundTint="#69C5A0"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
 
-            <TextView
-                android:id="@+id/lblProfile"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="16dp"
-                android:layout_marginTop="8dp"
-                android:layout_marginEnd="308dp"
-                android:layout_marginBottom="24dp"
-                android:text="@string/text_profile"
-                android:textColor="?attr/colorOnSecondary"
-                android:textSize="20sp"
-                app:layout_constraintBottom_toTopOf="@+id/lblAccountDetails"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent" />
+        <Button
+            android:id="@+id/btnNoteBack"
+            android:layout_width="43dp"
+            android:layout_height="32dp"
+            android:layout_marginTop="28dp"
+            android:layout_marginRight="15dp"
+            android:background="@android:color/transparent"
+            android:gravity="center"
+            android:maxLength="0"
+            android:contentDescription="@string/description_text"
+            app:cornerRadius="60dp"
+            app:icon="@drawable/left_arrow"
+            app:iconGravity="textEnd"
+            app:iconPadding="8dp"
+            app:iconSize="30dp"
+            app:iconTint="#FFFFFF"
+            app:layout_constraintBottom_toBottomOf="@+id/topBarSettings"
+            app:layout_constraintEnd_toStartOf="@+id/txtSetHeading"
+            app:layout_constraintHorizontal_bias="0.524"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.0" />
 
+        <TextView
+            android:id="@+id/txtSetHeading"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:layout_marginEnd="144dp"
+            android:text="Settings"
+            android:textColor="#FFFFFF"
+            android:textSize="34sp"
+            app:layout_constraintEnd_toEndOf="@+id/topBarSettings"
+            app:layout_constraintTop_toTopOf="parent" />
 
-            <TextView
-                android:id="@+id/lblAccountDetails"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="35dp"
-                android:layout_marginTop="24dp"
-                android:layout_marginEnd="97dp"
-                android:drawableLeft="@drawable/ic_person"
-                android:drawablePadding="10dp"
-                android:text="@string/text_account_details"
-                android:textColor="?attr/textFillColor"
-                android:textSize="16sp"
-                app:drawableTint="?attr/colorOnPrimary"
-                app:layout_constraintEnd_toStartOf="@+id/btnAccountDetails"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/lblProfile" />
+        <TextView
+            android:id="@+id/lblProfile"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="32dp"
+            android:text="Profile"
+            android:textColor="#126171"
+            android:textSize="20sp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.087"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/topBarSettings" />
 
-            <View
-                android:id="@+id/view"
-                style="@style/Divider"
-                android:layout_marginTop="35dp"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/btnAccountDetails"></View>
+        <TextView
+            android:id="@+id/lblAccountDetails"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="224dp"
+            android:text="  Account details"
+            android:textSize="16sp"
+            android:textColor="#033854"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="@+id/imgSetPerson" />
 
-            <TextView
-                android:id="@+id/lblChangePassword"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="35dp"
-                android:layout_marginTop="17dp"
-                android:layout_marginEnd="79dp"
-                android:drawableLeft="@drawable/ic_lock"
-                android:drawablePadding="10dp"
-                android:text="@string/text_change_password"
-                android:textColor="?attr/textFillColor"
-                android:textSize="16sp"
-                app:drawableTint="?attr/colorOnPrimary"
-                app:layout_constraintEnd_toStartOf="@+id/btnSetPassword"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/lblSecurity" />
-
-            <TextView
-                android:id="@+id/lblUseTouchID"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="35dp"
-                android:layout_marginTop="18dp"
-                android:layout_marginEnd="119dp"
-                android:drawableLeft="@drawable/ic_touch_id"
-                android:drawablePadding="10dp"
-                android:text="@string/text_touch_id"
-                android:textColor="?attr/textFillColor"
-                android:textSize="16sp"
-                app:drawableTint="?attr/colorOnPrimary"
-                app:layout_constraintEnd_toStartOf="@+id/useTouchIDSwitch"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/lblChangePassword" />
-
-            <TextView
-                android:id="@+id/lblChangeFingerprintID"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="35dp"
-                android:layout_marginTop="24dp"
-                android:layout_marginEnd="58dp"
-                android:drawableLeft="@drawable/ic_fingerprint"
-                android:drawablePadding="10dp"
-                android:text="@string/text_change_id"
-                android:textColor="?attr/textFillColor"
-                android:textSize="16sp"
-                app:drawableTint="?attr/colorOnPrimary"
-                app:layout_constraintEnd_toStartOf="@+id/btnSetFingerprint"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/lblUseTouchID" />
-
-            <TextView
-                android:id="@+id/lbUseDarkTheme"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="35dp"
-                android:layout_marginTop="23dp"
-                android:layout_marginEnd="96dp"
-                android:layout_marginBottom="7dp"
-                android:drawableLeft="@drawable/ic_dark_theme"
-                android:drawablePadding="10dp"
-                android:text="@string/text_use_theme"
-                android:textColor="?attr/textFillColor"
-                android:textSize="16sp"
-                app:drawableTint="?attr/colorOnPrimary"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toStartOf="@+id/switch1"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/lblTheme" />
-
-            <TextView
-                android:id="@+id/lblTheme"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="16dp"
-                android:layout_marginTop="13dp"
-                android:layout_marginEnd="304dp"
-                android:text="@string/text_theme"
-                android:textColor="?attr/colorOnSecondary"
-                android:textSize="20sp"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/view3" />
-
-            <Switch
-                android:id="@+id/switch1"
-                android:layout_width="70dp"
-                android:layout_height="30dp"
-                android:layout_marginTop="64dp"
-                android:layout_marginEnd="25dp"
-                android:background="@drawable/switch_background"
-                android:text=""
-                android:textOn="On"
-                android:thumbTint="?attr/android:navigationBarColor"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/view3"
-                app:layout_constraintVertical_bias="0.0" />
-
-            <TextView
-                android:id="@+id/lblAfrikaans"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="35dp"
-                android:layout_marginTop="22dp"
-                android:layout_marginEnd="160dp"
-                android:text="@string/text_afr"
-                android:textColor="?attr/textFillColor"
-                android:textSize="16sp"
-                app:layout_constraintEnd_toStartOf="@+id/radioGroupLanguages"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/lblLanguage" />
-
-            <TextView
-                android:id="@+id/lblEnglish"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="35dp"
-                android:layout_marginTop="29dp"
-                android:layout_marginEnd="176dp"
-                android:text="@string/text_eng"
-                android:textColor="?attr/textFillColor"
-                android:textSize="16sp"
-                app:layout_constraintEnd_toStartOf="@+id/radioGroupLanguages"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/lblAfrikaans" />
-
-            <TextView
-                android:id="@+id/lblLanguage"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="16dp"
-                android:layout_marginTop="12dp"
-                android:layout_marginEnd="277dp"
-                android:layout_marginBottom="22dp"
-                android:text="@string/text_lang"
-                android:textColor="?attr/colorOnSecondary"
-                android:textSize="20sp"
-                app:layout_constraintBottom_toTopOf="@+id/lblAfrikaans"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/view" />
-
-            <View
-                android:id="@+id/view2"
-                style="@style/Divider"
-                android:layout_marginTop="19dp"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/radioGroupLanguages"></View>
-
-            <View
-                android:id="@+id/view3"
-                style="@style/Divider"
-                android:layout_marginTop="27dp"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/btnSetFingerprint"></View>
-
-            <TextView
-                android:id="@+id/lblSecurity"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="16dp"
-                android:layout_marginTop="13dp"
-                android:layout_marginEnd="294dp"
-                android:text="@string/text_security"
-                android:textColor="?attr/colorOnSecondary"
-                android:textSize="20sp"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/view2" />
-
-            <Switch
-                android:id="@+id/useTouchIDSwitch"
-                android:layout_width="70dp"
-                android:layout_height="30dp"
-                android:layout_marginTop="18dp"
-                android:layout_marginEnd="25dp"
-                android:background="@drawable/switch_background"
-                android:text=""
-                android:thumbTint="?attr/android:navigationBarColor"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/btnSetPassword" />
-
-            <ImageButton
-                android:id="@+id/btnAccountDetails"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="59dp"
-                android:layout_marginEnd="25dp"
-                android:layout_marginBottom="35dp"
-                android:background="@drawable/settingsbuttonlayout"
-                android:src="@drawable/ic_right"
-                app:drawableTint="?attr/colorOnPrimary"
-                app:layout_constraintBottom_toTopOf="@+id/view"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintTop_toTopOf="parent" />
-
-            <ImageButton
-                android:id="@+id/btnSetFingerprint"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="16dp"
-                android:layout_marginEnd="25dp"
-                android:background="@drawable/settingsbuttonlayout"
-                android:src="@drawable/ic_right"
-                app:drawableTint="?attr/colorOnPrimary"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/useTouchIDSwitch" />
-
-            <ImageButton
-                android:id="@+id/btnSetPassword"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="51dp"
-                android:layout_marginEnd="25dp"
-                android:background="@drawable/settingsbuttonlayout"
-                app:drawableTint="?attr/colorOnPrimary"
-                android:src="@drawable/ic_right"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/view2" />
-
-            <RadioGroup
-                android:id="@+id/radioGroupLanguages"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="53dp"
-                android:layout_marginEnd="40dp"
-                android:layout_marginBottom="19dp"
-                android:orientation="vertical"
-                app:layout_constraintBottom_toTopOf="@+id/view2"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/view">
-
-                <RadioButton
-                    android:id="@+id/rbtnAfrikaans"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    />
-
-                <RadioButton
-                    android:id="@+id/rbtnEnglish"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    tools:layout_editor_absoluteX="305dp"
-                    tools:layout_editor_absoluteY="226dp"
-                    />
-            </RadioGroup>
+        <View
+            android:id="@+id/view"
+            style="@style/Divider"
+            android:layout_marginVertical="55dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="@+id/btnSetAccount"></View>
 
 
-        </androidx.constraintlayout.widget.ConstraintLayout>
-    </ScrollView>
+        <TextView
+            android:id="@+id/lblChangePassword"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="36dp"
+            android:layout_marginEnd="212dp"
+            android:text="Change Password"
+            android:textSize="16sp"
+            android:textColor="#033854"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/lblSecurity" />
+
+        <TextView
+            android:id="@+id/lblUseTouchID"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="32dp"
+            android:layout_marginEnd="252dp"
+            android:text="Use touch ID"
+            android:textSize="16sp"
+            android:textColor="#033854"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/lblChangePassword" />
+
+        <TextView
+            android:id="@+id/lblChangeFingerprintID"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="36dp"
+            android:layout_marginEnd="192dp"
+            android:text="Change fingerprint ID"
+            android:textColor="#033854"
+            android:textSize="16sp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/lblUseTouchID" />
+
+        <ImageView
+            android:id="@+id/imageView5"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="40dp"
+            android:src="@drawable/ic_fingerprint"
+            app:layout_constraintEnd_toStartOf="@+id/lblChangeFingerprintID"
+            app:layout_constraintHorizontal_bias="0.847"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/imageView4" />
+
+        <TextView
+            android:id="@+id/lbUseDarkTheme"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:layout_marginEnd="224dp"
+            android:text="Use dark theme"
+            android:textColor="#033854"
+            android:textSize="16sp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/lblTheme"
+            app:layout_constraintVertical_bias="0.0" />
+
+        <ImageView
+            android:id="@+id/imageView6"
+            android:layout_width="47dp"
+            android:layout_height="48dp"
+            android:layout_marginTop="10dp"
+            android:src="@drawable/theme"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toStartOf="@+id/lbUseDarkTheme"
+            app:layout_constraintHorizontal_bias="0.8"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/lblTheme"
+            app:layout_constraintVertical_bias="0.0" />
+
+        <TextView
+            android:id="@+id/lblTheme"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="56dp"
+            android:text="Theme"
+            android:textColor="#126171"
+            android:textSize="20sp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.068"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/imageView5" />
+
+        <Switch
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="92dp"
+            android:height="30dp"
+            android:background="@drawable/switch_background"
+            android:text=""
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.723"
+            app:layout_constraintStart_toEndOf="@+id/lbUseDarkTheme"
+            app:layout_constraintTop_toBottomOf="@+id/btnSetFingerprint" />
+
+        <TextView
+            android:id="@+id/lblAfrikaans"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="36dp"
+            android:text="Afrikaans"
+            android:textSize="16sp"
+            android:textColor="#033854"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.192"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/lblLanguage" />
+
+        <TextView
+            android:id="@+id/lblEnglish"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="28dp"
+            android:text="English"
+            android:textSize="16sp"
+            android:textColor="#033854"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.192"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/lblAfrikaans" />
+
+        <TextView
+            android:id="@+id/lblLanguage"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="32dp"
+            android:text="Language"
+            android:textSize="20sp"
+            android:textColor="#126171"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.076"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/lblAccountDetails" />
+
+        <View
+            android:id="@+id/view2"
+            style="@style/Divider"
+            android:layout_marginVertical="40dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="@+id/lblEnglish"></View>
+
+        <View
+            android:id="@+id/view3"
+            style="@style/Divider"
+            android:layout_marginVertical="50dp"
+            android:layout_marginBottom="52dp"
+            app:layout_constraintBottom_toBottomOf="@+id/lblTheme"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toStartOf="parent"></View>
+
+        <TextView
+            android:id="@+id/lblSecurity"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:text="Security"
+            android:textSize="20sp"
+            android:textColor="#126171"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.073"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/view2" />
+
+        <ImageView
+            android:id="@+id/imgSetPerson"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="17dp"
+            android:src="@drawable/ic_person"
+            app:layout_constraintBottom_toTopOf="@+id/view"
+            app:layout_constraintEnd_toStartOf="@+id/lblAccountDetails"
+            app:layout_constraintHorizontal_bias="0.866"
+            app:layout_constraintStart_toStartOf="parent" />
+
+        <ImageView
+            android:id="@+id/imgSetLock"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="36dp"
+            android:src="@drawable/ic_lock"
+            app:layout_constraintEnd_toStartOf="@+id/lblChangePassword"
+            app:layout_constraintHorizontal_bias="0.847"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/lblSecurity" />
+
+        <ImageView
+            android:id="@+id/imageView4"
+            android:layout_width="21dp"
+            android:layout_height="20dp"
+            android:layout_marginTop="28dp"
+            android:src="@drawable/touch_id__1_"
+            app:layout_constraintEnd_toStartOf="@+id/lblUseTouchID"
+            app:layout_constraintHorizontal_bias="0.812"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/imgSetLock" />
+
+        <Button
+            android:id="@+id/btnSetAccount"
+            android:layout_width="60dp"
+            android:layout_height="50dp"
+            android:layout_marginTop="56dp"
+            android:background="transparent"
+            android:text=">"
+            android:textColor="@color/black"
+            android:textSize="25dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.707"
+            app:layout_constraintStart_toEndOf="@+id/lblAccountDetails"
+            app:layout_constraintTop_toBottomOf="@+id/topBarSettings" />
+
+        <Button
+            android:id="@+id/btnSetPassword"
+            android:layout_width="60dp"
+            android:layout_height="50dp"
+            android:layout_marginTop="64dp"
+            android:background="transparent"
+            android:text=">"
+            android:textColor="@color/black"
+            android:textSize="25dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.682"
+            app:layout_constraintStart_toEndOf="@+id/lblChangePassword"
+            app:layout_constraintTop_toBottomOf="@+id/view2" />
+
+        <Button
+            android:id="@+id/btnSetFingerprint"
+            android:layout_width="60dp"
+            android:layout_height="50dp"
+            android:layout_marginTop="28dp"
+            android:background="transparent"
+            android:text=">"
+            android:textColor="@color/black"
+            android:textSize="25dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.628"
+            app:layout_constraintStart_toEndOf="@+id/lblChangeFingerprintID"
+            app:layout_constraintTop_toBottomOf="@+id/switch1" />
+
+        <RadioGroup
+            android:id="@+id/radioGroup"
+            android:layout_width="183dp"
+            android:layout_height="105dp"
+            android:layout_marginTop="49dp"
+            android:layout_marginLeft="270dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/lblAfrikaans"
+            app:layout_constraintTop_toBottomOf="@+id/view">
+
+            <RadioButton
+                android:id="@+id/radioButton2"
+                android:layout_width="220dp"
+                android:layout_height="60dp"
+                android:contentDescription=""
+                tools:layout_editor_absoluteX="266dp"
+                tools:layout_editor_absoluteY="262dp" />
+
+            <RadioButton
+                android:id="@+id/radioButton"
+                android:layout_width="144dp"
+                android:layout_height="54dp"
+                android:contentDescription="" />
+        </RadioGroup>
+
+        <Switch
+            android:id="@+id/switch1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="12dp"
+            android:background="@drawable/switch_background"
+            android:text=""
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.762"
+            app:layout_constraintStart_toEndOf="@+id/lblUseTouchID"
+            app:layout_constraintTop_toBottomOf="@+id/btnSetPassword" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
 </FrameLayout>
