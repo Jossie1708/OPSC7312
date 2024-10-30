@@ -5,6 +5,7 @@ plugins {
     alias(libs.plugins.google.android.libraries.mapsplatform.secrets.gradle.plugin) // Apply Kotlin KAPT plugin here
     kotlin("plugin.serialization") version "2.0.20"
     alias(libs.plugins.compose.compiler)
+    alias(libs.plugins.gms.google.services)
 }
 
 android {
@@ -14,7 +15,7 @@ android {
     defaultConfig {
         applicationId = "com.frogstore.droneapp"
         minSdk = 26
-        targetSdk = 34
+        targetSdk = 35
         versionCode = 1
         versionName = "1.0"
 
@@ -48,7 +49,7 @@ android {
         }
     }
     composeOptions {
-        kotlinCompilerExtensionVersion = "1.5.2"
+        kotlinCompilerExtensionVersion = "1.5.9"
     }
     compileOptions {
         sourceCompatibility = JavaVersion.VERSION_17
@@ -88,15 +89,12 @@ dependencies {
     implementation(libs.mockito.kotlin)
     implementation(libs.glide)
     implementation(libs.play.services.maps)
-    implementation(libs.googleid)
     implementation(libs.androidx.runtime.android)
     implementation(libs.androidx.foundation.layout.android)
     implementation(libs.androidx.material3.android)
     implementation(libs.play.services.maps)
     implementation(libs.kotlinx.coroutines.core)
     implementation(libs.kotlinx.serialization.json)
-    implementation(libs.androidx.credentials)
-    implementation(libs.androidx.credentials.play.services.auth)
     implementation (libs.play.services.auth)
     implementation(libs.androidx.compiler)
     implementation(libs.androidx.lifecycle.runtime.ktx)
@@ -115,4 +113,13 @@ dependencies {
     androidTestImplementation(libs.androidx.junit)
     androidTestImplementation(libs.androidx.espresso.core)
     implementation("com.google.guava:listenablefuture:9999.0-empty-to-avoid-conflict-with-guava")
+
+    implementation(libs.androidx.credentials)
+    implementation(libs.androidx.credentials.play.services.auth)
+    implementation(libs.googleid)
+
+    implementation(platform(libs.firebase.bom))
+    implementation(libs.firebase.auth.ktx)
+
+
 }
