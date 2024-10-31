@@ -179,6 +179,7 @@
             app:layout_constraintTop_toBottomOf="@+id/imageView5" />
 
         <Switch
+            android:id="@+id/switchTheme"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="92dp"
@@ -330,7 +331,7 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.628"
             app:layout_constraintStart_toEndOf="@+id/lblChangeFingerprintID"
-            app:layout_constraintTop_toBottomOf="@+id/switch1" />
+            app:layout_constraintTop_toBottomOf="@+id/switchTouchID" />
 
         <RadioGroup
             android:id="@+id/radioGroupLanguages"
@@ -358,7 +359,7 @@
         </RadioGroup>
 
         <Switch
-            android:id="@+id/switch1"
+            android:id="@+id/switchTouchID"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="12dp"

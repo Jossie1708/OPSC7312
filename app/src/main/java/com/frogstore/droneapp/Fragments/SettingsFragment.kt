@@ -7,11 +7,10 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
-import android.widget.ImageButton
-import android.widget.RadioButton
 import android.widget.RadioGroup
 import android.widget.Switch
 import android.widget.Toast
+import androidx.appcompat.widget.SwitchCompat
 import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
 import com.frogstore.droneapp.R
@@ -30,19 +29,18 @@ class SettingsFragment : Fragment() {
         // Inflate the layout for this fragment
         val layout = inflater.inflate(R.layout.fragment_settings, container, false)
 
-        val btnDetails = layout.findViewById<ImageButton>(R.id.btnAccountDetails)
-        val btnPass = layout.findViewById<ImageButton>(R.id.btnSetPassword)
-        val btnFingerprint = layout.findViewById<ImageButton>(R.id.btnSetFingerprint)
-        val switchFingerPrint = layout.findViewById<Switch>(R.id.useTouchIDSwitch)
+        val btnDetails = layout.findViewById<Button>(R.id.btnAccountDetails)
+        val btnPass = layout.findViewById<Button>(R.id.btnSetPassword)
+        val btnFingerprint = layout.findViewById<Button>(R.id.btnSetFingerprint)
+        val switchFingerPrint = layout.findViewById<Switch>(R.id.switchTouchID)
 
-       // switchFingerPrint.isEnabled = false;
-        switchFingerPrint.setOnClickListener{
+        switchFingerPrint.setOnClickListener {
             Toast.makeText(requireContext(), "Fingerprint feature coming soon!", Toast.LENGTH_SHORT).show()
         }
 
         // Initialize SharedPreferences
         sharedPreferences = PreferenceManager.getDefaultSharedPreferences(requireContext())
-        switchDarkTheme = layout.findViewById(R.id.switch1)
+        switchDarkTheme = layout.findViewById(R.id.switchTheme)
         radioGroupLanguages = layout.findViewById(R.id.radioGroupLanguages)
 
         // Set the initial state of the radio buttons based on saved preference
@@ -99,5 +97,5 @@ class SettingsFragment : Fragment() {
 
         // Restart the activity to apply changes
         requireActivity().recreate()
-   }
+    }
 }
