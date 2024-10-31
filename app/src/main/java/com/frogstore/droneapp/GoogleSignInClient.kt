@@ -1,6 +1,7 @@
 package com.frogstore.droneapp
 
 import android.content.Context
+import android.util.Log
 import androidx.credentials.ClearCredentialStateRequest
 import androidx.credentials.CredentialManager
 import androidx.credentials.CustomCredential
@@ -45,6 +46,7 @@ class GoogleSignInClient(
             if (e is CancellationException) throw e
 
             println(tag + "signIn error: ${e.message}")
+            Log.e(tag, "signIn error", e) // Add this line to log the exception
             return false
         }
     }
