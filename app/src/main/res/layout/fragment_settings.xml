@@ -19,7 +19,7 @@
             android:layout_marginStart="26dp"
             android:layout_marginTop="44dp"
             android:text="@string/text_profile"
-            android:textColor="#126171"
+            android:textColor="?attr/textFillColor"
             android:textSize="20sp"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
@@ -32,9 +32,10 @@
             android:layout_marginTop="21dp"
             android:layout_marginBottom="55dp"
             android:drawableLeft="@drawable/ic_person"
+            app:drawableTint="?attr/colorOnPrimary"
             android:drawablePadding="10dp"
             android:text="@string/text_account_details"
-            android:textColor="#033854"
+            android:textColor="?attr/textFillColor"
             android:textSize="16sp"
             app:layout_constraintBottom_toTopOf="@+id/view"
             app:layout_constraintStart_toStartOf="parent"
@@ -56,9 +57,10 @@
             android:layout_marginStart="47dp"
             android:layout_marginTop="17dp"
             android:drawableLeft="@drawable/ic_lock"
+            app:drawableTint="?attr/colorOnPrimary"
             android:drawablePadding="10dp"
             android:text="@string/text_change_password"
-            android:textColor="#033854"
+            android:textColor="?attr/textFillColor"
             android:textSize="16sp"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/lblSecurity" />
@@ -70,9 +72,10 @@
             android:layout_marginStart="47dp"
             android:layout_marginTop="40dp"
             android:drawableLeft="@drawable/ic_touch_id"
+            app:drawableTint="?attr/colorOnPrimary"
             android:drawablePadding="10dp"
             android:text="@string/text_touch_id"
-            android:textColor="#033854"
+            android:textColor="?attr/textFillColor"
             android:textSize="16sp"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/lblChangePassword" />
@@ -84,9 +87,10 @@
             android:layout_marginStart="47dp"
             android:layout_marginTop="36dp"
             android:drawableLeft="@drawable/ic_fingerprint"
+            app:drawableTint="?attr/colorOnPrimary"
             android:drawablePadding="10dp"
             android:text="@string/text_change_id"
-            android:textColor="#033854"
+            android:textColor="?attr/textFillColor"
             android:textSize="16sp"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/lblUseTouchID" />
@@ -99,9 +103,10 @@
             android:layout_marginTop="9dp"
             android:layout_marginBottom="47dp"
             android:drawableLeft="@drawable/ic_dark_theme"
+            app:drawableTint="?attr/colorOnPrimary"
             android:drawablePadding="10dp"
             android:text="@string/text_use_theme"
-            android:textColor="#033854"
+            android:textColor="?attr/textFillColor"
             android:textSize="16sp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toStartOf="parent"
@@ -114,7 +119,7 @@
             android:layout_marginStart="25dp"
             android:layout_marginTop="11dp"
             android:text="@string/text_theme"
-            android:textColor="#126171"
+            android:textColor="?attr/textFillColor"
             android:textSize="20sp"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/view3" />
@@ -128,6 +133,8 @@
             android:layout_marginBottom="39dp"
             android:background="@drawable/switch_background"
             android:text=""
+            android:trackTint="?attr/textFillColor"
+            android:thumbTint="?attr/backgroundColor"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/view3" />
@@ -139,7 +146,7 @@
             android:layout_marginStart="25dp"
             android:layout_marginTop="23dp"
             android:text="@string/text_lang"
-            android:textColor="#126171"
+            android:textColor="?attr/textFillColor"
             android:textSize="20sp"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/view" />
@@ -171,44 +178,46 @@
             android:layout_marginStart="25dp"
             android:layout_marginTop="12dp"
             android:text="@string/text_security"
-            android:textColor="#126171"
+            android:textColor="?attr/textFillColor"
             android:textSize="20sp"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/view2" />
 
-        <Button
+        <ImageButton
             android:id="@+id/btnAccountDetails"
-            android:layout_width="60dp"
-            android:layout_height="50dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:tint="?attr/colorOnPrimary"
             android:layout_marginTop="92dp"
             android:layout_marginEnd="48dp"
-            android:text=">"
-            android:textColor="@color/black"
-            android:textSize="25dp"
+            android:background="@drawable/settingsbuttonlayout"
+            android:src="@drawable/ic_right"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
-        <Button
+        <ImageButton
             android:id="@+id/btnSetPassword"
-            android:layout_width="60dp"
-            android:layout_height="50dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
             android:layout_marginTop="64dp"
+            app:tint="?attr/colorOnPrimary"
             android:layout_marginEnd="48dp"
-            android:text=">"
+            android:background="@drawable/settingsbuttonlayout"
+            android:src="@drawable/ic_right"
             android:textColor="@color/black"
-            android:textSize="25dp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/view2" />
 
-        <Button
+        <ImageButton
             android:id="@+id/btnSetFingerprint"
-            android:layout_width="60dp"
-            android:layout_height="50dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
             android:layout_marginTop="28dp"
             android:layout_marginEnd="48dp"
-            android:text=">"
+            app:tint="?attr/colorOnPrimary"
+            android:background="@drawable/settingsbuttonlayout"
+            android:src="@drawable/ic_right"
             android:textColor="@color/black"
-            android:textSize="25dp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/switchTouchID" />
 
@@ -229,6 +238,7 @@
                 android:layout_height="50dp"
                 android:contentDescription=""
                 android:text="@string/text_afr"
+                android:textColor="?attr/textFillColor"
                 android:textAlignment="viewStart" />
 
             <RadioButton
@@ -236,6 +246,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="50dp"
                 android:contentDescription=""
+                android:textColor="?attr/textFillColor"
                 android:text="@string/text_eng" />
         </RadioGroup>
 
@@ -243,9 +254,11 @@
             android:id="@+id/switchTouchID"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="4dp"
-            android:layout_marginEnd="38dp"
+            android:layout_marginTop="26dp"
+            android:layout_marginEnd="48dp"
             android:background="@drawable/switch_background"
+            android:thumbTint="?attr/backgroundColor"
+            android:trackTint="?attr/textFillColor"
             android:text=""
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/btnSetPassword" />
