@@ -4,46 +4,23 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="?attr/backgroundColor"
     tools:context=".AccountDetailsFragment">
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
-        <com.google.android.material.bottomappbar.BottomAppBar
-            android:id="@+id/topBarAccountDetails"
-            android:layout_width="411dp"
-            android:layout_height="wrap_content"
-            android:layout_gravity="bottom"
-            android:background="#69C5A0"
-            app:backgroundTint="#69C5A0" />
-
-        <com.google.android.material.bottomappbar.BottomAppBar
-            android:id="@+id/bottomBarAccountDetails"
-            android:layout_width="411dp"
-            android:layout_height="wrap_content"
-            android:layout_gravity="bottom"
-            android:background="#69C5A0"
-            app:backgroundTint="#69C5A0"
-            tools:layout_editor_absoluteX="0dp"
-            tools:layout_editor_absoluteY="652dp" />
-
-        <TextView
-            android:id="@+id/txtAccHeading"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Account Details"
-            android:textColor="#FFFFFF"
-            android:textSize="34sp"
-            tools:layout_editor_absoluteX="74dp"
-            tools:layout_editor_absoluteY="16dp" />
-
         <ImageButton
             android:id="@+id/imgAccProfile"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            tools:layout_editor_absoluteX="125dp"
-            tools:layout_editor_absoluteY="128dp"
+            android:layout_marginStart="125dp"
+            android:layout_marginTop="128dp"
+            android:layout_marginEnd="134dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
             tools:src="@tools:sample/avatars" />
 
         <com.google.android.material.chip.ChipGroup
@@ -56,76 +33,68 @@
             android:id="@+id/lblAccUsername"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_marginStart="43dp"
+            android:layout_marginTop="40dp"
             android:text="Username"
-            tools:layout_editor_absoluteX="79dp"
-            tools:layout_editor_absoluteY="314dp" />
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/imgAccProfile" />
 
         <TextView
             android:id="@+id/lblAccEmail"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_marginStart="43dp"
+            android:layout_marginTop="28dp"
             android:text="Email"
-            tools:layout_editor_absoluteX="79dp"
-            tools:layout_editor_absoluteY="407dp" />
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/txtAccUsername" />
 
         <EditText
             android:id="@+id/txtAccUsername"
-            android:layout_width="wrap_content"
+            android:layout_width="280dp"
             android:layout_height="wrap_content"
+            android:layout_marginStart="78dp"
+            android:layout_marginTop="6dp"
+            android:layout_marginEnd="123dp"
+            android:drawableLeft="@drawable/ic_person"
+            android:drawableRight="@drawable/ic_edit"
+            android:drawablePadding="10dp"
             android:ems="10"
             android:hint="Username"
             android:inputType="text"
-            tools:layout_editor_absoluteX="78dp"
-            tools:layout_editor_absoluteY="334dp" />
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/lblAccUsername" />
 
         <EditText
             android:id="@+id/txtAccEmail"
-            android:layout_width="wrap_content"
+            android:layout_width="280dp"
             android:layout_height="wrap_content"
+            android:layout_marginStart="78dp"
+            android:layout_marginTop="6dp"
+            android:layout_marginEnd="123dp"
+            android:drawableLeft="@drawable/ic_email"
+            android:drawableRight="@drawable/ic_edit"
+            android:drawablePadding="10dp"
             android:ems="10"
             android:hint="Email"
             android:inputType="text"
-            tools:layout_editor_absoluteX="74dp"
-            tools:layout_editor_absoluteY="434dp" />
-
-        <ImageView
-            android:id="@+id/imgAccEmail"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:src="@drawable/ic_email"
-            tools:layout_editor_absoluteX="35dp"
-            tools:layout_editor_absoluteY="444dp" />
-
-        <ImageView
-            android:id="@+id/imgAccPerson"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:src="@drawable/ic_person"
-            tools:layout_editor_absoluteX="35dp"
-            tools:layout_editor_absoluteY="344dp" />
-
-        <ImageView
-            android:id="@+id/imgAccEdit1"
-            android:layout_width="31dp"
-            android:layout_height="35dp"
-            android:src="@drawable/edit"
-            tools:layout_editor_absoluteX="297dp"
-            tools:layout_editor_absoluteY="333dp" />
-
-        <ImageView
-            android:id="@+id/imgAccEdit2"
-            android:layout_width="31dp"
-            android:layout_height="35dp"
-            android:src="@drawable/edit"
-            tools:layout_editor_absoluteX="297dp"
-            tools:layout_editor_absoluteY="444dp" />
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/lblAccEmail" />
 
         <Button
             android:id="@+id/btnUpdateAccountDetails"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Button"
-            tools:layout_editor_absoluteX="147dp"
-            tools:layout_editor_absoluteY="552dp" />
+            android:layout_marginStart="147dp"
+            android:layout_marginTop="74dp"
+            android:layout_marginEnd="173dp"
+            android:layout_marginBottom="131dp"
+            android:text="@string/text_update"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/txtAccEmail" />
     </androidx.constraintlayout.widget.ConstraintLayout>
 </FrameLayout>
