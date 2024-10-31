@@ -5,9 +5,9 @@
         <!-- Light Theme Customization -->
         <item name="textFillColor">@color/textColor</item>
         <item name="backgroundColor">@color/white</item>
-        <item name="android:button">@color/darkGreen</item>
+        <item name="android:button">@color/green</item>
 
-        <item name="colorPrimary">@color/lightGreen</item>
+        <item name="colorPrimary">@color/green</item>
         <item name="colorOnPrimary">@color/black</item>
         <item name="colorSecondary">@color/greenAccent</item>
         <item name="colorOnSecondary">@color/black</item>

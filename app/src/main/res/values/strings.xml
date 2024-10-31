@@ -42,6 +42,7 @@
     <string name="text_use_fingerprint">Use fingerprint</string>
     <string name="text_use_context_delete">Clear Notifications</string>
     <string name="text_use_clear_notify">No notifications</string>
+    <string name="google">Sign in with Google</string>
 
     <string name="controller_forward">Forward</string>
     <string name="controller_reverse">Reverse</string>

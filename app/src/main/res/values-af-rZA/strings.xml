@@ -33,6 +33,8 @@
     <string name="text_use_fingerprint">Gebruik vingerafdruk</string>
     <string name="text_use_context_delete">"Verwyder kennisgewings "</string>
     <string name="text_use_clear_notify">Geen kennisgewings nie</string>
+    <string name="google">Teken in met Google</string>
+
     <string name="controller_forward">" Vorentoe"</string>
     <string name="controller_reverse">Agteruit</string>
     <string name="controller_left">Links</string>
