@@ -85,14 +85,26 @@ class HomeFragment : Fragment() {
 
 
                 val windSpeed = wind.getString("speed")
+                val address = jsonObj.getString("name") + ", " + sys.getString("country")
                 val weatherDescription = weather.getString("description")
 
-                val address = jsonObj.getString("name") + ", " + sys.getString("country")
+                val currentDescription = when (weatherDescription) {
+                    "clear sky" -> getString(R.string.weather_condition_clear_Sky)
+                    "few clouds" -> getString(R.string.weather_condition_few_clouds)
+                    "scattered clouds" -> getString(R.string.weather_condition_scattered_clouds)
+                    "broken clouds" -> getString(R.string.weather_condition_broken_clouds)
+                    "shower rain" -> getString(R.string.weather_condition_shower_rain)
+                    "rain" -> getString(R.string.weather_condition_rain)
+                    "thunderstorm" -> getString(R.string.weather_condition_thunderstorm)
+                    "snow" -> getString(R.string.weather_condition_snow)
+                    "mist" -> getString(R.string.weather_condition_mist)
+                    else -> weatherDescription
+                }
 
                 // Populating extracted data into our views
                 layout.findViewById<TextView>(R.id.address).text = address
                 layout.findViewById<TextView>(R.id.updated_at).text = updatedAtText
-                layout.findViewById<TextView>(R.id.status).text = weatherDescription.capitalize()
+                layout.findViewById<TextView>(R.id.status).text = currentDescription.capitalize()
                 layout.findViewById<TextView>(R.id.temp).text = temp
                 layout.findViewById<TextView>(R.id.temp_min).text = tempMin
                 layout.findViewById<TextView>(R.id.temp_max).text = tempMax

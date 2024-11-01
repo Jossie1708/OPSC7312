@@ -42,7 +42,7 @@ class SideMenuNavBarActivity : AppCompatActivity() {
 
     private lateinit var appBarConfiguration: AppBarConfiguration
     private lateinit var binding: ActivitySideMenuNavBarBinding
-  //  private lateinit var popupWindow: PopupWindow
+    private lateinit var popupWindow: PopupWindow
     private lateinit var notifications: ArrayList<String>
     private lateinit var imageList: ArrayList<String>
 
@@ -99,24 +99,21 @@ class SideMenuNavBarActivity : AppCompatActivity() {
             }
         }
 
-        // Setup PopupWindow
-      //  setupPopupWindow()
+         //Setup PopupWindow
+        setupPopupWindow()
 
         // Setup notification icon click listener
         val notificationIcon: ImageButton = findViewById(R.id.notificationIcon)
         notificationIcon.setOnClickListener {
-//            if (popupWindow.isShowing) {
-//                popupWindow.dismiss()
-//            } else {
-//                popupWindow.showAsDropDown(notificationIcon) // Show below the icon
-//            }
-            Toast.makeText(this, "Feature is coming soon!", Toast.LENGTH_SHORT).show()
-
+            if (popupWindow.isShowing) {
+                popupWindow.dismiss()
+            } else {
+                popupWindow.showAsDropDown(notificationIcon) // Show below the icon
+            }
         }
 
         // Update the UI based on notifications
-        //updateNotificationUI()
-
+        updateNotificationUI()
         updateHeader()
     }
 
@@ -166,33 +163,33 @@ class SideMenuNavBarActivity : AppCompatActivity() {
         window.navigationBarColor = colorPrimary
     }
 
-//    private fun setupPopupWindow() {
-//        // Inflate the dropdown layout
-//        val popupView = LayoutInflater.from(this).inflate(R.layout.dropdown_notification, null)
-//        val recyclerView: RecyclerView = popupView.findViewById(R.id.recyclerViewNotifications)
-//
-//        // Set up RecyclerView
-//        recyclerView.layoutManager = LinearLayoutManager(this)
-//        recyclerView.adapter = NotificationsAdapter(this, notifications, imageList) { notification ->
-//            Toast.makeText(this, "Clicked: $notification", Toast.LENGTH_SHORT).show()
-//        }
-//
-//        // Setup clear button
-//        val clearButton: ImageButton = popupView.findViewById(R.id.clearNotificationsButton)
-//        clearButton.setOnClickListener {
-//            clearNotifications()
-//            popupWindow.dismiss() // Optionally dismiss the popup
-//        }
-//
-//        // Create PopupWindow
-//        popupWindow = PopupWindow(popupView,
-//            LinearLayout.LayoutParams.WRAP_CONTENT,
-//            LinearLayout.LayoutParams.WRAP_CONTENT,
-//            true)
-//
-//        popupWindow.isFocusable = true
-//        popupWindow.setBackgroundDrawable(getDrawable(android.R.color.white))
-//    }
+    private fun setupPopupWindow() {
+        // Inflate the dropdown layout
+        val popupView = LayoutInflater.from(this).inflate(R.layout.dropdown_notification, null)
+        val recyclerView: RecyclerView = popupView.findViewById(R.id.recyclerViewNotifications)
+
+        // Set up RecyclerView
+        recyclerView.layoutManager = LinearLayoutManager(this)
+        recyclerView.adapter = NotificationsAdapter(this, notifications, imageList) { notification ->
+            Toast.makeText(this, "Clicked: $notification", Toast.LENGTH_SHORT).show()
+        }
+
+        // Setup clear button
+        val clearButton: ImageButton = popupView.findViewById(R.id.clearNotificationsButton)
+        clearButton.setOnClickListener {
+            clearNotifications()
+            popupWindow.dismiss() // Optionally dismiss the popup
+        }
+
+        // Create PopupWindow
+        popupWindow = PopupWindow(popupView,
+            LinearLayout.LayoutParams.WRAP_CONTENT,
+            LinearLayout.LayoutParams.WRAP_CONTENT,
+            true)
+
+        popupWindow.isFocusable = true
+        popupWindow.setBackgroundDrawable(getDrawable(android.R.color.white))
+    }
 private fun requestPermissions() {
     ActivityCompat.requestPermissions(this, arrayOf(android.Manifest.permission.READ_MEDIA_IMAGES), REQUEST_CODE_PERMISSIONS)
 }
@@ -216,34 +213,34 @@ private fun requestPermissions() {
         }
     }
 
-//    private fun updateNotificationUI() {
-//        val recyclerView: RecyclerView = popupWindow.contentView.findViewById(R.id.recyclerViewNotifications)
-//        val noNotificationsMessage: TextView = popupWindow.contentView.findViewById(R.id.noNotificationsMessage)
-//        val notificationsTitle: TextView = popupWindow.contentView.findViewById(R.id.notificationsTitle)
-//        val lineBreak: View = popupWindow.contentView.findViewById(R.id.lineBreak)
-//        val clearButton: ImageButton = popupWindow.contentView.findViewById(R.id.clearNotificationsButton)
-//
-//        if (notifications.isEmpty()) {
-//            recyclerView.visibility = View.GONE
-//            noNotificationsMessage.visibility = View.VISIBLE
-//            notificationsTitle.visibility = View.GONE
-//            lineBreak.visibility = View.GONE
-//            clearButton.visibility = View.GONE
-//        } else {
-//            recyclerView.visibility = View.VISIBLE
-//            noNotificationsMessage.visibility = View.GONE
-//            notificationsTitle.visibility = View.VISIBLE
-//            lineBreak.visibility = View.VISIBLE
-//            clearButton.visibility = View.VISIBLE
-//            recyclerView.adapter?.notifyDataSetChanged()
-//        }
-//    }
-//
-//
-//    fun clearNotifications() {
-//        notifications.clear()
-//        updateNotificationUI() // Update UI after clearing notifications
-//    }
+    private fun updateNotificationUI() {
+        val recyclerView: RecyclerView = popupWindow.contentView.findViewById(R.id.recyclerViewNotifications)
+        val noNotificationsMessage: TextView = popupWindow.contentView.findViewById(R.id.noNotificationsMessage)
+        val notificationsTitle: TextView = popupWindow.contentView.findViewById(R.id.notificationsTitle)
+        val lineBreak: View = popupWindow.contentView.findViewById(R.id.lineBreak)
+        val clearButton: ImageButton = popupWindow.contentView.findViewById(R.id.clearNotificationsButton)
+
+        if (notifications.isEmpty()) {
+            recyclerView.visibility = View.GONE
+            noNotificationsMessage.visibility = View.VISIBLE
+            notificationsTitle.visibility = View.GONE
+            lineBreak.visibility = View.GONE
+            clearButton.visibility = View.GONE
+        } else {
+            recyclerView.visibility = View.VISIBLE
+            noNotificationsMessage.visibility = View.GONE
+            notificationsTitle.visibility = View.VISIBLE
+            lineBreak.visibility = View.VISIBLE
+            clearButton.visibility = View.VISIBLE
+            recyclerView.adapter?.notifyDataSetChanged()
+        }
+    }
+
+
+    fun clearNotifications() {
+        notifications.clear()
+        updateNotificationUI() // Update UI after clearing notifications
+    }
 
     override fun onCreateOptionsMenu(menu: Menu): Boolean {
         menuInflater.inflate(R.menu.side_menu_nav_bar, menu)

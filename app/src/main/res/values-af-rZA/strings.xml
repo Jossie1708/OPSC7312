@@ -66,5 +66,15 @@
     <string name="weather_pressure">Druk</string>
     <string name="weather_humidity">Humiditeit</string>
 
+    <string name="weather_condition_clear_Sky">helder lug</string>
+    <string name="weather_condition_few_clouds">paar wolke</string>
+    <string name="weather_condition_scattered_clouds">verstrooide wolke</string>
+    <string name="weather_condition_broken_clouds">stukkende wolke</string>
+    <string name="weather_condition_shower_rain">stortreën</string>
+    <string name="weather_condition_rain">reën</string>
+    <string name="weather_condition_thunderstorm">donderstorm</string>
+    <string name="weather_condition_snow">sneeu</string>
+    <string name="weather_condition_mist">mis</string>
+
     <string name="feature_coming_soon">funksie kom binnekort!</string>
 </resources>

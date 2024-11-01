@@ -1,3 +1,4 @@
+<?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string name="app_name">DroneApp</string>
     <string name="hello_blank_fragment">Hello blank fragment</string>
@@ -75,6 +76,17 @@
     <string name="weather_max_temp">Max Temp:</string>
     <string name="weather_pressure">Pressure</string>
     <string name="weather_humidity">Humidity</string>
+
+    <string name="weather_condition_clear_Sky">clear sky</string>
+    <string name="weather_condition_few_clouds">few clouds</string>
+    <string name="weather_condition_scattered_clouds">scattered clouds</string>
+    <string name="weather_condition_broken_clouds">broken clouds</string>
+    <string name="weather_condition_shower_rain">shower rain</string>
+    <string name="weather_condition_rain">rain</string>
+    <string name="weather_condition_thunderstorm">thunderstorm</string>
+    <string name="weather_condition_snow">snow</string>
+    <string name="weather_condition_mist">mist</string>
+
 
     <string name="feature_coming_soon">Feature Coming Soon!</string>
 
