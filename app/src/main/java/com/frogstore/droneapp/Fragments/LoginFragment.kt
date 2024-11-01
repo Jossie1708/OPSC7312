@@ -34,8 +34,6 @@ class LoginFragment : Fragment() {
     private lateinit var googleSignInClient: GoogleSignInClient  // Declare GoogleSignInClient
 
 
-
-
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -48,31 +46,45 @@ class LoginFragment : Fragment() {
         val btnGoogleSignIn = layout.findViewById<Button>(R.id.btnGoogleSignIn)  // Google sign-in button
         val emailField = layout.findViewById<EditText>(R.id.txtLoginEmail)
         val passwordField = layout.findViewById<EditText>(R.id.txtLoginPassword)
-
         val fingerprint = layout.findViewById<TextView>(R.id.lblLoginFingerprint)
         val lblForgotPassword = layout.findViewById<TextView>(R.id.lblForgotPassword)
 
         btnGoogleSignIn.setOnClickListener {
             lifecycleScope.launch {
                 try {
+
+                    //if signed in run if statement
                     if (googleSignInClient.isSignedIn()) {
                         Toast.makeText(context, "Already signed in with Google", Toast.LENGTH_SHORT).show()
-                    } else {
+                    }
+
+                    //if not singed in run else statement and call the signIn method from GoogleSignInClient class
+                    else {
+
                         val signInResult = googleSignInClient.signIn()
+
+                        //If Sign in is successfull display toast and navigate
                         if (signInResult) {
                             Toast.makeText(context, "Google sign-in successful", Toast.LENGTH_SHORT).show()
                             val intent = Intent(activity, SideMenuNavBarActivity::class.java)
                             startActivity(intent)
-                        } else {
+                        }
+
+                        //If sign in was unsuccessful display Google sign-in failed toast
+                        else {
                             Toast.makeText(context, "Google sign-in failed", Toast.LENGTH_SHORT).show()
                         }
                     }
-                } catch (e: Exception) {
+                }
+
+                //If there was an error throw exception
+                catch (e: Exception) {
                     Log.e("LoginFragment", "Google sign-in error: ${e.message}")
                 }
             }
         }
 
+        //implement today
         lblForgotPassword.setOnClickListener {
             Toast.makeText(requireContext(), "Feature coming soon in part 3!", Toast.LENGTH_SHORT).show()
         }
@@ -80,44 +92,54 @@ class LoginFragment : Fragment() {
 
         requestQueue = Volley.newRequestQueue(requireContext())
 
+
+        //implement today
         fingerprint.setOnClickListener{
             Toast.makeText(requireContext(), "Fingerprint feature coming soon!", Toast.LENGTH_SHORT).show()
         }
+
+
         accountManager = AccountManager(requireActivity())
+
 
         btnLogin.setOnClickListener {
             val email = emailField.text.toString()
             var username: String = ""
 
-            getUsername(email) { result ->
-                username = result
+            getUsername(email)
+            {
+                result -> username = result
 
-                validateUser (email, passwordField.text.toString()) { isValidUser  ->
-                    if (email.isNotBlank() && passwordField.text.toString().isNotBlank() && username.isNotBlank()) {
-                        if (isValidUser ) {
+                validateUser (email, passwordField.text.toString())
+                {
+                    isValidUser  ->
+                    if (email.isNotBlank() && passwordField.text.toString().isNotBlank() && username.isNotBlank())
+                    {
+                        if (isValidUser )
+                        {
                             lifecycleScope.launch {
                                 val result = accountManager.signUp(username, passwordField.text.toString(), email)
 
                                 handleSignUpResult(result)
                             }
-                        } else {
+                        }
+                        else
+                        {
                             Toast.makeText(requireContext(), "Invalid username or password", Toast.LENGTH_SHORT).show()
                         }
-                    } else {
-                        Toast.makeText(
-                            requireContext(),
-                            "Please enter both email, username and password.",
-                            Toast.LENGTH_SHORT
-                        ).show()
+                    }
+                    else
+                    {
+                        Toast.makeText(requireContext(), "Please enter both email, username and password.", Toast.LENGTH_SHORT).show()
                     }
                 }
             }
         }
-
         return layout
     }
 
-    private fun validateUser(email: String, password: String, callback: (Boolean) -> Unit) {
+    private fun validateUser(email: String, password: String, callback: (Boolean) -> Unit)
+    {
         val url = "https://frogtrackapi2-bjaufahwavexambv.eastasia-01.azurewebsites.net/validateUser?email=$email&password=$password"
 
         val stringRequest = object : StringRequest(
@@ -141,7 +163,8 @@ class LoginFragment : Fragment() {
         requestQueue.add(stringRequest)
     }
 
-    private fun getUsername(email: String, callback: (String) -> Unit) {
+    private fun getUsername(email: String, callback: (String) -> Unit)
+    {
         val url = "https://frogtrackapi2-bjaufahwavexambv.eastasia-01.azurewebsites.net/getUsername?email=$email"
 
         val stringRequest = object : StringRequest(
@@ -164,13 +187,11 @@ class LoginFragment : Fragment() {
         requestQueue.add(stringRequest)
     }
 
-    private fun isValidEmail(email: String): Boolean {
-        return android.util.Patterns.EMAIL_ADDRESS.matcher(email).matches()
-    }
-
-    private fun handleSignUpResult(result: SignUpResult) {
-        when (result) {
-            is SignUpResult.Success -> {
+    private fun handleSignUpResult(result: SignUpResult)
+    {
+        when (result)
+        {
+            is SignUpResult.Success ->{
                 loginViewModel.onAction(OnSignUp(result))
 
                 Toast.makeText(requireContext(), "Login successful", Toast.LENGTH_SHORT).show()
