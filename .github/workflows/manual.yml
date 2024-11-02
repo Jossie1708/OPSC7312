@@ -7,17 +7,14 @@ on:
     branches: [master]
 
 jobs:
-  build-and-test:
+  build:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
-        uses: actions/checkout@v2
+        uses: actions/checkout@v4.1.0
 
-      - name: Set up Android SDK
-        uses: actions/setup-android@v2
-        with:
-          android-version: '31'
-          build-tools-version: '31.0.0'
+      - name: Set up Java SDK
+        uses: actions/setup-java@3.13.0
 
       - name: Run with Gradle
         run: ./gradlew build
