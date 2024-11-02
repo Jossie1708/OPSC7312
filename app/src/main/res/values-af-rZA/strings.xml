@@ -41,6 +41,7 @@
     <string name="controller_right">Regs</string>
     <string name="controller_up">Op</string>
     <string name="controller_down">Af</string>
+
     <string name="menu_home">Tuis</string>
     <string name="menu_gallery">Galery</string>
     <string name="menu_slideshow">"Skyfievertoning"</string>
@@ -53,6 +54,7 @@
     <string name="menu_controller">Kontroleerder</string>
     <string name="menu_notification">" Kennisgewing"</string>
     <string name="menu_location">Ligging</string>
+    <string name="menu_flight">Vlug logs</string>
 
     <string name="sign_in_name">Gas</string>
     <string name="sign_in_email">Nie ingeteken nie</string>

@@ -21,9 +21,9 @@
             android:icon="@drawable/ic_settings"
             android:title="@string/menu_settings" />
         <item
-            android:id="@+id/nav_location"
+            android:id="@+id/nav_flight_logs"
             android:icon="@drawable/location"
-            android:title="@string/menu_location" />
+            android:title="@string/menu_flight" />
         <item
             android:id="@+id/nav_logout"
             android:icon="@drawable/ic_logout"

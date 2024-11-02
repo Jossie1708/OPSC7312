@@ -15,5 +15,7 @@
     <color name = "darkGreenAccent">#288D8A</color>
     <color name = "toolsbarColor">#126171</color>
 
+    <color name="drawer_primary">#3c6e71</color>
+    <color name="drawer_accent">#CCCCCC</color>
 
 </resources>
