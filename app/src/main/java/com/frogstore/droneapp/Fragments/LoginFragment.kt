@@ -1,6 +1,7 @@
 package com.frogstore.droneapp.Fragments
 
 import android.content.Intent
+import android.os.Build
 import android.os.Bundle
 import android.util.Log
 import android.view.LayoutInflater
@@ -10,6 +11,11 @@ import android.widget.Button
 import android.widget.EditText
 import android.widget.TextView
 import android.widget.Toast
+import androidx.annotation.RequiresApi
+import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.saveable.rememberSaveable
+import androidx.compose.runtime.setValue
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
 import androidx.lifecycle.lifecycleScope
@@ -26,6 +32,7 @@ import com.frogstore.droneapp.UserDetails.LoginAction.*
 import com.frogstore.droneapp.UserDetails.UserSessionManager
 import com.frogstore.droneapp.GoogleSignInClient
 
+
 class LoginFragment : Fragment() {
 
     private lateinit var accountManager: AccountManager
@@ -34,13 +41,15 @@ class LoginFragment : Fragment() {
     private lateinit var googleSignInClient: GoogleSignInClient  // Declare GoogleSignInClient
 
 
+    @RequiresApi(Build.VERSION_CODES.UPSIDE_DOWN_CAKE)
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
         val layout = inflater.inflate(R.layout.fragment_login, container, false)
 
-        googleSignInClient = GoogleSignInClient(requireContext())
+        val googleSignInClient = GoogleSignInClient(requireContext())
+
 
         val btnLogin = layout.findViewById<Button>(R.id.btnLogin)
         val btnGoogleSignIn = layout.findViewById<Button>(R.id.btnGoogleSignIn)  // Google sign-in button
@@ -49,40 +58,20 @@ class LoginFragment : Fragment() {
         val fingerprint = layout.findViewById<TextView>(R.id.lblLoginFingerprint)
         val lblForgotPassword = layout.findViewById<TextView>(R.id.lblForgotPassword)
 
+        //Google SSO button signin
         btnGoogleSignIn.setOnClickListener {
             lifecycleScope.launch {
-                try {
-
-                    //if signed in run if statement
-                    if (googleSignInClient.isSignedIn()) {
-                        Toast.makeText(context, "Already signed in with Google", Toast.LENGTH_SHORT).show()
-                    }
-
-                    //if not singed in run else statement and call the signIn method from GoogleSignInClient class
-                    else {
-
-                        val signInResult = googleSignInClient.signIn()
-
-                        //If Sign in is successfull display toast and navigate
-                        if (signInResult) {
-                            Toast.makeText(context, "Google sign-in successful", Toast.LENGTH_SHORT).show()
-                            val intent = Intent(activity, SideMenuNavBarActivity::class.java)
-                            startActivity(intent)
-                        }
-
-                        //If sign in was unsuccessful display Google sign-in failed toast
-                        else {
-                            Toast.makeText(context, "Google sign-in failed", Toast.LENGTH_SHORT).show()
-                        }
-                    }
-                }
-
-                //If there was an error throw exception
-                catch (e: Exception) {
-                    Log.e("LoginFragment", "Google sign-in error: ${e.message}")
-                }
+                    // Attempt Google sign-in
+                    googleSignInClient.signIn()
+//                Toast.makeText(requireContext(), "Login successful", Toast.LENGTH_SHORT).show()
+//                val intent = Intent(activity, SideMenuNavBarActivity::class.java)
+//                startActivity(intent)
             }
         }
+
+        //EMAIL PASSWORD SIGNIN
+
+
 
         //implement today
         lblForgotPassword.setOnClickListener {
@@ -207,7 +196,8 @@ class LoginFragment : Fragment() {
             is SignUpResult.Failure -> {
                 Toast.makeText(requireContext(), "Login failed", Toast.LENGTH_SHORT).show()
             }
-            SignUpResult.Cancelled -> {
+            else -> {
+                SignUpResult.Cancelled
                 Toast.makeText(requireContext(), "Login cancelled", Toast.LENGTH_SHORT).show()
             }
         }

@@ -125,5 +125,6 @@ dependencies {
     implementation(platform(libs.firebase.bom))
     implementation(libs.firebase.auth.ktx)
 
+    implementation("androidx.biometric:biometric:1.1.0")
 
 }
