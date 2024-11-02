@@ -8,7 +8,6 @@ import androidx.core.content.ContextCompat
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
 import androidx.fragment.app.Fragment
-import com.frogstore.droneapp.Fragments.FingerprintFragment
 import com.frogstore.droneapp.Fragments.LoginFragment
 import com.frogstore.droneapp.Fragments.RegisterFragment
 import com.frogstore.droneapp.R
@@ -17,7 +16,7 @@ import com.google.android.material.tabs.TabLayout
 class MainActivity : AppCompatActivity() {
     private val loginFragment = LoginFragment()
     private val registerFragment = RegisterFragment()
-    private val fingerprintFragment = FingerprintFragment()
+
 
     public override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
