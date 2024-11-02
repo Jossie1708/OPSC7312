@@ -1,15 +1,16 @@
-name: Android Unit Tests
+name: manual
 
 on:
+  pull_request:
+    branches: [master]
   push:
-    branches:
-      - main
+    branches: [master]
 
 jobs:
   build-and-test:
     runs-on: ubuntu-latest
     steps:
-      - name: Checkout code
+      - name: Checkout
         uses: actions/checkout@v2
 
       - name: Set up Android SDK
@@ -18,12 +19,11 @@ jobs:
           android-version: '31'
           build-tools-version: '31.0.0'
 
-      - name: Run unit tests
-        run: |
-          ./gradlew testDebugUnitTest
+      - name: Run with Gradle
+        run: ./gradlew build
 
-      - name: Upload test results
+      - name: Upload a Build Artifact
         uses: actions/upload-artifact@v2
         with:
-          name: test-results
-          path: app/build/test-results/testDebugUnitTest/results.xml
+          name: DroneApp
+          path: app/build/outputs/apk/app-debug.apk
