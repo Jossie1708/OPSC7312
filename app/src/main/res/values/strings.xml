@@ -87,6 +87,8 @@
     <string name="weather_condition_snow">snow</string>
     <string name="weather_condition_mist">mist</string>
 
+    <string name="update_on">Updated on</string>
+
 
     <string name="feature_coming_soon">Feature Coming Soon!</string>
 
