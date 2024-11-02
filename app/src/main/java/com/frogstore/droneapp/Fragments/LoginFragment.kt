@@ -22,6 +22,7 @@ import androidx.lifecycle.lifecycleScope
 import com.android.volley.RequestQueue
 import com.android.volley.toolbox.StringRequest
 import com.android.volley.toolbox.Volley
+import com.frogstore.droneapp.BiometricPromptManager
 import com.frogstore.droneapp.UserDetails.AccountManager
 import com.frogstore.droneapp.R
 import com.frogstore.droneapp.UserDetails.SignUpResult
@@ -39,6 +40,8 @@ class LoginFragment : Fragment() {
     private val loginViewModel: LoginViewModel by activityViewModels()
     private lateinit var requestQueue: RequestQueue
     private lateinit var googleSignInClient: GoogleSignInClient  // Declare GoogleSignInClient
+    private lateinit var biometricPromptManager: BiometricPromptManager
+
 
 
     @RequiresApi(Build.VERSION_CODES.UPSIDE_DOWN_CAKE)
@@ -49,6 +52,9 @@ class LoginFragment : Fragment() {
         val layout = inflater.inflate(R.layout.fragment_login, container, false)
 
         val googleSignInClient = GoogleSignInClient(requireContext())
+        biometricPromptManager = BiometricPromptManager(requireActivity())
+        observeBiometricPromptResults()
+
 
 
         val btnLogin = layout.findViewById<Button>(R.id.btnLogin)
@@ -84,7 +90,10 @@ class LoginFragment : Fragment() {
 
         //implement today
         fingerprint.setOnClickListener{
-            Toast.makeText(requireContext(), "Fingerprint feature coming soon!", Toast.LENGTH_SHORT).show()
+            biometricPromptManager.showBiometricPrompt(
+                title = "Biometric Authentication",
+                description = "Please authenticate to proceed"
+            )
         }
 
 
@@ -199,6 +208,36 @@ class LoginFragment : Fragment() {
             else -> {
                 SignUpResult.Cancelled
                 Toast.makeText(requireContext(), "Login cancelled", Toast.LENGTH_SHORT).show()
+            }
+        }
+    }
+    private fun observeBiometricPromptResults() {
+        // Observe the prompt results in the fragment's lifecycle
+        viewLifecycleOwner.lifecycleScope.launch {
+            biometricPromptManager.promptResults.collect { result ->
+                when (result) {
+                    is BiometricPromptManager.BiometricResult.AuthenticationSuccess -> {
+                        // Handle successful authentication
+                        Toast.makeText(requireContext(), "Login successful", Toast.LENGTH_SHORT).show()
+                        val intent = Intent(activity, SideMenuNavBarActivity::class.java)
+                        startActivity(intent)
+                    }
+                    is BiometricPromptManager.BiometricResult.AuthenticationFailed -> {
+                        // Handle failed authentication
+                        Toast.makeText(requireContext(), "Login failed", Toast.LENGTH_SHORT).show()
+
+                    }
+                    is BiometricPromptManager.BiometricResult.AuthenticationError -> {
+                        // Handle authentication error, show error message
+                        Toast.makeText(requireContext(), "Login error", Toast.LENGTH_SHORT).show()
+
+                    }
+                    is BiometricPromptManager.BiometricResult.HardwareUnavailable,
+                    is BiometricPromptManager.BiometricResult.FeatureUnavailable,
+                    is BiometricPromptManager.BiometricResult.AuthenticationNotSet -> {
+                        // Handle cases where biometric is unavailable or not set up
+                    }
+                }
             }
         }
     }
