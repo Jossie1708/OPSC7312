@@ -50,12 +50,22 @@
         android:label="@string/menu_Account"
         tools:layout="@layout/fragment_account_details"
         />
+
     <fragment
         android:id="@+id/nav_location"
         android:name="com.frogstore.droneapp.Fragments.MapsFragment"
         android:label="@string/menu_maps"
-        tools:layout="@layout/fragment_maps"
-        />
+        tools:layout="@layout/fragment_maps"/>
+
+    <fragment
+        android:id="@+id/nav_flight_logs"
+        android:name="com.frogstore.droneapp.Fragments.FlightLogFragment"
+        android:label="@string/menu_flight"
+        tools:layout="@layout/fragment_flight_log">
+        <action
+        android:id="@+id/action_nav_logs_to_map"
+        app:destination="@id/nav_location" />
+        </fragment>
 
     <fragment
         android:id="@+id/nav_controller"
@@ -63,11 +73,13 @@
         android:label="@string/menu_controller"
         tools:layout="@layout/fragment_controller"
         />
+
     <activity
         android:id="@+id/sideMenuNavBarActivity"
         android:name="com.frogstore.droneapp.SideMenuNavBarActivity"
         android:label="SideMenuNavBarActivity"
         tools:layout="@layout/activity_side_menu_nav_bar" />
+
     <activity
         android:id="@+id/nav_logout"
         android:name="com.frogstore.droneapp.Activities.MainActivity"

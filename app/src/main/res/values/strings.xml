@@ -65,6 +65,7 @@
     <string name="menu_controller">Controller</string>
     <string name="menu_notification">Notification</string>
     <string name="menu_location">Location</string>
+    <string name="menu_flight">Flight logs</string>
 
     <string name="sign_in_name">Guest</string>
     <string name="sign_in_email">Not signed in</string>
@@ -91,7 +92,6 @@
 
 
     <string name="feature_coming_soon">Feature Coming Soon!</string>
-
 
 
 </resources>

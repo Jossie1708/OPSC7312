@@ -1,7 +1,6 @@
 package com.frogstore.droneapp
 
 import android.Manifest
-import android.annotation.SuppressLint
 import android.content.Context
 import android.content.pm.PackageManager
 import android.os.Build
@@ -20,7 +19,6 @@ import android.widget.Toast
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.app.ActivityCompat
-import androidx.core.content.ContentProviderCompat.requireContext
 import androidx.core.content.ContextCompat
 import androidx.drawerlayout.widget.DrawerLayout
 import androidx.navigation.findNavController
@@ -34,7 +32,6 @@ import com.android.volley.RequestQueue
 import com.android.volley.toolbox.Volley
 import com.frogstore.droneapp.Adapters.NotificationsAdapter
 import com.frogstore.droneapp.UserDetails.LoginViewModel
-import com.frogstore.droneapp.UserDetails.UserSessionManager
 import com.frogstore.droneapp.databinding.ActivitySideMenuNavBarBinding
 import com.google.android.gms.auth.api.signin.GoogleSignInClient
 import com.google.firebase.messaging.FirebaseMessaging
@@ -84,7 +81,7 @@ class SideMenuNavBarActivity : AppCompatActivity() {
         val navController = findNavController(R.id.nav_host_fragment_content_side_menu_nav_bar)
 
         appBarConfiguration = AppBarConfiguration(
-            setOf(R.id.nav_home, R.id.nav_gallery, R.id.nav_location, R.id.nav_controller, R.id.nav_settings),
+            setOf(R.id.nav_home, R.id.nav_gallery, R.id.nav_flight_logs, R.id.nav_controller, R.id.nav_settings),
             drawerLayout
         )
         setupActionBarWithNavController(navController, appBarConfiguration)
