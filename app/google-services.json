@@ -1,33 +1,33 @@
 {
   "project_info": {
-    "project_number": "266453904291",
-    "project_id": "sign-in-opsc",
-    "storage_bucket": "sign-in-opsc.appspot.com"
+    "project_number": "456359791964",
+    "project_id": "droneapplication-71c62",
+    "storage_bucket": "droneapplication-71c62.firebasestorage.app"
   },
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:266453904291:android:ead0add7c0ed38fc788816",
+        "mobilesdk_app_id": "1:456359791964:android:53b7ab9fa0fe0aca130599",
         "android_client_info": {
           "package_name": "com.frogstore.droneapp"
         }
       },
       "oauth_client": [
         {
-          "client_id": "266453904291-0313i7jjt13ndgcb3937o3uau3eca7gv.apps.googleusercontent.com",
+          "client_id": "456359791964-o0546okr8chormvdumcaql0ig37dmkm1.apps.googleusercontent.com",
           "client_type": 3
         }
       ],
       "api_key": [
         {
-          "current_key": "AIzaSyBTAkB9hzMAo-K_HxZ4RDGAZbt9Spp_TB8"
+          "current_key": "AIzaSyDmGMWTlUioCpW1qzVNUsJvN9GnWA4X4CE"
         }
       ],
       "services": {
         "appinvite_service": {
           "other_platform_oauth_client": [
             {
-              "client_id": "266453904291-0313i7jjt13ndgcb3937o3uau3eca7gv.apps.googleusercontent.com",
+              "client_id": "456359791964-o0546okr8chormvdumcaql0ig37dmkm1.apps.googleusercontent.com",
               "client_type": 3
             }
           ]

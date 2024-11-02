@@ -75,6 +75,7 @@
     <string name="weather_condition_thunderstorm">donderstorm</string>
     <string name="weather_condition_snow">sneeu</string>
     <string name="weather_condition_mist">mis</string>
+    <string name="update_on">Opgedateer op</string>
 
     <string name="feature_coming_soon">funksie kom binnekort!</string>
 </resources>

@@ -1,11 +1,14 @@
 package com.frogstore.droneapp
 
+import android.Manifest
 import android.annotation.SuppressLint
 import android.content.Context
 import android.content.pm.PackageManager
+import android.os.Build
 import android.os.Bundle
 import android.os.storage.StorageManager
 import android.preference.PreferenceManager
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.Menu
 import android.view.View
@@ -14,6 +17,7 @@ import android.widget.LinearLayout
 import android.widget.PopupWindow
 import android.widget.TextView
 import android.widget.Toast
+import androidx.activity.result.contract.ActivityResultContracts
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.app.ActivityCompat
 import androidx.core.content.ContentProviderCompat.requireContext
@@ -33,6 +37,7 @@ import com.frogstore.droneapp.UserDetails.LoginViewModel
 import com.frogstore.droneapp.UserDetails.UserSessionManager
 import com.frogstore.droneapp.databinding.ActivitySideMenuNavBarBinding
 import com.google.android.gms.auth.api.signin.GoogleSignInClient
+import com.google.firebase.messaging.FirebaseMessaging
 import java.io.File
 
 class SideMenuNavBarActivity : AppCompatActivity() {
@@ -53,6 +58,7 @@ class SideMenuNavBarActivity : AppCompatActivity() {
     }
 
     public override fun onCreate(savedInstanceState: Bundle?) {
+        requestPermissionLauncher.launch(Manifest.permission.POST_NOTIFICATIONS)
         val sharedPreferences = PreferenceManager.getDefaultSharedPreferences(this)
         val isDarkTheme = sharedPreferences.getBoolean("isDarkTheme", false)
         if (isDarkTheme) {
@@ -62,6 +68,7 @@ class SideMenuNavBarActivity : AppCompatActivity() {
         }
         super.onCreate(savedInstanceState)
         requestPermissions()
+        askNotificationPermission()
         // Set system UI colors based on the theme
         updateSystemUiColors(isDarkTheme)
 
@@ -115,6 +122,10 @@ class SideMenuNavBarActivity : AppCompatActivity() {
         // Update the UI based on notifications
         updateNotificationUI()
         updateHeader()
+
+
+        subscribeToWeatherUpdates()
+        retrieveFCMToken() // Call the function to retrieve the token
     }
 
 
@@ -191,7 +202,7 @@ class SideMenuNavBarActivity : AppCompatActivity() {
         popupWindow.setBackgroundDrawable(getDrawable(android.R.color.white))
     }
 private fun requestPermissions() {
-    ActivityCompat.requestPermissions(this, arrayOf(android.Manifest.permission.READ_MEDIA_IMAGES), REQUEST_CODE_PERMISSIONS)
+    ActivityCompat.requestPermissions(this, arrayOf(Manifest.permission.READ_MEDIA_IMAGES), REQUEST_CODE_PERMISSIONS)
 }
 
     private fun loadImages() {
@@ -256,9 +267,9 @@ private fun requestPermissions() {
                     var readMediaImagesPermissionGranted = false
 
                     for (i in grantResults.indices) {
-                        if (permissions[i] == android.Manifest.permission.ACCESS_FINE_LOCATION) {
+                        if (permissions[i] == Manifest.permission.ACCESS_FINE_LOCATION) {
                             locationPermissionGranted = grantResults[i] == PackageManager.PERMISSION_GRANTED
-                        } else if (permissions[i] == android.Manifest.permission.READ_MEDIA_IMAGES) {
+                        } else if (permissions[i] == Manifest.permission.READ_MEDIA_IMAGES) {
                             readMediaImagesPermissionGranted = grantResults[i] == PackageManager.PERMISSION_GRANTED
                         }
                     }
@@ -283,5 +294,59 @@ private fun requestPermissions() {
     override fun onSupportNavigateUp(): Boolean {
         val navController = findNavController(R.id.nav_host_fragment_content_side_menu_nav_bar)
         return navController.navigateUp(appBarConfiguration) || super.onSupportNavigateUp()
+    }
+
+    private fun retrieveFCMToken() {
+        FirebaseMessaging.getInstance().token.addOnCompleteListener { task ->
+            if (!task.isSuccessful) {
+                Log.w("FCM", "Fetching FCM registration token failed", task.exception)
+                return@addOnCompleteListener
+            }
+
+            // Get new FCM registration token
+            val token = task.result
+
+            // Log and show the token
+            Log.d("FCM", "FCM Token: $token")
+            // Optionally display the token in a Toast
+            Toast.makeText(baseContext, "FCM Token: $token", Toast.LENGTH_SHORT).show()
+        }
+    }
+
+    // Declare the launcher at the top of your Activity/Fragment:
+    private val requestPermissionLauncher = registerForActivityResult(
+        ActivityResultContracts.RequestPermission(),
+    ) { isGranted: Boolean ->
+        if (isGranted) {
+            // FCM SDK (and your app) can post notifications.
+        } else {
+            // TODO: Inform user that that your app will not show notifications.
+        }
+    }
+
+    private fun askNotificationPermission() {
+        // This is only necessary for API level >= 33 (TIRAMISU)
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU) {
+            if (ContextCompat.checkSelfPermission(this, Manifest.permission.POST_NOTIFICATIONS) ==
+                PackageManager.PERMISSION_GRANTED
+            ) {
+                // FCM SDK (and your app) can post notifications.
+            } else if (shouldShowRequestPermissionRationale(Manifest.permission.POST_NOTIFICATIONS)) {
+                // TODO: display an educational UI explaining to the user the features that will be enabled
+                //       by them granting the POST_NOTIFICATION permission. This UI should provide the user
+                //       "OK" and "No thanks" buttons. If the user selects "OK," directly request the permission.
+                //       If the user selects "No thanks," allow the user to continue without notifications.
+            } else {
+                // Directly ask for the permission
+                requestPermissionLauncher.launch(Manifest.permission.POST_NOTIFICATIONS)
+            }
+        }
+    }
+    private fun subscribeToWeatherUpdates() {
+        FirebaseMessaging.getInstance().subscribeToTopic("weather_updates")
+            .addOnCompleteListener { task ->
+                val msg = if (task.isSuccessful) "Subscribed to weather updates" else "Subscription failed"
+                Log.d("FCM", msg)
+            }
     }
 }
