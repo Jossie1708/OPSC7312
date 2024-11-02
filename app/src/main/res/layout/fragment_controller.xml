@@ -15,6 +15,8 @@
         android:layout_height="match_parent" />
 
     <!-- Control buttons -->
+
+
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -22,25 +24,20 @@
         android:orientation="vertical"
         android:padding="4dp">
 
+        <com.frogstore.droneapp.views.JoystickView
+            android:id="@+id/joystick_view"
+            android:layout_width="150dp"
+            android:layout_height="250dp"
+            android:layout_centerInParent="true" />
+
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:gravity="center">
 
             <TextView
-                android:id="@+id/textView"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:background="#AA000000"
-                android:padding="8dp"
-                android:layout_weight="1"
-                android:textColor="#FFFFFF"
-                android:textSize="18sp"
-                android:text="@string/feature_coming_soon" />
-
-            <TextView
                 android:id="@+id/statusTextView"
-                android:layout_width="wrap_content"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_gravity="bottom|center_horizontal"
                 android:background="#AA000000"
@@ -50,6 +47,9 @@
                 android:textSize="18sp" />
 
         </LinearLayout>
+
     </LinearLayout>
+
+
 
 </FrameLayout>

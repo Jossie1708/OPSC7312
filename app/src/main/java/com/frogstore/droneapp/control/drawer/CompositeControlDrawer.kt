@@ -1,0 +1,41 @@
+package com.frogstore.droneapp.control.drawer
+
+import android.graphics.Canvas
+import com.frogstore.droneapp.control.Control
+import com.frogstore.droneapp.control.drawer.ControlDrawer
+
+/**
+ * A [ControlDrawer] that uses other drawers to draw.
+ */
+open class CompositeControlDrawer(
+    /**
+     *  The control drawers to use.
+     */
+    protected open val drawers: List<ControlDrawer>,
+    /**
+     * The interface to call before each draw.
+     */
+    protected open val beforeDraw: BeforeDraw?
+) : ControlDrawer {
+    constructor(drawers: List<ControlDrawer>) : this(drawers,  null)
+
+    /**
+     * Interface for call before each draw.
+     */
+    fun interface BeforeDraw {
+        /**
+         * Called before each [ControlDrawer] draw.
+         *
+         * @param drawer The current [ControlDrawer]
+         * @param control The [Control] from where the drawer is used.
+         */
+        fun before(drawer: ControlDrawer, control: Control)
+    }
+
+    override fun draw(canvas: Canvas, control: Control) {
+        drawers.forEach { drawer ->
+            beforeDraw?.before(drawer, control)
+            drawer.draw(canvas, control)
+        }
+    }
+}
