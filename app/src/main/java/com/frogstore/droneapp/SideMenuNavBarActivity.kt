@@ -1,7 +1,11 @@
 package com.frogstore.droneapp
 
+import NotificationItem
 import android.Manifest
+import android.content.BroadcastReceiver
 import android.content.Context
+import android.content.Intent
+import android.content.IntentFilter
 import android.content.pm.PackageManager
 import android.os.Build
 import android.os.Bundle
@@ -21,6 +25,7 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
 import androidx.drawerlayout.widget.DrawerLayout
+import androidx.localbroadcastmanager.content.LocalBroadcastManager
 import androidx.navigation.findNavController
 import androidx.navigation.ui.AppBarConfiguration
 import androidx.navigation.ui.navigateUp
@@ -38,7 +43,6 @@ import com.google.firebase.messaging.FirebaseMessaging
 import java.io.File
 
 class SideMenuNavBarActivity : AppCompatActivity() {
-    private lateinit var googleSignInClient: GoogleSignInClient
     private lateinit var name: TextView
     private lateinit var email: TextView
 
@@ -46,7 +50,6 @@ class SideMenuNavBarActivity : AppCompatActivity() {
     private lateinit var binding: ActivitySideMenuNavBarBinding
     private lateinit var popupWindow: PopupWindow
     private lateinit var notifications: ArrayList<NotificationItem>
-    private lateinit var imageList: ArrayList<String>
 
     private lateinit var requestQueue: RequestQueue
 
@@ -88,17 +91,12 @@ class SideMenuNavBarActivity : AppCompatActivity() {
         setupActionBarWithNavController(navController, appBarConfiguration)
         navView.setupWithNavController(navController)
 
-        // Initialize notifications and image lists
-//        notifications = arrayListOf("Notification 1", "Notification 2", "Notification 3", "Notification 4", "Notification 5", "Notification 6")
-//        imageList = arrayListOf() // Initialize this based on your needs
-//        loadImages() // Load images into imageList
-
          notifications = arrayListOf(
-             NotificationItem("Title 1", "Body 1", "http://example.com/image1.jpg"),
-             NotificationItem("Title 2", "Body 2", "http://example.com/image2.jpg")
+             NotificationItem("Title 1", "Body 1"),
+             NotificationItem("Title 2", "Body 2")
          )
         notificationApplication = application as NotificationApplication
-        notifications = notificationApplication.notifications // Reference the notifications list
+        notifications = notificationApplication.notifications
 
 
         val toolbarTitle: TextView = binding.appBarSideMenuNavBar.toolbar.findViewById(R.id.toolbarTitle)
@@ -111,9 +109,18 @@ class SideMenuNavBarActivity : AppCompatActivity() {
                 toolbarTitle.text = ""
             }
         }
-
-         //Setup PopupWindow
+        //Setup PopupWindow
         setupPopupWindow()
+
+
+        // Update the UI based on notifications
+        updateNotificationUI()
+        updateHeader()
+
+
+        subscribeToWeatherUpdates()
+        retrieveFCMToken() // Call the function to retrieve the token
+
 
         // Setup notification icon click listener
         val notificationIcon: ImageButton = findViewById(R.id.notificationIcon)
@@ -125,13 +132,6 @@ class SideMenuNavBarActivity : AppCompatActivity() {
             }
         }
 
-        // Update the UI based on notifications
-        updateNotificationUI()
-        updateHeader()
-
-
-        subscribeToWeatherUpdates()
-        retrieveFCMToken() // Call the function to retrieve the token
     }
 
 
@@ -198,7 +198,7 @@ class SideMenuNavBarActivity : AppCompatActivity() {
         val clearButton: ImageButton = popupView.findViewById(R.id.clearNotificationsButton)
         clearButton.setOnClickListener {
             clearNotifications()
-            popupWindow.dismiss() // Optionally dismiss the popup
+            popupWindow.dismiss() //Optionally dismiss the popup
         }
 
         // Create PopupWindow
@@ -213,34 +213,36 @@ class SideMenuNavBarActivity : AppCompatActivity() {
 
     fun addNotification(notification: NotificationItem) {
         notifications.add(notification)
-        // Update the adapter
         val adapter = popupWindow.contentView.findViewById<RecyclerView>(R.id.recyclerViewNotifications).adapter as NotificationsAdapter
         adapter.updateNotifications(notifications)
-        updateNotificationUI()
+        updateNotificationUI() // Call to update the UI
     }
-
-private fun requestPermissions() {
-    ActivityCompat.requestPermissions(this, arrayOf(Manifest.permission.READ_MEDIA_IMAGES), REQUEST_CODE_PERMISSIONS)
-}
-
-    private fun loadImages() {
-        // Load images from your storage logic here and populate imageList
-        val storageManager = getSystemService(Context.STORAGE_SERVICE) as StorageManager
-        val primaryStorageVolume = storageManager.primaryStorageVolume
-
-        val folderPath = "/storage/emulated/0/DCIM/pic" // Specify your folder path here
-        val folder = File(folderPath)
-
-        if (folder.exists() && folder.isDirectory) {
-            val imageFiles = folder.listFiles { file ->
-                file.isFile && (file.name.endsWith(".jpeg", true) || file.name.endsWith(".jpg", true) || file.name.endsWith(".png", true))
-            }?.map { it.absolutePath } ?: emptyList()
-
-            imageList.addAll(imageFiles) // Populate your imageList
-        } else {
-           // Toast.makeText(this, "Folder not found", Toast.LENGTH_SHORT).show()
+    private val notificationReceiver = object : BroadcastReceiver() {
+        override fun onReceive(context: Context?, intent: Intent?) {
+            val notificationItem = intent?.getParcelableExtra<NotificationItem>("notification")
+            notificationItem?.let {
+                addNotification(it) //Call your method to add the notification
+            }
         }
     }
+
+    override fun onStart() {
+        super.onStart()
+        LocalBroadcastManager.getInstance(this).registerReceiver(
+            notificationReceiver, IntentFilter("NEW_NOTIFICATION")
+        )
+    }
+
+    override fun onStop() {
+        super.onStop()
+        LocalBroadcastManager.getInstance(this).unregisterReceiver(notificationReceiver)
+    }
+
+
+
+    private fun requestPermissions() {
+    ActivityCompat.requestPermissions(this, arrayOf(Manifest.permission.READ_MEDIA_IMAGES), REQUEST_CODE_PERMISSIONS)
+}
 
     private fun updateNotificationUI() {
         val recyclerView: RecyclerView = popupWindow.contentView.findViewById(R.id.recyclerViewNotifications)
@@ -291,20 +293,9 @@ private fun requestPermissions() {
                             readMediaImagesPermissionGranted = grantResults[i] == PackageManager.PERMISSION_GRANTED
                         }
                     }
-
-                    if (locationPermissionGranted && readMediaImagesPermissionGranted) {
-                        // Both permissions granted
-
-                       // loadImagesFromFolder()
-                    } else {
-                        // One or both permissions denied
-                        if (!locationPermissionGranted) {
-                          //  permissionDenied = true
-                        }
                         if (!readMediaImagesPermissionGranted) {
                             Toast.makeText(this, "Permission denied. Please grant permission to access images.", Toast.LENGTH_SHORT).show()
                         }
-                    }
                 }
             }
         }
@@ -327,7 +318,7 @@ private fun requestPermissions() {
             // Log and show the token
             Log.d("FCM", "FCM Token: $token")
             // Optionally display the token in a Toast
-            Toast.makeText(baseContext, "FCM Token: $token", Toast.LENGTH_SHORT).show()
+           // Toast.makeText(baseContext, "FCM Token: $token", Toast.LENGTH_SHORT).show()
         }
     }
 
@@ -336,26 +327,18 @@ private fun requestPermissions() {
         ActivityResultContracts.RequestPermission(),
     ) { isGranted: Boolean ->
         if (isGranted) {
-            // FCM SDK (and your app) can post notifications.
+
         } else {
-            // TODO: Inform user that that your app will not show notifications.
+            Toast.makeText(this,"Frog-copter will not send you notifications.", Toast.LENGTH_SHORT).show()
         }
     }
 
     private fun askNotificationPermission() {
         // This is only necessary for API level >= 33 (TIRAMISU)
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU) {
-            if (ContextCompat.checkSelfPermission(this, Manifest.permission.POST_NOTIFICATIONS) ==
+            if (ContextCompat.checkSelfPermission(this, Manifest.permission.POST_NOTIFICATIONS) !=
                 PackageManager.PERMISSION_GRANTED
             ) {
-                // FCM SDK (and your app) can post notifications.
-            } else if (shouldShowRequestPermissionRationale(Manifest.permission.POST_NOTIFICATIONS)) {
-                // TODO: display an educational UI explaining to the user the features that will be enabled
-                //       by them granting the POST_NOTIFICATION permission. This UI should provide the user
-                //       "OK" and "No thanks" buttons. If the user selects "OK," directly request the permission.
-                //       If the user selects "No thanks," allow the user to continue without notifications.
-            } else {
-                // Directly ask for the permission
                 requestPermissionLauncher.launch(Manifest.permission.POST_NOTIFICATIONS)
             }
         }
