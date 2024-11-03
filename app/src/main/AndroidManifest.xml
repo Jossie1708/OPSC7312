@@ -30,7 +30,7 @@
 
         <meta-data
             android:name="com.google.android.geo.API_KEY"
-            android:value="${MAPS_API_KEY}" />
+            android:value="AIzaSyCbYs7ol4UHMZp0qrFxctBxkrxAOCVkD9w" />
         <meta-data
             android:name="com.google.android.gms.version"
             android:value="@integer/google_play_services_version" />
@@ -47,9 +47,7 @@
         <activity
             android:name=".Activities.HomeActivity"
             android:exported="false" />
-        <activity
-            android:name=".Fragments.HomeFragment"
-            android:exported="false" />
+
         <activity
             android:name=".Activities.MainActivity"
             android:exported="true">
