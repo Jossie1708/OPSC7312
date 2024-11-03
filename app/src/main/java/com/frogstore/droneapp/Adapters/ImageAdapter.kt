@@ -1,25 +1,33 @@
 package com.frogstore.droneapp
 
 import android.content.Context
+import android.content.Intent
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Button
 import android.widget.ImageView
+import android.widget.Toast
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 
 class ImageAdapter(
     private val context: Context,
     private val images: List<String>,
-    private val onClick: (Int) -> Unit
+    private val onClick: (Int) -> Unit,
+    private val onShare: (String) -> Unit
 ) : RecyclerView.Adapter<ImageAdapter.ViewHolder>() {
 
     inner class ViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
-        val imageView: ImageView = itemView.findViewById(R.id.imageViewGallery)
+        val imageView: ImageView = itemView.findViewById(R.id.imageViewGallery) // Check this ID
+        private val shareButton: Button = itemView.findViewById(R.id.btnShare) // Check this ID
 
         init {
             itemView.setOnClickListener {
                 onClick(adapterPosition)
+            }
+            shareButton.setOnClickListener {
+                onShare(images[adapterPosition])
             }
         }
     }

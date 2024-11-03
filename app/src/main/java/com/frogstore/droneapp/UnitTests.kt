@@ -146,11 +146,11 @@ class ImageAdapterTest {
     @Mock
     private lateinit var parent: ViewGroup
 
-    @Before
-    fun setup() {
-        MockitoAnnotations.openMocks(this)
-        adapter = ImageAdapter(context, ArrayList()) { /* Do nothing */ }
-    }
+//    @Before
+//    fun setup() {
+//        MockitoAnnotations.openMocks(this)
+//        adapter = ImageAdapter(context, ArrayList()) { /* Do nothing */ }
+//    }
 
     @Test
     fun testOnCreateViewHolder() {

@@ -146,30 +146,30 @@ class SideMenuNavBarActivity : AppCompatActivity() {
         }
 
 
-        // Set up the NavigationView
-        val googleSignInClient = GoogleSignInClient(this)
-        val navigationView: NavigationView = findViewById(R.id.nav_view)
-        navigationView.setNavigationItemSelectedListener { item: MenuItem ->
-            when (item.itemId) {
-                R.id.nav_logout -> {
-                    lifecycleScope.launch {
-                        googleSignInClient.signOut()
-                        println(tag+"succcess")
-
-                        // Navigate to MainActivity
-                        val intent = Intent(this@SideMenuNavBarActivity, MainActivity::class.java)
-                        intent.flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
-                        startActivity(intent)
-                        finish() // Close the current activity
-                    }
-                    true
-                }
-                else ->{
-                    println(tag+"false")
-                    false
-                    }
-            }
-        }
+//        // Set up the NavigationView
+//        val googleSignInClient = GoogleSignInClient(this)
+//        val navigationView: NavigationView = findViewById(R.id.nav_view)
+//        navigationView.setNavigationItemSelectedListener { item: MenuItem ->
+//            when (item.itemId) {
+//                R.id.nav_logout -> {
+//                    lifecycleScope.launch {
+//                        googleSignInClient.signOut()
+//                        println(tag+"succcess")
+//
+//                        // Navigate to MainActivity
+//                        val intent = Intent(this@SideMenuNavBarActivity, MainActivity::class.java)
+//                        intent.flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
+//                        startActivity(intent)
+//                        finish() // Close the current activity
+//                    }
+//                    true
+//                }
+//                else ->{
+//                    println(tag+"false")
+//                    false
+//                    }
+//            }
+//        }
     }
 
     private fun updateHeader() {
