@@ -99,26 +99,5 @@
             app:layout_constraintTop_toBottomOf="@+id/btnLogin" />
 
 
-        <TextView
-            android:id="@+id/lblLoginFingerprint"
-            android:layout_width="155dp"
-            android:layout_height="22dp"
-            android:layout_marginTop="132dp"
-            android:clickable="true"
-            android:contextClickable="true"
-            android:focusable="true"
-            android:focusableInTouchMode="false"
-            android:freezesText="false"
-            android:text="@string/text_use_fingerprint"
-            android:textColor="?attr/textFillColor"
-            android:textSize="16sp"
-            app:drawableStartCompat="@drawable/ic_fingerprint"
-            app:drawableTint="?attr/textFillColor"
-            app:emojiCompatEnabled="false"
-
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/lblForgotPassword" />
-
     </androidx.constraintlayout.widget.ConstraintLayout>
 </FrameLayout>
