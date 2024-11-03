@@ -14,6 +14,14 @@
       },
       "oauth_client": [
         {
+          "client_id": "456359791964-h1764fc32hibnic762thj9vbvpen3e4t.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.frogstore.droneapp",
+            "certificate_hash": "745b64b26059f4389d7593c27ff1e8b1a893d554"
+          }
+        },
+        {
           "client_id": "456359791964-o0546okr8chormvdumcaql0ig37dmkm1.apps.googleusercontent.com",
           "client_type": 3
         }
