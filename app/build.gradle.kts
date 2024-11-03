@@ -80,6 +80,8 @@ dependencies {
     implementation ("androidx.navigation:navigation-fragment-ktx:2.5.3")
     implementation ("androidx.navigation:navigation-ui-ktx:2.5.3")
     implementation ("androidx.appcompat:appcompat:1.3.1")
+    implementation ("com.google.code.gson:gson:2.10.1")
+
 
     implementation (libs.picasso)
     implementation (libs.volley)

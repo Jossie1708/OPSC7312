@@ -14,6 +14,7 @@ import android.preference.PreferenceManager
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.Menu
+import android.view.MenuItem
 import android.view.View
 import android.widget.ImageButton
 import android.widget.LinearLayout
@@ -25,6 +26,7 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
 import androidx.drawerlayout.widget.DrawerLayout
+import androidx.lifecycle.lifecycleScope
 import androidx.localbroadcastmanager.content.LocalBroadcastManager
 import androidx.navigation.findNavController
 import androidx.navigation.ui.AppBarConfiguration
@@ -35,11 +37,16 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.android.volley.RequestQueue
 import com.android.volley.toolbox.Volley
+import com.frogstore.droneapp.Activities.MainActivity
 import com.frogstore.droneapp.Adapters.NotificationsAdapter
 import com.frogstore.droneapp.UserDetails.LoginViewModel
 import com.frogstore.droneapp.databinding.ActivitySideMenuNavBarBinding
 import com.google.android.gms.auth.api.signin.GoogleSignInClient
+import com.google.android.material.navigation.NavigationView
+import com.google.common.reflect.TypeToken
 import com.google.firebase.messaging.FirebaseMessaging
+import com.google.gson.Gson
+import kotlinx.coroutines.launch
 import java.io.File
 
 class SideMenuNavBarActivity : AppCompatActivity() {
@@ -54,6 +61,8 @@ class SideMenuNavBarActivity : AppCompatActivity() {
     private lateinit var requestQueue: RequestQueue
 
     private lateinit var notificationApplication: NotificationApplication
+    private val tag = "sideNavBar: "
+
     companion object {
         private const val REQUEST_CODE_PERMISSIONS = 1
     }
@@ -67,9 +76,23 @@ class SideMenuNavBarActivity : AppCompatActivity() {
         } else {
             setTheme(R.style.Theme_DroneApp)
         }
+
         super.onCreate(savedInstanceState)
         requestPermissions()
         askNotificationPermission()
+
+        // Initialize notifications list
+        notifications = arrayListOf() // Start with an empty list
+
+        // Load notifications from SharedPreferences
+        loadNotifications()
+
+        // Setup PopupWindow after loading notifications
+        setupPopupWindow()
+
+        // Setup RecyclerView with the adapter
+        setupRecyclerView()
+
         // Set system UI colors based on the theme
         updateSystemUiColors(isDarkTheme)
 
@@ -91,13 +114,8 @@ class SideMenuNavBarActivity : AppCompatActivity() {
         setupActionBarWithNavController(navController, appBarConfiguration)
         navView.setupWithNavController(navController)
 
-         notifications = arrayListOf(
-             NotificationItem("Title 1", "Body 1"),
-             NotificationItem("Title 2", "Body 2")
-         )
         notificationApplication = application as NotificationApplication
         notifications = notificationApplication.notifications
-
 
         val toolbarTitle: TextView = binding.appBarSideMenuNavBar.toolbar.findViewById(R.id.toolbarTitle)
 
@@ -109,18 +127,13 @@ class SideMenuNavBarActivity : AppCompatActivity() {
                 toolbarTitle.text = ""
             }
         }
-        //Setup PopupWindow
-        setupPopupWindow()
-
 
         // Update the UI based on notifications
         updateNotificationUI()
         updateHeader()
 
-
         subscribeToWeatherUpdates()
         retrieveFCMToken() // Call the function to retrieve the token
-
 
         // Setup notification icon click listener
         val notificationIcon: ImageButton = findViewById(R.id.notificationIcon)
@@ -132,8 +145,32 @@ class SideMenuNavBarActivity : AppCompatActivity() {
             }
         }
 
-    }
 
+        // Set up the NavigationView
+        val googleSignInClient = GoogleSignInClient(this)
+        val navigationView: NavigationView = findViewById(R.id.nav_view)
+        navigationView.setNavigationItemSelectedListener { item: MenuItem ->
+            when (item.itemId) {
+                R.id.nav_logout -> {
+                    lifecycleScope.launch {
+                        googleSignInClient.signOut()
+                        println(tag+"succcess")
+
+                        // Navigate to MainActivity
+                        val intent = Intent(this@SideMenuNavBarActivity, MainActivity::class.java)
+                        intent.flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
+                        startActivity(intent)
+                        finish() // Close the current activity
+                    }
+                    true
+                }
+                else ->{
+                    println(tag+"false")
+                    false
+                    }
+            }
+        }
+    }
 
     private fun updateHeader() {
         // Initialize LoginViewModel
@@ -150,9 +187,7 @@ class SideMenuNavBarActivity : AppCompatActivity() {
 
         // Check if user session is available
         loginState?.let {
-            // Set the email from the user session and call getUsername to retrieve the username
             email.text = it.email // Assuming this is the user's email
-            //  getUsername() // Fetch and display the username
             name.text = it.loggedInUser  // Assuming this is the user's username
         } ?: run {
             // Handle the case where the user is not signed in
@@ -160,7 +195,6 @@ class SideMenuNavBarActivity : AppCompatActivity() {
             email.text = getString(R.string.sign_in_email) // Default email
         }
     }
-
 
     private fun updateSystemUiColors(isDarkTheme: Boolean) {
         val colorPrimary = if (isDarkTheme) {
@@ -214,15 +248,62 @@ class SideMenuNavBarActivity : AppCompatActivity() {
         notifications.add(notification)
         val adapter = popupWindow.contentView.findViewById<RecyclerView>(R.id.recyclerViewNotifications).adapter as NotificationsAdapter
         adapter.updateNotifications(notifications)
-        updateNotificationUI() // Call to update the UI
+        saveNotification(notification)
+        updateNotificationUI()
     }
+
     private val notificationReceiver = object : BroadcastReceiver() {
         override fun onReceive(context: Context?, intent: Intent?) {
             val notificationItem = intent?.getParcelableExtra<NotificationItem>("notification")
             notificationItem?.let {
-                addNotification(it) //Call your method to add the notification
+                addNotification(it) // Call your method to add the notification
             }
         }
+    }
+
+    private fun loadNotifications() {
+        val sharedPreferences = getSharedPreferences("notifications", Context.MODE_PRIVATE)
+        val notificationsJson = sharedPreferences.getString("notification_list", "[]")
+
+        // Debug log
+        Log.d("LoadNotifications", "Loaded JSON: $notificationsJson")
+
+        // Convert the JSON back to a list of NotificationItem
+        val gson = Gson()
+        val type = object : TypeToken<MutableList<NotificationItem>>() {}.type
+        notifications = gson.fromJson(notificationsJson, type) ?: arrayListOf() // Ensure it's not null
+    }
+
+
+    fun saveNotification(notification: NotificationItem) {
+        val sharedPreferences = getSharedPreferences("notifications", Context.MODE_PRIVATE)
+        val editor = sharedPreferences.edit()
+        val notificationsJson = sharedPreferences.getString("notification_list", "[]")
+
+        // Convert the existing notifications from JSON to a mutable list
+        val gson = Gson()
+        val type = object : TypeToken<MutableList<NotificationItem>>() {}.type
+        val notificationsList: MutableList<NotificationItem> = gson.fromJson(notificationsJson, type) ?: mutableListOf()
+
+        // Add new notification and save back
+        notificationsList.add(notification)
+        val json = gson.toJson(notificationsList)
+        editor.putString("notification_list", json)
+        editor.apply()
+
+        // Debug log
+        Log.d("SaveNotification", "Saved JSON: $json")
+    }
+
+
+    private fun setupRecyclerView() {
+        val recyclerView: RecyclerView = popupWindow.contentView.findViewById(R.id.recyclerViewNotifications)
+        recyclerView.layoutManager = LinearLayoutManager(this)
+        val adapter = NotificationsAdapter(this, notifications) { notification ->
+            // Handle item click
+            Toast.makeText(this, "Clicked: ${notification.title}", Toast.LENGTH_SHORT).show()
+        }
+        recyclerView.adapter = adapter
     }
 
     override fun onStart() {
@@ -237,11 +318,9 @@ class SideMenuNavBarActivity : AppCompatActivity() {
         LocalBroadcastManager.getInstance(this).unregisterReceiver(notificationReceiver)
     }
 
-
-
     private fun requestPermissions() {
-    ActivityCompat.requestPermissions(this, arrayOf(Manifest.permission.READ_MEDIA_IMAGES), REQUEST_CODE_PERMISSIONS)
-}
+        ActivityCompat.requestPermissions(this, arrayOf(Manifest.permission.READ_MEDIA_IMAGES), REQUEST_CODE_PERMISSIONS)
+    }
 
     private fun updateNotificationUI() {
         val recyclerView: RecyclerView = popupWindow.contentView.findViewById(R.id.recyclerViewNotifications)
@@ -265,7 +344,6 @@ class SideMenuNavBarActivity : AppCompatActivity() {
             recyclerView.adapter?.notifyDataSetChanged()
         }
     }
-
 
     fun clearNotifications() {
         notifications.clear()
@@ -292,13 +370,14 @@ class SideMenuNavBarActivity : AppCompatActivity() {
                             readMediaImagesPermissionGranted = grantResults[i] == PackageManager.PERMISSION_GRANTED
                         }
                     }
-                        if (!readMediaImagesPermissionGranted) {
-                            Toast.makeText(this, "Permission denied. Please grant permission to access images.", Toast.LENGTH_SHORT).show()
-                        }
+                    if (!readMediaImagesPermissionGranted) {
+                        Toast.makeText(this, "Permission denied. Please grant permission to access images.", Toast.LENGTH_SHORT).show()
+                    }
                 }
             }
         }
     }
+
     override fun onSupportNavigateUp(): Boolean {
         val navController = findNavController(R.id.nav_host_fragment_content_side_menu_nav_bar)
         return navController.navigateUp(appBarConfiguration) || super.onSupportNavigateUp()
@@ -316,8 +395,6 @@ class SideMenuNavBarActivity : AppCompatActivity() {
 
             // Log and show the token
             Log.d("FCM", "FCM Token: $token")
-            // Optionally display the token in a Toast
-           // Toast.makeText(baseContext, "FCM Token: $token", Toast.LENGTH_SHORT).show()
         }
     }
 
@@ -326,9 +403,9 @@ class SideMenuNavBarActivity : AppCompatActivity() {
         ActivityResultContracts.RequestPermission(),
     ) { isGranted: Boolean ->
         if (isGranted) {
-
+            // Handle permission granted
         } else {
-            Toast.makeText(this,"Frog-copter will not send you notifications.", Toast.LENGTH_SHORT).show()
+            Toast.makeText(this, "Frog-copter will not send you notifications.", Toast.LENGTH_SHORT).show()
         }
     }
 
@@ -342,6 +419,7 @@ class SideMenuNavBarActivity : AppCompatActivity() {
             }
         }
     }
+
     private fun subscribeToWeatherUpdates() {
         FirebaseMessaging.getInstance().subscribeToTopic("weather_updates")
             .addOnCompleteListener { task ->
@@ -350,3 +428,4 @@ class SideMenuNavBarActivity : AppCompatActivity() {
             }
     }
 }
+
