@@ -1,5 +1,6 @@
 package com.frogstore.droneapp
 
+import NotificationItem
 import android.app.NotificationChannel
 import android.app.NotificationManager
 import android.app.PendingIntent
@@ -10,6 +11,7 @@ import androidx.core.app.NotificationCompat
 import com.google.firebase.messaging.FirebaseMessagingService
 import com.google.firebase.messaging.RemoteMessage
 import android.util.Log
+import androidx.localbroadcastmanager.content.LocalBroadcastManager
 
 class MyFirebaseMessagingService : FirebaseMessagingService() {
     private val TAG = "MyFirebaseMsgService"
@@ -17,38 +19,34 @@ class MyFirebaseMessagingService : FirebaseMessagingService() {
     override fun onMessageReceived(remoteMessage: RemoteMessage) {
         super.onMessageReceived(remoteMessage)
 
-        Log.d(TAG, "From: ${remoteMessage.from}")
-
-// Handle notification payload
         remoteMessage.notification?.let {
-// Create a NotificationItem from the received message
-        val title = it.title ?: "New Notification"
-        val body = it.body ?: "You have a new notification."
-        val notificationItem = NotificationItem(title, body)
+            val title = it.title ?: "New Notification"
+            val body = it.body ?: "You have a new notification."
+            val notificationItem = NotificationItem(title, body)
 
-            // Add the notification to the list in your activity
-            (application as SideMenuNavBarActivity).addNotification(notificationItem)
+            // Add the notification to the application
+            (application as NotificationApplication).addNotification(notificationItem)
 
-            Log.d(TAG, "Message Notification Title: ${it.title}")
-            Log.d(TAG, "Message Notification Body: ${it.body}")
-            sendNotification(it.title,it.body)
-        }
+            // Send a broadcast to notify the activity
+            val intent = Intent("NEW_NOTIFICATION")
+            intent.putExtra("notification", notificationItem)
+            LocalBroadcastManager.getInstance(this).sendBroadcast(intent)
 
-        // Handle data payload
-        if (remoteMessage.data.isNotEmpty()) {
-            Log.d(TAG, "Message data payload: ${remoteMessage.data}")
-            sendNotification(remoteMessage.data["title"], remoteMessage.data["message"]) // Adjust based on your payload structure
+            // Optionally send a notification to the system tray
+            sendNotification(title, body)
         }
     }
-
-
 
     private fun sendNotification(title: String?, messageBody: String?) {
         val intent = Intent(this, SideMenuNavBarActivity::class.java)
         intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP)
 
-        val pendingIntent = PendingIntent.getActivity(this, 0, intent,
-            PendingIntent.FLAG_ONE_SHOT or PendingIntent.FLAG_IMMUTABLE)
+        val pendingIntent = PendingIntent.getActivity(
+            this,
+            0,
+            intent,
+            PendingIntent.FLAG_ONE_SHOT or PendingIntent.FLAG_IMMUTABLE
+        )
 
         val channelId = "default_channel_id"
         val notificationBuilder = NotificationCompat.Builder(this, channelId)
