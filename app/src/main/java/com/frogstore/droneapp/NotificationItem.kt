@@ -1,3 +1,10 @@
-package com.frogstore.droneapp
+import android.os.Parcelable
+import kotlinx.parcelize.Parcelize
 
-data class NotificationItem(val title: String, val body: String, val imageUrl: String? = null)
+@Parcelize
+data class NotificationItem(
+    val title: String,
+    val body: String
+
+) : Parcelable
+
