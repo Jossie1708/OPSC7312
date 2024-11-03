@@ -10,9 +10,9 @@
               <option name="connection">
                 <ConnectionSetting>
                   <option name="appId" value="com.frogstore.droneapp" />
-                  <option name="mobileSdkAppId" value="1:266453904291:android:ead0add7c0ed38fc788816" />
-                  <option name="projectId" value="sign-in-opsc" />
-                  <option name="projectNumber" value="266453904291" />
+                  <option name="mobileSdkAppId" value="1:456359791964:android:53b7ab9fa0fe0aca130599" />
+                  <option name="projectId" value="droneapplication-71c62" />
+                  <option name="projectNumber" value="456359791964" />
                 </ConnectionSetting>
               </option>
               <option name="signal" value="SIGNAL_UNSPECIFIED" />

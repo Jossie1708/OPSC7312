@@ -1,5 +1,6 @@
 package com.frogstore.droneapp
 
+import android.annotation.SuppressLint
 import android.app.NotificationChannel
 import android.app.NotificationManager
 import android.app.PendingIntent
@@ -14,6 +15,7 @@ import android.util.Log
 class MyFirebaseMessagingService : FirebaseMessagingService() {
     private val TAG = "MyFirebaseMsgService"
 
+    @SuppressLint("SuspiciousIndentation")
     override fun onMessageReceived(remoteMessage: RemoteMessage) {
         super.onMessageReceived(remoteMessage)
 
