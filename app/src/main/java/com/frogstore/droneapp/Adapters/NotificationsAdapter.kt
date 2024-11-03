@@ -5,18 +5,14 @@ import android.content.Context
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.ImageView
 import android.widget.TextView
-import androidx.cardview.widget.CardView
-import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.RecyclerView
-import com.bumptech.glide.Glide
 import com.frogstore.droneapp.R
 
 class NotificationsAdapter(
     private val context: Context,
-    private var notificationList: List<NotificationItem>, // Change to NotificationItem
-    private val itemClickListener: ((NotificationItem) -> Unit)? = null // Update click listener type
+    private var notificationList: List<NotificationItem>,
+    private val itemClickListener: ((NotificationItem) -> Unit)? = null
 ) : RecyclerView.Adapter<NotificationsAdapter.ViewHolder>() {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
@@ -26,19 +22,10 @@ class NotificationsAdapter(
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         val item = notificationList[position]
-        holder.itemNotification.text = item.title // Use title for display
-        holder.card.setCardBackgroundColor(ContextCompat.getColor(context, R.color.white))
+        holder.itemNotificationTitle.text = item.title // Set title
+        holder.itemNotificationBody.text = item.body   // Set body
 
-//        // Load the image into the ImageView if available
-//        item.imageUrl?.let { url ->
-//            Glide.with(context)
-//                .load(url)
-//                .into(holder.imageViewNotification)
-//        } ?: run {
-//            holder.imageViewNotification.visibility = View.GONE // Hide if no image
-//        }
-
-        // Set click listener if provided
+        // Set click listener
         holder.itemView.setOnClickListener {
             itemClickListener?.invoke(item)
         }
@@ -50,13 +37,13 @@ class NotificationsAdapter(
 
     fun updateNotifications(newNotifications: List<NotificationItem>) {
         notificationList = newNotifications // Use the correct variable name
-        notifyDataSetChanged()
+        notifyDataSetChanged() // Notify the adapter about data changes
     }
-
 
     class ViewHolder(view: View) : RecyclerView.ViewHolder(view) {
-        val itemNotification: TextView = view.findViewById(R.id.txtItem_notification)
-        val card: CardView = view.findViewById(R.id.cardNotification)
-        val imageViewNotification: ImageView = view.findViewById(R.id.imageViewNotification)
+        val itemNotificationTitle: TextView = view.findViewById(R.id.txtItem_notification_title)
+        val itemNotificationBody: TextView = view.findViewById(R.id.txtItem_notification_body)
     }
 }
+
+
