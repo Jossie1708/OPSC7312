@@ -188,7 +188,6 @@ class SideMenuNavBarActivity : AppCompatActivity() {
         // Set up RecyclerView
         recyclerView.layoutManager = LinearLayoutManager(this)
 
-
         recyclerView.adapter = NotificationsAdapter(this, notifications) { notification ->
             // Handle item click
             Toast.makeText(this, "Clicked: ${notification.title}", Toast.LENGTH_SHORT).show()
