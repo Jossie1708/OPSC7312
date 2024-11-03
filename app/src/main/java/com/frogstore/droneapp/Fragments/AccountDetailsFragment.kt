@@ -17,6 +17,8 @@ import com.frogstore.droneapp.R
 import com.frogstore.droneapp.UserDetails.LoginViewModel
 import com.frogstore.droneapp.UserDetails.UserSessionManager
 import com.frogstore.droneapp.databinding.ActivitySideMenuNavBarBinding
+import com.google.firebase.Firebase
+import com.google.firebase.auth.auth
 import org.json.JSONException
 
 class AccountDetailsFragment : Fragment() {
@@ -44,8 +46,9 @@ class AccountDetailsFragment : Fragment() {
         val loginViewModel = LoginViewModel(requireActivity().application)
 
         // Retrieve the user session
-        val loginState = loginViewModel.getUserSession()
-        val email = loginState?.email // Get the logged-in user's email
+        val auth = Firebase.auth
+            //val loginState = loginViewModel.getUserSession()
+        val email = auth.currentUser?.email // Get the logged-in user's email
 
         // Load the user's email into the editText and disable it
         editTextEmail.setText(email)

@@ -11,11 +11,12 @@
 
     <ImageButton
         android:id="@+id/btnConFullScreen"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
         app:drawableTint="?attr/colorOnPrimary"
         android:backgroundTint="?attr/backgroundColor"
-        android:src="@drawable/ic_full_screen" />
+        android:src="@drawable/ic_full_screen"
+        android:layout_gravity="top|end"/>
 
     <TextureView
         android:id="@+id/textureView"
@@ -24,6 +25,12 @@
 
     <!-- Control buttons -->
 
+    <com.frogstore.droneapp.views.JoystickView
+        android:id="@+id/joystick_view_throttel"
+        android:layout_width="150dp"
+        android:layout_height="250dp"
+        android:layout_centerInParent="true"
+        android:layout_gravity="top|start" />
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -32,11 +39,16 @@
         android:orientation="vertical"
         android:padding="4dp">
 
+
+
+
         <com.frogstore.droneapp.views.JoystickView
             android:id="@+id/joystick_view"
             android:layout_width="150dp"
             android:layout_height="250dp"
-            android:layout_centerInParent="true" />
+            android:layout_centerInParent="true"
+            android:layout_gravity="bottom|start" />
+
 
         <LinearLayout
             android:layout_width="match_parent"

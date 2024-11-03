@@ -54,51 +54,66 @@ class LoginFragment : Fragment() {
         val googleSignInClient = GoogleSignInClient(requireContext())
         biometricPromptManager = BiometricPromptManager(requireActivity())
         observeBiometricPromptResults()
-
-
-
         val btnLogin = layout.findViewById<Button>(R.id.btnLogin)
-        val btnGoogleSignIn = layout.findViewById<Button>(R.id.btnGoogleSignIn)  // Google sign-in button
+        val btnGoogleSignIn = layout.findViewById<Button>(R.id.btnGoogleSignIn)
         val emailField = layout.findViewById<EditText>(R.id.txtLoginEmail)
         val passwordField = layout.findViewById<EditText>(R.id.txtLoginPassword)
-        val fingerprint = layout.findViewById<TextView>(R.id.lblLoginFingerprint)
         val lblForgotPassword = layout.findViewById<TextView>(R.id.lblForgotPassword)
 
         //Google SSO button signin
         btnGoogleSignIn.setOnClickListener {
             lifecycleScope.launch {
-                    // Attempt Google sign-in
-                    googleSignInClient.signIn()
-//                Toast.makeText(requireContext(), "Login successful", Toast.LENGTH_SHORT).show()
-//                val intent = Intent(activity, SideMenuNavBarActivity::class.java)
-//                startActivity(intent)
+                // Attempt Google sign-in
+                googleSignInClient.signIn()
+
+                //auth biometrics
+                biometricPromptManager.showBiometricPrompt(
+                    title = "Biometric Authentication",
+                    description = "Please authenticate to proceed"
+                )
+                // Collect biometric results
+                biometricPromptManager.promptResults.collect { result ->
+                    when (result) {
+                        is BiometricPromptManager.BiometricResult.AuthenticationSuccess -> {
+                            // Navigate on successful biometric authentication
+                            val intent = Intent(activity, SideMenuNavBarActivity::class.java)
+                            startActivity(intent)
+                        }
+                        is BiometricPromptManager.BiometricResult.AuthenticationFailed -> {
+                            // Handle authentication failure (e.g., show a message)
+                            Toast.makeText(activity, "Authentication failed. Please try again.", Toast.LENGTH_SHORT).show()
+                        }
+                        is BiometricPromptManager.BiometricResult.AuthenticationError -> {
+                            // Handle authentication error (e.g., show a message)
+                            Toast.makeText(activity, "Authentication error. Please try again.", Toast.LENGTH_SHORT).show()
+                        }
+                        is BiometricPromptManager.BiometricResult.HardwareUnavailable -> {
+                            // Handle case where hardware is unavailable
+                            Toast.makeText(activity, "Biometric hardware unavailable.", Toast.LENGTH_SHORT).show()
+                        }
+                        is BiometricPromptManager.BiometricResult.FeatureUnavailable -> {
+                            // Handle case where the feature is not available
+                            Toast.makeText(activity, "Biometric feature not available.", Toast.LENGTH_SHORT).show()
+                        }
+                        is BiometricPromptManager.BiometricResult.AuthenticationNotSet -> {
+                            // Handle case where no biometric data is enrolled
+                            Toast.makeText(activity, "No biometric data enrolled.", Toast.LENGTH_SHORT).show()
+                        }
+                    }
+                }
             }
         }
 
         //EMAIL PASSWORD SIGNIN
-
-
 
         //implement today
         lblForgotPassword.setOnClickListener {
             Toast.makeText(requireContext(), "Feature coming soon in part 3!", Toast.LENGTH_SHORT).show()
         }
 
-
         requestQueue = Volley.newRequestQueue(requireContext())
 
-
-        //implement today
-        fingerprint.setOnClickListener{
-            biometricPromptManager.showBiometricPrompt(
-                title = "Biometric Authentication",
-                description = "Please authenticate to proceed"
-            )
-        }
-
-
         accountManager = AccountManager(requireActivity())
-
 
         btnLogin.setOnClickListener {
             val email = emailField.text.toString()
