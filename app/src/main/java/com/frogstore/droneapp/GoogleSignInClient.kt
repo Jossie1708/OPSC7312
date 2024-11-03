@@ -48,7 +48,6 @@ class GoogleSignInClient(
             if (e is CancellationException) throw e
 
             println(tag + "sinIn error: ${e.message}")
-            Toast.makeText(context, "Sign-in error: ${e.message}", Toast.LENGTH_SHORT).show()  // Use context directly
             return false
         }
     }
