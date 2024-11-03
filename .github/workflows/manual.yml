@@ -14,9 +14,9 @@ jobs:
         uses: actions/checkout@v4.1.0
 
       - name: Set up Java SDK
-        uses: actions/setup-java@4.0.0
+        uses: actions/setup-java@v4
         with:
-              java-version: "17"
+              java-version: "21"
               distribution: "adopt"
 
       - name: Run with Gradle
