@@ -4,7 +4,7 @@
     android:layout_width="wrap_content"
     android:layout_height="wrap_content"
     android:orientation="vertical"
-    android:background="?attr/colorSecondary"
+    android:background="?attr/android:statusBarColor"
     android:padding="16dp">
 
     <LinearLayout
@@ -19,7 +19,7 @@
             android:id="@+id/notificationsTitle"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:textColor="?attr/textFillColor"
+            android:textColor="@color/white"
             android:text="@string/menu_notification"
             android:layout_marginEnd="35dp"
             android:textSize="18sp"
@@ -33,7 +33,7 @@
             android:contentDescription="@string/text_use_context_delete"
             android:padding="8dp"
             android:src="@drawable/ic_delete"
-            app:tint="?attr/textFillColor" />
+            app:tint="@color/white" />
     </LinearLayout>
 
     <View
@@ -47,13 +47,14 @@
         android:id="@+id/recyclerViewNotifications"
         android:layout_width="220dp"
         android:layout_height="270dp"
-        android:background="?attr/colorSecondary"
+        android:background="?attr/android:statusBarColor"
         android:padding="2dp" />
 
     <TextView
         android:id="@+id/noNotificationsMessage"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:textColor="@color/white"
         android:text="@string/text_use_clear_notify"
         android:visibility="gone" />
 </LinearLayout>
