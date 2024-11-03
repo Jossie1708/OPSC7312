@@ -1,5 +1,9 @@
 package com.frogstore.droneapp.Fragments
 
+import android.content.pm.ActivityInfo
+import android.content.res.Configuration
+import androidx.appcompat.app.AppCompatActivity
+
 import android.graphics.Bitmap
 import android.graphics.BitmapFactory
 import android.graphics.PorterDuff
@@ -11,7 +15,9 @@ import android.view.LayoutInflater
 import android.view.TextureView
 import android.view.View
 import android.view.ViewGroup
+import android.widget.ImageButton
 import android.widget.TextView
+import androidx.core.content.ContextCompat
 import com.frogstore.droneapp.R
 import kotlinx.coroutines.*
 import java.io.ByteArrayOutputStream
@@ -19,6 +25,7 @@ import java.io.InputStream
 import java.net.HttpURLConnection
 import java.net.URL
 import kotlin.coroutines.coroutineContext
+
 
 class ControllerFragment : Fragment() {
     private lateinit var textureView: TextureView
@@ -37,8 +44,25 @@ class ControllerFragment : Fragment() {
 //        textureView.layoutParams = ViewGroup.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.MATCH_PARENT)
 //
 //        streamVideo("192.168.101.112", 80)
+        val rotateButton: ImageButton = layout.findViewById(R.id.btnConFullScreen)
+        rotateButton.setOnClickListener {
+            toggleOrientation(rotateButton)
+
+        }
 
         return layout
+    }
+    private fun toggleOrientation(rotateButton: ImageButton) {
+        val activity = activity
+        if (activity != null) {
+            if (resources.configuration.orientation == Configuration.ORIENTATION_PORTRAIT) {
+                activity.requestedOrientation = ActivityInfo.SCREEN_ORIENTATION_LANDSCAPE
+                rotateButton.setImageDrawable(ContextCompat.getDrawable(requireContext(), R.drawable.ic_exit_fullscreen))
+            } else {
+                activity.requestedOrientation = ActivityInfo.SCREEN_ORIENTATION_PORTRAIT
+                rotateButton.setImageDrawable(ContextCompat.getDrawable(requireContext(), R.drawable.ic_full_screen))
+            }
+        }
     }
 
 //    override fun onDestroyView() {

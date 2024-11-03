@@ -175,7 +175,7 @@ class NotificationsAdapterTest {
     @Before
     fun setup() {
         MockitoAnnotations.openMocks(this)
-        adapter = NotificationsAdapter(context, ArrayList(), ArrayList()) { /* Do nothing */ }
+       // adapter = NotificationsAdapter(context, ArrayList(), ArrayList()) { /* Do nothing */ }
     }
 
     @Test

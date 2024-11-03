@@ -19,42 +19,51 @@ class MyFirebaseMessagingService : FirebaseMessagingService() {
 
         Log.d(TAG, "From: ${remoteMessage.from}")
 
-        // Handle notification payload
+// Handle notification payload
         remoteMessage.notification?.let {
+// Create a NotificationItem from the received message
+        val title = it.title ?: "New Notification"
+        val body = it.body ?: "You have a new notification."
+        val notificationItem = NotificationItem(title, body)
+
+            // Add the notification to the list in your activity
+            (application as SideMenuNavBarActivity).addNotification(notificationItem)
+
             Log.d(TAG, "Message Notification Title: ${it.title}")
             Log.d(TAG, "Message Notification Body: ${it.body}")
-            sendNotification(it.body)
+            sendNotification(it.title,it.body)
         }
 
         // Handle data payload
         if (remoteMessage.data.isNotEmpty()) {
             Log.d(TAG, "Message data payload: ${remoteMessage.data}")
-            sendNotification(remoteMessage.data["message"]) // Adjust based on your payload structure
+            sendNotification(remoteMessage.data["title"], remoteMessage.data["message"]) // Adjust based on your payload structure
         }
     }
 
 
 
-    private fun sendNotification(messageBody: String?) {
-        val notificationManager = getSystemService(Context.NOTIFICATION_SERVICE) as NotificationManager
-        val channelId = "weather_updates"
+    private fun sendNotification(title: String?, messageBody: String?) {
+        val intent = Intent(this, SideMenuNavBarActivity::class.java)
+        intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP)
 
-        // Create the notification channel if necessary
+        val pendingIntent = PendingIntent.getActivity(this, 0, intent,
+            PendingIntent.FLAG_ONE_SHOT or PendingIntent.FLAG_IMMUTABLE)
+
+        val channelId = "default_channel_id"
+        val notificationBuilder = NotificationCompat.Builder(this, channelId)
+            .setSmallIcon(R.drawable.ic_notification) // Your notification icon
+            .setContentTitle(title)
+            .setContentText(messageBody)
+            .setAutoCancel(true)
+            .setContentIntent(pendingIntent)
+
+        val notificationManager = getSystemService(Context.NOTIFICATION_SERVICE) as NotificationManager
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
-            val channel = NotificationChannel(channelId, "Weather Updates", NotificationManager.IMPORTANCE_HIGH)
+            val channel = NotificationChannel(channelId, "Channel human-readable title", NotificationManager.IMPORTANCE_DEFAULT)
             notificationManager.createNotificationChannel(channel)
         }
 
-        // Build the notification
-        val notificationBuilder = NotificationCompat.Builder(this, channelId)
-            .setContentTitle("Weather Update")
-            .setContentText(messageBody)
-            .setSmallIcon(R.drawable.ic_notification)  // Replace with your notification icon
-            .setAutoCancel(true)
-            .setPriority(NotificationCompat.PRIORITY_HIGH) // Ensures high priority
-
-        // Show the notification
         notificationManager.notify(0, notificationBuilder.build())
     }
-
 }
