@@ -1,5 +1,7 @@
 package com.frogstore.droneapp.Fragments
 
+import android.content.ContentValues.TAG
+import android.content.Intent
 import android.os.Bundle
 import android.util.Log
 import android.util.Log.e
@@ -17,48 +19,42 @@ import com.android.volley.toolbox.StringRequest
 import com.android.volley.toolbox.Volley
 import com.frogstore.droneapp.UserDetails.AccountManager
 import com.frogstore.droneapp.R
+import com.frogstore.droneapp.SideMenuNavBarActivity
 import com.frogstore.droneapp.UserDetails.SignUpResult
 import com.frogstore.droneapp.UserDetails.LoginViewModel
 import kotlinx.coroutines.launch
 import com.frogstore.droneapp.UserDetails.LoginAction
 import com.frogstore.droneapp.UserDetails.LoginViewModelFactory
 import com.frogstore.droneapp.UserDetails.UserSessionManager
+import com.google.firebase.Firebase
+import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.auth.auth
 import java.lang.reflect.Method
 import java.nio.charset.Charset
 
 
-// RegisterFragment is a fragment responsible for handling the user registration process.
 class RegisterFragment : Fragment() {
-    // Reference to AccountManager, which handles account operations such as sign-up.
     private lateinit var accountManager: AccountManager
-
-    // Shared ViewModel to manage the login-related data across activities and fragments.
+    private lateinit var auth: FirebaseAuth
     private val loginViewModel: LoginViewModel by activityViewModels { LoginViewModelFactory(requireContext()) }
-
-    private lateinit var requestQueue: RequestQueue
     private lateinit var username: String
     private lateinit var email: String
     private lateinit var password: String
 
-    // This method inflates the layout and sets up event listeners for user actions in the fragment.
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        // Inflate the layout for this fragment and store it in 'layout'.
-        val layout = inflater.inflate(R.layout.fragment_register, container, false)
 
-        // Find views by their IDs to access the UI elements in the layout.
+        val layout = inflater.inflate(R.layout.fragment_register, container, false)
         val btnRegister = layout.findViewById<Button>(R.id.btnRegister)
         val usernameField = layout.findViewById<EditText>(R.id.txtRegUsername)
         val passwordField = layout.findViewById<EditText>(R.id.txtRegPassword)
         val emailField = layout.findViewById<EditText>(R.id.txtRegEmail)
         val confirmPasswordField = layout.findViewById<EditText>(R.id.txtRegConfirm)
 
-
-
-        // Initialize the RequestQueue for making network requests
-        requestQueue = Volley.newRequestQueue(requireContext())
+        // Initialize Firebase Auth
+        auth = Firebase.auth
 
         // Initialize the AccountManager with the current Activity's context.
         accountManager = AccountManager(requireActivity())
@@ -68,101 +64,54 @@ class RegisterFragment : Fragment() {
             // Capture the text entered in the username, password, confirm password, and email fields.
              username = usernameField.text.toString()
              password = passwordField.text.toString()
-            val confirmPassword = confirmPasswordField.text.toString()
+             val confirmPassword = confirmPasswordField.text.toString()
              email = emailField.text.toString()
 
+
             // Check if any of the fields (username, password, confirm password, email) are empty.
-            if (username.isEmpty() || password.isEmpty() || confirmPassword.isEmpty() || email.isEmpty()) {
+            if (username.isEmpty() || password.isEmpty() || confirmPassword.isEmpty() || email.isEmpty())
+            {
                 // If any field is empty, show a toast message to notify the user.
                 Toast.makeText(requireContext(), "Please fill out all fields", Toast.LENGTH_SHORT).show()
                 return@setOnClickListener
             }
 
-            // Check if the entered password matches the confirmed password.
-            if (password == confirmPassword) {
-                lifecycleScope.launch {
-                    val result = accountManager.signUp(username, password, email) // Pass email to signUp
 
-                    handleSignUpResult(result)
+            // Check if the entered password matches the confirmed password.
+            if (password == confirmPassword)
+            {
+                lifecycleScope.launch {
+                    auth.createUserWithEmailAndPassword(email, password)
+                        .addOnCompleteListener(requireActivity()) { task ->
+
+
+                            if (task.isSuccessful)
+                            {
+                                // Sign in success, update UI with the signed-in user's information
+                                Log.d(TAG, "createUserWithEmail:success")
+                                val user = auth.currentUser
+                                val intent = Intent(activity, SideMenuNavBarActivity::class.java)
+                                startActivity(intent)
+                            }
+
+
+                            else
+                            {
+                                // If sign in fails, display a message to the user.
+                                Log.w(TAG, "createUserWithEmail:failure", task.exception)
+                                Toast.makeText(requireContext(), "Authentication failed.", Toast.LENGTH_SHORT,).show()
+                            }
+                        }
                 }
-            } else {
+            }
+
+
+            else
+            {
                 // If the passwords do not match, show a toast message to inform the user.
                 Toast.makeText(requireContext(), "Passwords do not match", Toast.LENGTH_SHORT).show()
             }
         }
-        // Return the inflated layout as the root view for this fragment.
         return layout
-    }
-
-    // This function handles the result of the sign-up operation.
-    private fun handleSignUpResult(result: SignUpResult) {
-        when (result) {
-            // If the sign-up is successful:
-            is SignUpResult.Success -> {
-                // Notify the shared ViewModel that the sign-up was successful.
-
-                loginViewModel.onAction(LoginAction.OnSignUp(result))
-                // Display a success message to the user.
-                Toast.makeText(requireContext(), "Registration successful", Toast.LENGTH_SHORT).show()
-                storeInformation()
-            }
-            // If the sign-up fails:
-            SignUpResult.Failure -> {
-                // Display an error message indicating that the registration failed.
-                Toast.makeText(requireContext(), "Registration failed", Toast.LENGTH_SHORT).show()
-            }
-            // If the sign-up process is cancelled by the user or system:
-            SignUpResult.Cancelled -> {
-                // Display a message indicating that the registration was cancelled.
-                Toast.makeText(requireContext(), "Registration cancelled", Toast.LENGTH_SHORT).show()
-            }
-        }
-    }
-
-    private fun storeInformation() {
-        val url = "https://frogtrackapi2-bjaufahwavexambv.eastasia-01.azurewebsites.net/addUser?username=$username&email=$email&password=$password"
-
-        // Create a JSON object to send in the request body
-        val jsonBody = """{
-        "username": "$username",
-        "email": "$email",
-        "password": "$password"
-    }"""
-
-        // Create a string request to send data to the API
-        val stringRequest = object : StringRequest(
-            Method.POST, url,
-            { response ->
-                // Handle the response from the server
-                Toast.makeText(requireContext(), "User  data stored successfully", Toast.LENGTH_SHORT).show()
-                // Store the user details in the SSO
-              //  storeUserInSSO()
-            },
-            { error ->
-                // Handle the error response
-                Toast.makeText(requireContext(), "Error storing user data: ${error.toString()}", Toast.LENGTH_SHORT).show()
-                Log.e("RegisterFragment", "Error storing user data: ${error.toString()}")
-            }) {
-            override fun getBody(): ByteArray {
-                return jsonBody.toByteArray(Charset.defaultCharset())
-            }
-
-            override fun getHeaders(): Map<String, String> {
-                val headers = HashMap<String, String>()
-                headers["Content-Type"] = "application/json"
-                return headers
-            }
-        }
-
-        // Add the request to the RequestQueue
-        requestQueue.add(stringRequest)
-    }
-
-    private fun storeUserInSSO() {
-        // Initialize the UserSessionManager
-        val userSessionManager = UserSessionManager(requireContext())
-
-        // Store the user details in the SSO
-        userSessionManager.login(username, email)
     }
 }
