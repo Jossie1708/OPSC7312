@@ -45,11 +45,12 @@ class SideMenuNavBarActivity : AppCompatActivity() {
     private lateinit var appBarConfiguration: AppBarConfiguration
     private lateinit var binding: ActivitySideMenuNavBarBinding
     private lateinit var popupWindow: PopupWindow
-    private lateinit var notifications: ArrayList<String>
+    private lateinit var notifications: ArrayList<NotificationItem>
     private lateinit var imageList: ArrayList<String>
 
     private lateinit var requestQueue: RequestQueue
 
+    private lateinit var notificationApplication: NotificationApplication
     companion object {
         private const val REQUEST_CODE_PERMISSIONS = 1
     }
@@ -88,9 +89,17 @@ class SideMenuNavBarActivity : AppCompatActivity() {
         navView.setupWithNavController(navController)
 
         // Initialize notifications and image lists
-        notifications = arrayListOf("Notification 1", "Notification 2", "Notification 3", "Notification 4", "Notification 5", "Notification 6")
-        imageList = arrayListOf() // Initialize this based on your needs
-        loadImages() // Load images into imageList
+//        notifications = arrayListOf("Notification 1", "Notification 2", "Notification 3", "Notification 4", "Notification 5", "Notification 6")
+//        imageList = arrayListOf() // Initialize this based on your needs
+//        loadImages() // Load images into imageList
+
+         notifications = arrayListOf(
+             NotificationItem("Title 1", "Body 1", "http://example.com/image1.jpg"),
+             NotificationItem("Title 2", "Body 2", "http://example.com/image2.jpg")
+         )
+        notificationApplication = application as NotificationApplication
+        notifications = notificationApplication.notifications // Reference the notifications list
+
 
         val toolbarTitle: TextView = binding.appBarSideMenuNavBar.toolbar.findViewById(R.id.toolbarTitle)
 
@@ -178,8 +187,11 @@ class SideMenuNavBarActivity : AppCompatActivity() {
 
         // Set up RecyclerView
         recyclerView.layoutManager = LinearLayoutManager(this)
-        recyclerView.adapter = NotificationsAdapter(this, notifications, imageList) { notification ->
-            Toast.makeText(this, "Clicked: $notification", Toast.LENGTH_SHORT).show()
+
+
+        recyclerView.adapter = NotificationsAdapter(this, notifications) { notification ->
+            // Handle item click
+            Toast.makeText(this, "Clicked: ${notification.title}", Toast.LENGTH_SHORT).show()
         }
 
         // Setup clear button
@@ -198,6 +210,15 @@ class SideMenuNavBarActivity : AppCompatActivity() {
         popupWindow.isFocusable = true
         popupWindow.setBackgroundDrawable(getDrawable(android.R.color.white))
     }
+
+    fun addNotification(notification: NotificationItem) {
+        notifications.add(notification)
+        // Update the adapter
+        val adapter = popupWindow.contentView.findViewById<RecyclerView>(R.id.recyclerViewNotifications).adapter as NotificationsAdapter
+        adapter.updateNotifications(notifications)
+        updateNotificationUI()
+    }
+
 private fun requestPermissions() {
     ActivityCompat.requestPermissions(this, arrayOf(Manifest.permission.READ_MEDIA_IMAGES), REQUEST_CODE_PERMISSIONS)
 }

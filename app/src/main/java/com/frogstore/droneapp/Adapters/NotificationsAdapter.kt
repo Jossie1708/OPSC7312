@@ -10,13 +10,13 @@ import androidx.cardview.widget.CardView
 import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
+import com.frogstore.droneapp.NotificationItem
 import com.frogstore.droneapp.R
 
 class NotificationsAdapter(
     private val context: Context,
-    private val notificationList: List<String>,
-    private val imageList: List<String> = emptyList(), // Default to empty if not provided
-    private val itemClickListener: ((String) -> Unit)? = null // Optional click listener
+    private var notificationList: List<NotificationItem>, // Change to NotificationItem
+    private val itemClickListener: ((NotificationItem) -> Unit)? = null // Update click listener type
 ) : RecyclerView.Adapter<NotificationsAdapter.ViewHolder>() {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
@@ -26,14 +26,16 @@ class NotificationsAdapter(
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         val item = notificationList[position]
-        holder.itemNotification.text = item
+        holder.itemNotification.text = item.title // Use title for display
         holder.card.setCardBackgroundColor(ContextCompat.getColor(context, R.color.white))
 
         // Load the image into the ImageView if available
-        if (position < imageList.size) {
+        item.imageUrl?.let { url ->
             Glide.with(context)
-                .load(imageList[position])
+                .load(url)
                 .into(holder.imageViewNotification)
+        } ?: run {
+            holder.imageViewNotification.visibility = View.GONE // Hide if no image
         }
 
         // Set click listener if provided
@@ -44,6 +46,12 @@ class NotificationsAdapter(
 
     override fun getItemCount(): Int {
         return notificationList.size
+    }
+
+    // Method to update notifications
+    fun updateNotifications(newNotifications: List<NotificationItem>) {
+        notificationList = newNotifications
+        notifyDataSetChanged()
     }
 
     class ViewHolder(view: View) : RecyclerView.ViewHolder(view) {
