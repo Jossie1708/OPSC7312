@@ -7,19 +7,34 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageButton
 import androidx.navigation.fragment.findNavController
+import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
+import com.frogstore.droneapp.Adapters.FlightLogAdapter
 import com.frogstore.droneapp.R
 import com.google.android.material.floatingactionbutton.FloatingActionButton
 
 
 class FlightLogFragment : Fragment() {
-
+    private lateinit var flightLogAdapter: FlightLogAdapter
+    private val sampleFlightLogs = listOf(
+        "Flight on 2024-10-01 at Location A",
+        "Flight on 2024-10-02 at Location B",
+        "Flight on 2024-10-03 at Location C"
+    )
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        // Inflate the layout for this fragment
         val layout = inflater.inflate(R.layout.fragment_flight_log, container, false)
+
+        // Set up the RecyclerView
+        val recyclerView = layout.findViewById<RecyclerView>(R.id.recyclerview_flight_logs)
+        flightLogAdapter = FlightLogAdapter(requireContext(), sampleFlightLogs)
+        recyclerView.adapter = flightLogAdapter
+        recyclerView.layoutManager = LinearLayoutManager(requireContext())
+
+        // Set up the FloatingActionButton
         val btnMap = layout.findViewById<FloatingActionButton>(R.id.fabLocationMap)
         btnMap.setOnClickListener {
             findNavController().navigate(R.id.action_nav_logs_to_map)
@@ -27,6 +42,4 @@ class FlightLogFragment : Fragment() {
 
         return layout
     }
-
-
 }
