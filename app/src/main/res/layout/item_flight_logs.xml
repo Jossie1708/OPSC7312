@@ -41,7 +41,7 @@
                     android:textColor="?attr/textFillColor"
                     android:textSize="18sp"
                     android:textStyle="bold"
-                    app:drawableLeftCompat="@drawable/ic_weather_update"
+                    app:drawableLeftCompat="@drawable/ic_flight"
                     app:drawableTint="?attr/textFillColor" />
 
                 <TextView
