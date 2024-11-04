@@ -192,10 +192,9 @@ class SideMenuNavBarActivity : AppCompatActivity() {
 
         // Check if user session is available
         loginState?.let {
-            email.text = auth.currentUser?.email  //it.email // Assuming this is the user's email
-            name.text = auth.currentUser?.displayName//it.loggedInUser  // Assuming this is the user's username
+            email.text = auth.currentUser?.email
+            name.text = auth.currentUser?.displayName
         } ?: run {
-            // Handle the case where the user is not signed in
             name.text = getString(R.string.sign_in_name) // Default name
             email.text = getString(R.string.sign_in_email) // Default email
         }
