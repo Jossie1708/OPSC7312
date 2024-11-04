@@ -6,6 +6,7 @@ plugins {
     alias(libs.plugins.google.android.libraries.mapsplatform.secrets.gradle.plugin) apply false
     alias(libs.plugins.compose.compiler) apply false
     alias(libs.plugins.gms.google.services) apply false
+
 }
 buildscript {
     dependencies {

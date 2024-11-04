@@ -100,6 +100,8 @@ dependencies {
     implementation(libs.core.ktx)
     implementation(libs.androidx.junit.ktx)
     implementation(libs.firebase.storage.ktx)
+    implementation(libs.androidx.androidx.room.gradle.plugin)
+    implementation(libs.androidx.room.compiler)
     testImplementation(libs.junit)
     androidTestImplementation(libs.androidx.junit)
     androidTestImplementation(libs.androidx.espresso.core)
@@ -141,5 +143,13 @@ dependencies {
     implementation(libs.firebase.auth.ktx)
 
     implementation(libs.androidx.biometric)
+
+
+
+    implementation("androidx.room:room-runtime:2.6.1")
+    kapt("androidx.room:room-compiler:2.6.1")
+    implementation("androidx.room:room-ktx:2.6.1")
+
+
 
 }
