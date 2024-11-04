@@ -1,0 +1,42 @@
+Drone App Release Notes
+Version 1.0 - November 4, 2024
+Overview
+This release marks the official launch of the Drone App, featuring a comprehensive set of functionalities designed for drone enthusiasts and professionals. The app has undergone significant development since its prototype stage, incorporating user feedback and innovative features to enhance the overall experience.
+
+New Features
+User Authentication
+
+Users can now sign up and log in using either email/password or Google Sign-In. This feature ensures secure access to the app and user data management.
+Biometric Authentication
+
+Added support for biometric authentication (fingerprint) to provide users with a quick and secure login option, enhancing the app's security.
+Flight Log
+
+Users can view their flight logs in a structured list format. This feature allows users to keep track of their flight history and details easily.
+Image Gallery
+
+Introduced an image gallery where users can view images stored in a specific directory on their device. This feature simplifies image management for drone-captured photos.
+Maps Integration
+
+Integrated Google Maps to display the user's current location. This feature helps users track their drone's position in real-time during flights.
+Settings Management
+
+Users can customize their app experience by changing themes, managing account details, and selecting application languages. This feature enhances user personalization.
+Weather Information
+
+The app now displays current weather data for a specified city, helping users plan their drone flights based on weather conditions.
+Push Notifications
+
+Implemented push notifications for flight alerts and weather updates. This feature keeps users informed about important events related to their drone operations.
+Drone Controller
+
+Added a controller interface for users to control their drone via Wi-Fi. This innovative feature allows for real-time adjustments and commands, enhancing the flying experience.
+Improvements
+Enhanced user interface for better navigation and usability.
+Improved error handling and user feedback mechanisms throughout the app.
+Optimized performance for smoother operation and faster loading times.
+
+Bug Fixes
+Resolved various bugs reported during the testing phase, ensuring a more stable and reliable application.
+
+For any support, feedback, or questions, please contact us at duncanhatting@gmail.com & joscelindoosthuizen703@gmail.com. Thank you for choosing the Drone App!
