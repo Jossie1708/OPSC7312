@@ -129,12 +129,17 @@ class LoginFragment : Fragment() {
         btnLogin.setOnClickListener {
             val email = emailField.text.toString()
             var password = passwordField.text.toString()
-            if (email.isEmpty()) {
+            if (email.isEmpty() || password.isEmpty()) {
                 // Show error message for empty email
-                Toast.makeText(requireContext(), "Email cannot be empty.",Toast.LENGTH_SHORT,).show()
-
-            auth.signInWithEmailAndPassword(email, password)
-                .addOnCompleteListener(requireActivity()) { task ->
+                Toast.makeText(
+                    requireContext(),
+                    "Email and password cannot be empty.",
+                    Toast.LENGTH_SHORT,
+                ).show()
+            }
+            else{
+                auth.signInWithEmailAndPassword(email, password)
+                    .addOnCompleteListener(requireActivity()) { task ->
 
                         if (task.isSuccessful) {
                             // Sign in success, update UI with the signed-in user's information
@@ -151,7 +156,7 @@ class LoginFragment : Fragment() {
                             ).show()
                         }
                     }
-                }
+            }
         }
         return layout
     }
