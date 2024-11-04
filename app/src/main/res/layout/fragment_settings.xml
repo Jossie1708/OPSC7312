@@ -5,8 +5,7 @@
     android:id="@+id/useTouchIDSwitch"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="?attr/backgroundColor"
-    tools:context=".SettingsFragment">
+    android:background="?attr/backgroundColor">
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
@@ -16,7 +15,7 @@
             android:id="@+id/lblProfile"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="26dp"
+            android:layout_marginStart="25dp"
             android:layout_marginTop="44dp"
             android:text="@string/text_profile"
             android:textColor="?attr/textFillColor"
@@ -28,15 +27,15 @@
             android:id="@+id/lblAccountDetails"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="47dp"
+            android:layout_marginStart="38dp"
             android:layout_marginTop="21dp"
             android:layout_marginBottom="55dp"
             android:drawableLeft="@drawable/ic_person"
-            app:drawableTint="?attr/colorOnPrimary"
             android:drawablePadding="10dp"
             android:text="@string/text_account_details"
             android:textColor="?attr/textFillColor"
             android:textSize="16sp"
+            app:drawableTint="?attr/colorOnPrimary"
             app:layout_constraintBottom_toTopOf="@+id/view"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/lblProfile" />
@@ -54,14 +53,14 @@
             android:id="@+id/lblChangePassword"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="47dp"
+            android:layout_marginStart="38dp"
             android:layout_marginTop="17dp"
             android:drawableLeft="@drawable/ic_lock"
-            app:drawableTint="?attr/colorOnPrimary"
             android:drawablePadding="10dp"
             android:text="@string/text_change_password"
             android:textColor="?attr/textFillColor"
             android:textSize="16sp"
+            app:drawableTint="?attr/colorOnPrimary"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/lblSecurity" />
 
@@ -69,14 +68,14 @@
             android:id="@+id/lblUseTouchID"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="47dp"
+            android:layout_marginStart="38dp"
             android:layout_marginTop="40dp"
             android:drawableLeft="@drawable/ic_touch_id"
-            app:drawableTint="?attr/colorOnPrimary"
             android:drawablePadding="10dp"
             android:text="@string/text_touch_id"
             android:textColor="?attr/textFillColor"
             android:textSize="16sp"
+            app:drawableTint="?attr/colorOnPrimary"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/lblChangePassword" />
 
@@ -84,14 +83,14 @@
             android:id="@+id/lblChangeFingerprintID"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="47dp"
+            android:layout_marginStart="38dp"
             android:layout_marginTop="36dp"
             android:drawableLeft="@drawable/ic_fingerprint"
-            app:drawableTint="?attr/colorOnPrimary"
             android:drawablePadding="10dp"
             android:text="@string/text_change_id"
             android:textColor="?attr/textFillColor"
             android:textSize="16sp"
+            app:drawableTint="?attr/colorOnPrimary"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/lblUseTouchID" />
 
@@ -99,15 +98,15 @@
             android:id="@+id/lbUseDarkTheme"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="47dp"
+            android:layout_marginStart="38dp"
             android:layout_marginTop="9dp"
             android:layout_marginBottom="47dp"
             android:drawableLeft="@drawable/ic_dark_theme"
-            app:drawableTint="?attr/colorOnPrimary"
             android:drawablePadding="10dp"
             android:text="@string/text_use_theme"
             android:textColor="?attr/textFillColor"
             android:textSize="16sp"
+            app:drawableTint="?attr/colorOnPrimary"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/lblTheme" />
@@ -225,8 +224,8 @@
             android:id="@+id/radioGroupLanguages"
             android:layout_width="321dp"
             android:layout_height="wrap_content"
-            android:layout_marginStart="47dp"
-            android:layout_marginTop="21dp"
+            android:layout_marginStart="38dp"
+            android:layout_marginTop="19dp"
             android:layout_marginEnd="43dp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
@@ -238,16 +237,16 @@
                 android:layout_height="50dp"
                 android:contentDescription=""
                 android:text="@string/text_afr"
-                android:textColor="?attr/textFillColor"
-                android:textAlignment="viewStart" />
+                android:textAlignment="viewStart"
+                android:textColor="?attr/textFillColor" />
 
             <RadioButton
                 android:id="@+id/rbtnEnglish"
                 android:layout_width="match_parent"
                 android:layout_height="50dp"
                 android:contentDescription=""
-                android:textColor="?attr/textFillColor"
-                android:text="@string/text_eng" />
+                android:text="@string/text_eng"
+                android:textColor="?attr/textFillColor" />
         </RadioGroup>
 
         <Switch
