@@ -32,7 +32,7 @@ class SettingsFragment : Fragment() {
 
         val btnDetails = layout.findViewById<ImageButton>(R.id.btnAccountDetails)
         val btnPass = layout.findViewById<ImageButton>(R.id.btnSetPassword)
-        val btnFingerprint = layout.findViewById<ImageButton>(R.id.btnSetFingerprint)
+
         val switchFingerPrint = layout.findViewById<Switch>(R.id.switchTouchID)
 
         switchFingerPrint.setOnClickListener {
@@ -78,9 +78,6 @@ class SettingsFragment : Fragment() {
             findNavController().navigate(R.id.action_nav_settings_to_updatePasswordFragment)
         }
 
-        btnFingerprint.setOnClickListener {
-            Toast.makeText(requireContext(), "Fingerprint feature coming soon!", Toast.LENGTH_SHORT).show()
-        }
 
         // Return the inflated layout
         return layout
