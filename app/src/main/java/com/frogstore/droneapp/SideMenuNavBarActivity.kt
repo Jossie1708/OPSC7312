@@ -44,6 +44,7 @@ import com.frogstore.droneapp.databinding.ActivitySideMenuNavBarBinding
 import com.google.android.gms.auth.api.signin.GoogleSignInClient
 import com.google.android.material.navigation.NavigationView
 import com.google.common.reflect.TypeToken
+import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.messaging.FirebaseMessaging
 import com.google.gson.Gson
 import kotlinx.coroutines.launch
@@ -59,6 +60,7 @@ class SideMenuNavBarActivity : AppCompatActivity() {
     private lateinit var notifications: ArrayList<NotificationItem>
 
     private lateinit var requestQueue: RequestQueue
+    private lateinit var auth: FirebaseAuth
 
     private lateinit var notificationApplication: NotificationApplication
     private val tag = "sideNavBar: "
@@ -83,6 +85,9 @@ class SideMenuNavBarActivity : AppCompatActivity() {
 
         // Initialize notifications list
         notifications = arrayListOf() // Start with an empty list
+
+        // Initialize FirebaseAuth
+        auth = FirebaseAuth.getInstance() // Initialize here
 
         // Load notifications from SharedPreferences
         loadNotifications()
@@ -187,8 +192,8 @@ class SideMenuNavBarActivity : AppCompatActivity() {
 
         // Check if user session is available
         loginState?.let {
-            email.text = it.email // Assuming this is the user's email
-            name.text = it.loggedInUser  // Assuming this is the user's username
+            email.text = auth.currentUser?.email  //it.email // Assuming this is the user's email
+            name.text = auth.currentUser?.displayName//it.loggedInUser  // Assuming this is the user's username
         } ?: run {
             // Handle the case where the user is not signed in
             name.text = getString(R.string.sign_in_name) // Default name
