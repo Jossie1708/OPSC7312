@@ -3,7 +3,6 @@ package com.frogstore.droneapp.Fragments
 import android.content.pm.ActivityInfo
 import android.content.res.Configuration
 import androidx.appcompat.app.AppCompatActivity
-
 import android.graphics.Bitmap
 import android.graphics.BitmapFactory
 import android.graphics.PorterDuff
@@ -12,6 +11,7 @@ import android.os.Bundle
 import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
+import android.view.MotionEvent
 import android.view.TextureView
 import android.view.View
 import android.view.ViewGroup
@@ -25,18 +25,35 @@ import java.io.InputStream
 import java.net.HttpURLConnection
 import java.net.URL
 import kotlin.coroutines.coroutineContext
+import java.io.OutputStreamWriter
+import java.net.Socket
 
 
 class ControllerFragment : Fragment() {
     private lateinit var textureView: TextureView
     private lateinit var statusTextView: TextView
     private var streamJob: Job? = null
+    private var x = 0.0f
+    private var y = 0.0f
+    private var z = 0.0f
+    private var isIncreasing = false
+    private var isDecreasing = false
+    private var job: Job? = null
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
         val layout = inflater.inflate(R.layout.fragment_controller, container, false)
+
+        // Set up control buttons
+        layout.findViewById<ImageButton>(R.id.button_left).setOnClickListener { x -= 0.1f; sendThrottleValues() }
+        layout.findViewById<ImageButton>(R.id.button_right).setOnClickListener { x += 0.1f; sendThrottleValues() }
+        layout.findViewById<ImageButton>(R.id.button_forward).setOnClickListener { y += 0.1f; sendThrottleValues() }
+        layout.findViewById<ImageButton>(R.id.button_back).setOnClickListener { y -= 0.1f; sendThrottleValues() }
+        layout.findViewById<ImageButton>(R.id.button_up).setOnClickListener { z += 0.1f; sendThrottleValues() }
+        layout.findViewById<ImageButton>(R.id.button_down).setOnClickListener { z -= 0.1f; sendThrottleValues() }
+
 //
 //        textureView = layout.findViewById(R.id.textureView)
 //        statusTextView = layout.findViewById(R.id.statusTextView)
@@ -44,14 +61,66 @@ class ControllerFragment : Fragment() {
 //        textureView.layoutParams = ViewGroup.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.MATCH_PARENT)
 //
 //        streamVideo("192.168.101.112", 80)
-        val rotateButton: ImageButton = layout.findViewById(R.id.btnConFullScreen)
-        rotateButton.setOnClickListener {
-            toggleOrientation(rotateButton)
-
-        }
+//        val rotateButton: ImageButton = layout.findViewById(R.id.btnConFullScreen)
+//        rotateButton.setOnClickListener {
+//            toggleOrientation(rotateButton)
+//
+//        }
 
         return layout
     }
+
+    private fun sendThrottleValues() {
+        // Calculate throttle values for each motor based on x, y, and z
+        val throttleValues = mapToThrottle(x, y, z)
+
+        // Log the throttle values
+        Log.d("ThrottleValues", "Throttle Motor 1: ${throttleValues[0]}, " +
+                "Throttle Motor 2: ${throttleValues[1]}, " +
+                "Throttle Motor 3: ${throttleValues[2]}, " +
+                "Throttle Motor 4: ${throttleValues[3]}")
+
+//        CoroutineScope(Dispatchers.IO).launch {
+//            try {
+//                val socket = Socket("192.168.1.100", 80)  // Replace with Arduino's IP and port
+//                val writer = OutputStreamWriter(socket.getOutputStream())
+//                val json = """
+//                {
+//                    "motor1": ${throttleValues[0]},
+//                    "motor2": ${throttleValues[1]},
+//                    "motor3": ${throttleValues[2]},
+//                    "motor4": ${throttleValues[3]}
+//                }
+//            """.trimIndent()
+//                writer.write(json)
+//                writer.flush()
+//                writer.close()
+//                socket.close()
+//            } catch (e: Exception) {
+//                Log.e("ControllerFragment", "Error sending throttle values", e)
+//            }
+//        }
+    }
+
+    private fun mapToThrottle(x: Float, y: Float, z: Float): IntArray {
+        val baseThrottle = (z * 500 + 1500).toInt()
+        val rollInfluence = (x * 200).toInt()
+        val pitchInfluence = (y * 200).toInt()
+
+        val throttleMotor1 = baseThrottle + rollInfluence - pitchInfluence
+        val throttleMotor2 = baseThrottle - rollInfluence - pitchInfluence
+        val throttleMotor3 = baseThrottle + rollInfluence + pitchInfluence
+        val throttleMotor4 = baseThrottle - rollInfluence + pitchInfluence
+
+        return intArrayOf(
+            throttleMotor1.coerceIn(1000, 2000),
+            throttleMotor2.coerceIn(1000, 2000),
+            throttleMotor3.coerceIn(1000, 2000),
+            throttleMotor4.coerceIn(1000, 2000)
+        )
+    }
+
+
     private fun toggleOrientation(rotateButton: ImageButton) {
         val activity = activity
         if (activity != null) {
