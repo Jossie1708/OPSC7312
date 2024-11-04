@@ -7,6 +7,9 @@ import android.content.Context
 import android.content.Intent
 import android.content.IntentFilter
 import android.content.pm.PackageManager
+import android.graphics.Bitmap
+import android.graphics.BitmapFactory
+import android.net.Uri
 import android.os.Build
 import android.os.Bundle
 import android.os.storage.StorageManager
@@ -17,6 +20,7 @@ import android.view.Menu
 import android.view.MenuItem
 import android.view.View
 import android.widget.ImageButton
+import android.widget.ImageView
 import android.widget.LinearLayout
 import android.widget.PopupWindow
 import android.widget.TextView
@@ -45,14 +49,18 @@ import com.google.android.gms.auth.api.signin.GoogleSignInClient
 import com.google.android.material.navigation.NavigationView
 import com.google.common.reflect.TypeToken
 import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.auth.UserProfileChangeRequest
 import com.google.firebase.messaging.FirebaseMessaging
+import com.google.firebase.storage.FirebaseStorage
 import com.google.gson.Gson
 import kotlinx.coroutines.launch
+import java.io.ByteArrayOutputStream
 import java.io.File
 
 class SideMenuNavBarActivity : AppCompatActivity() {
     private lateinit var name: TextView
     private lateinit var email: TextView
+    private lateinit var imageuri: ImageView
 
     private lateinit var appBarConfiguration: AppBarConfiguration
     private lateinit var binding: ActivitySideMenuNavBarBinding
@@ -189,16 +197,71 @@ class SideMenuNavBarActivity : AppCompatActivity() {
         val headerView = navView.getHeaderView(0) // Get the first header view
         name = headerView.findViewById(R.id.txtLoginUsername)
         email = headerView.findViewById(R.id.txtLoginEmail)
+        imageuri = headerView.findViewById(R.id.imageView)
 
         // Check if user session is available
         loginState?.let {
             email.text = auth.currentUser?.email
             name.text = auth.currentUser?.displayName
+
+            uploadImage()
+            auth.currentUser?.photoUrl?.let { uri ->
+                imageuri.setImageURI(uri)
+            } ?: run {
+                // Optionally set a placeholder or handle the case where there is no photo URL
+                imageuri.setImageResource(R.drawable.thisfrog)
+            }
         } ?: run {
-            name.text = getString(R.string.sign_in_name) // Default name
-            email.text = getString(R.string.sign_in_email) // Default email
+            email.text = auth.currentUser?.email
+            name.text = auth.currentUser?.displayName
+            auth.currentUser?.photoUrl?.let { uri ->
+                imageuri.setImageURI(uri)
+            } ?: run {
+                // Optionally set a placeholder or handle the case where there is no photo URL
+                imageuri.setImageResource(R.drawable.thisfrog)
+            }        }
+    }
+
+    private fun uploadImage() {
+        val storageReference = FirebaseStorage.getInstance().getReference("profileImages/${auth.currentUser?.uid}.jpg")
+
+        // Convert drawable to bitmap
+        val bitmap = BitmapFactory.decodeResource(resources, R.drawable.thisfrog)
+        val baos = ByteArrayOutputStream()
+        bitmap.compress(Bitmap.CompressFormat.JPEG, 100, baos)
+        val data = baos.toByteArray()
+
+        // Upload to Firebase Storage
+        val uploadTask = storageReference.putBytes(data)
+
+        uploadTask.addOnSuccessListener {
+            // Get the download URL after upload success
+            storageReference.downloadUrl.addOnSuccessListener { uri ->
+                updateUserProfile(uri.toString()) // Update the user profile with the URL
+            }
+        }.addOnFailureListener { exception ->
+            // Handle unsuccessful uploads
+            Log.e("UploadError", exception.message.toString())
         }
     }
+    private fun updateUserProfile(photoUrl: String) {
+        // Create a UserProfileChangeRequest with the new photo URL
+        val profileUpdates = UserProfileChangeRequest.Builder()
+            .setPhotoUri(Uri.parse(photoUrl)) // Set the photo URL
+            .build()
+
+        // Update the user profile
+        auth.currentUser?.updateProfile(profileUpdates)
+            ?.addOnCompleteListener { task ->
+                if (task.isSuccessful) {
+                    Log.d("ProfileUpdate", "User profile updated.")
+                } else {
+                    Log.e("ProfileUpdateError", "Profile update failed.")
+                }
+            }
+    }
+
+
 
     private fun updateSystemUiColors(isDarkTheme: Boolean) {
         val colorPrimary = if (isDarkTheme) {
