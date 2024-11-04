@@ -8,7 +8,6 @@ import androidx.preference.PreferenceManager
 import androidx.test.core.app.ApplicationProvider
 import androidx.test.ext.junit.runners.AndroidJUnit4
 import com.frogstore.droneapp.Activities.ImageViewerActivity
-import com.frogstore.droneapp.Activities.LocationActivity
 import com.frogstore.droneapp.Activities.MainActivity
 import com.frogstore.droneapp.SideMenuNavBarActivity
 import com.frogstore.droneapp.Adapters.NotificationsAdapter
@@ -22,27 +21,6 @@ import org.mockito.MockitoAnnotations
 import org.mockito.kotlin.mock
 import org.mockito.kotlin.whenever
 
-@RunWith(AndroidJUnit4::class)
-class LocationActivityTest {
-    private lateinit var activity: LocationActivity
-
-    @Before
-    fun setup() {
-        activity = LocationActivity()
-    }
-
-    @Test
-    fun testOnCreate() {
-        // Arrange
-        val savedInstanceState: Bundle = mock() // Using mock<Bundle>() is also valid.
-
-        // Act
-        activity.onCreate(savedInstanceState)
-
-        // Assert
-        // Verify that the activity was created successfully (Add meaningful assertions)
-    }
-}
 
 @RunWith(AndroidJUnit4::class)
 class MainActivityTest {

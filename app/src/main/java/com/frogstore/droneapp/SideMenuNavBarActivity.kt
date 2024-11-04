@@ -19,6 +19,7 @@ import android.view.LayoutInflater
 import android.view.Menu
 import android.view.MenuItem
 import android.view.View
+import android.widget.Button
 import android.widget.ImageButton
 import android.widget.ImageView
 import android.widget.LinearLayout
@@ -121,7 +122,14 @@ class SideMenuNavBarActivity : AppCompatActivity() {
         val navController = findNavController(R.id.nav_host_fragment_content_side_menu_nav_bar)
 
         appBarConfiguration = AppBarConfiguration(
-            setOf(R.id.nav_home, R.id.nav_gallery, R.id.nav_flight_logs, R.id.nav_controller, R.id.nav_settings),
+            setOf(
+                R.id.nav_home,
+                R.id.nav_gallery,
+                R.id.nav_flight_logs,
+                R.id.nav_controller,
+                R.id.nav_settings,
+                R.id.nav_logout
+            ),
             drawerLayout
         )
         setupActionBarWithNavController(navController, appBarConfiguration)
@@ -130,7 +138,8 @@ class SideMenuNavBarActivity : AppCompatActivity() {
         notificationApplication = application as NotificationApplication
         notifications = notificationApplication.notifications
 
-        val toolbarTitle: TextView = binding.appBarSideMenuNavBar.toolbar.findViewById(R.id.toolbarTitle)
+        val toolbarTitle: TextView =
+            binding.appBarSideMenuNavBar.toolbar.findViewById(R.id.toolbarTitle)
 
         navController.addOnDestinationChangedListener { _, destination, _ ->
             val title = destination.label
@@ -141,12 +150,33 @@ class SideMenuNavBarActivity : AppCompatActivity() {
             }
         }
 
+        // Set up navigation item selected listener
+        navView.setNavigationItemSelectedListener { menuItem ->
+            when (menuItem.itemId) {
+                R.id.nav_logout -> {
+                    // Handle logout action
+                    auth.signOut()
+                    Toast.makeText(this, "Logged out successfully", Toast.LENGTH_SHORT).show()
+                    // Navigate to the login or welcome fragment
+                    findNavController(R.id.nav_host_fragment_content_side_menu_nav_bar).navigate(R.id.nav_logout)
+                    true // Return true to indicate the event was handled
+                }
+                else -> {
+                    // Let the NavController handle the other menu items
+                    navController.navigate(menuItem.itemId)
+                    true // Indicate the event was handled
+                }
+            }
+        }
+
         // Update the UI based on notifications
         updateNotificationUI()
         updateHeader()
 
         subscribeToWeatherUpdates()
         retrieveFCMToken() // Call the function to retrieve the token
+
+
 
         // Setup notification icon click listener
         val notificationIcon: ImageButton = findViewById(R.id.notificationIcon)
@@ -157,34 +187,7 @@ class SideMenuNavBarActivity : AppCompatActivity() {
                 popupWindow.showAsDropDown(notificationIcon) // Show below the icon
             }
         }
-
-
-//        // Set up the NavigationView
-//        val googleSignInClient = GoogleSignInClient(this)
-//        val navigationView: NavigationView = findViewById(R.id.nav_view)
-//        navigationView.setNavigationItemSelectedListener { item: MenuItem ->
-//            when (item.itemId) {
-//                R.id.nav_logout -> {
-//                    lifecycleScope.launch {
-//                        googleSignInClient.signOut()
-//                        println(tag+"succcess")
-//
-//                        // Navigate to MainActivity
-//                        val intent = Intent(this@SideMenuNavBarActivity, MainActivity::class.java)
-//                        intent.flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
-//                        startActivity(intent)
-//                        finish() // Close the current activity
-//                    }
-//                    true
-//                }
-//                else ->{
-//                    println(tag+"false")
-//                    false
-//                    }
-//            }
-//        }
     }
-
     private fun updateHeader() {
         // Initialize LoginViewModel
         val loginViewModel = LoginViewModel(application)
@@ -494,5 +497,9 @@ class SideMenuNavBarActivity : AppCompatActivity() {
                 Log.d("FCM", msg)
             }
     }
+
+
+
 }
+
 
