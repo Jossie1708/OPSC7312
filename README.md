@@ -8,12 +8,15 @@ The Drone App is a comprehensive mobile application designed for drone enthusias
 
 (Mock up Images, not final Design Images will be added in part 3)
 
-## Features
-1. Weather Forecast: Get current and forecasted weather conditions for your location, ensuring safe and optimal flying conditions.
-2. Location Tracking: Track your drone's location in real-time, with the ability to set boundaries and receive alerts.
-3. Image and Video Management: Organize and manage your drone-captured images and videos, featuring options for filtering, sorting, and sharing.
-4. Settings and Customization: Personalize your app experience with customizable settings, including theme selection, language preferences, and more.
-5. User Account Management: Securely manage your user account with features such as login, registration, and password recovery.
+##Features
+1.User Authentication: Users can sign up and log in using email/password or Google Sign-In.
+2.Biometric Authentication: Users can authenticate using biometric methods (fingerprint).
+3.Flight Log: Users can view their flight logs in a list format.
+4.Image Gallery: Users can view images stored in a specific directory on their device.
+5.Maps Integration: Displays the user's current location on a Google Map.
+6.Settings: Users can change themes, manage account details, and select application languages.
+7.Weather Information: Displays current weather data for a specified city.
+8.Push notifications for flight alerts and weather updates.
 
 ![WhatsApp Image 2024-09-30 at 22 58 13_3f894021](https://github.com/user-attachments/assets/289e7332-b999-4743-ae70-305bf588bf6a)
 (Mock up Images, not final Design Images will be added in part 3)
@@ -23,6 +26,14 @@ Programming Languages: Kotlin, Java
 Development Frameworks: Android SDK, AndroidX
 Libraries and Tools: Glide, Retrofit, OkHttp, Android Credential Manager
 Database: Azure SQL
+
+##Technologies Used
+Android SDK: For building the Android application.
+Firebase: For user authentication and storage of user profile images.
+Google Maps API: For displaying maps and user location.
+Room: For local database management.
+Volley: For network requests.
+Coroutines: For handling asynchronous programming.
 
 ![WhatsApp Image 2024-09-30 at 22 58 13_1353b391](https://github.com/user-attachments/assets/6e7fb68f-b8d0-4e7c-9920-94a1e4235fb7)
 (Mock up Images, not final Design Images will be added in part 3)
