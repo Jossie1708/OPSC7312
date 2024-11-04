@@ -19,16 +19,13 @@ class ImageAdapter(
 ) : RecyclerView.Adapter<ImageAdapter.ViewHolder>() {
 
     inner class ViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
-        val imageView: ImageView = itemView.findViewById(R.id.imageViewGallery) // Check this ID
-        private val shareButton: Button = itemView.findViewById(R.id.btnShare) // Check this ID
+        val imageView: ImageView = itemView.findViewById(R.id.imageViewGallery)
 
         init {
             itemView.setOnClickListener {
                 onClick(adapterPosition)
             }
-            shareButton.setOnClickListener {
-                onShare(images[adapterPosition])
-            }
+
         }
     }
 
