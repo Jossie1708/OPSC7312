@@ -120,3 +120,6 @@ Scalability: GitHub and GitHub Actions enable scalability and adaptability, maki
 ## Conclusion
 
 The Drone App is a comprehensive mobile application designed for drone enthusiasts and professionals. The app's design considerations, including user experience, functionality, security, and scalability, ensure that the app provides a range of features that cater to the needs of its users. The utilization of GitHub and GitHub Actions enables collaboration, automation, and scalability, making it easy to manage and maintain the app's codebase.
+
+## Privacy Policy
+https://sites.google.com/view/frog-copter/home
