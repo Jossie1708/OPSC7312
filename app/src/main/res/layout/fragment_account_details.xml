@@ -11,10 +11,11 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
-        <ImageButton
+        <ImageView
             android:id="@+id/imgAccProfile"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:background="@drawable/image_shape"
+            android:layout_width="150dp"
+            android:layout_height="150dp"
             android:layout_marginStart="125dp"
             android:layout_marginTop="128dp"
             android:layout_marginEnd="134dp"
@@ -99,5 +100,20 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/txtAccEmail" />
+
+        <ImageButton
+            android:id="@+id/btnEditImage"
+            android:layout_width="60dp"
+            android:layout_height="50dp"
+            android:layout_marginStart="70dp"
+            android:layout_marginTop="-40dp"
+            android:layout_marginEnd="-80dp"
+            android:layout_marginBottom="64dp"
+            android:background="@drawable/settingsbuttonlayout"
+            android:src="@drawable/ic_add_picture"
+            app:layout_constraintBottom_toTopOf="@+id/txtAccUsername"
+            app:layout_constraintEnd_toStartOf="@+id/imgAccProfile"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/imgAccProfile" />
     </androidx.constraintlayout.widget.ConstraintLayout>
 </FrameLayout>

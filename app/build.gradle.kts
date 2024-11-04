@@ -82,7 +82,8 @@ dependencies {
     implementation ("androidx.appcompat:appcompat:1.3.1")
     implementation ("com.google.code.gson:gson:2.10.1")
 
-
+    implementation ("com.google.firebase:firebase-auth-ktx:your_version")
+    implementation ("com.google.firebase:firebase-storage-ktx:your_version")
     implementation (libs.picasso)
     implementation (libs.volley)
     implementation(libs.androidx.core.ktx)
