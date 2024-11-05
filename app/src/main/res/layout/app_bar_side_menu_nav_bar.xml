@@ -43,6 +43,15 @@
                     android:contentDescription="@string/menu_notification"
                     android:background="?attr/selectableItemBackgroundBorderless"
                     android:layout_marginEnd="16dp" />
+                <TextView
+                    android:id="@+id/notificationCounter"
+                    android:layout_width="20dp"
+                    android:layout_height="20dp"
+                    android:background="@drawable/shapecircle"
+                    android:gravity="center"
+                    android:textColor="@android:color/white"
+                    android:textSize="12sp"
+                    android:visibility="gone" />
             </LinearLayout>
 
         </androidx.appcompat.widget.Toolbar>
