@@ -54,5 +54,10 @@
         <item name="android:background">@color/divider</item>
     </style>
 
+    <style name="OvalImageShape" parent="Widget.MaterialComponents.ShapeableImageView">
+        <item name="cornerFamily">rounded</item>
+        <item name="cornerSize">50%</item> <!-- Make corners fully rounded for oval shape -->
+    </style>
+
 
 </resources>

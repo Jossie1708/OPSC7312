@@ -41,11 +41,22 @@ class GalleryFragment : Fragment() {
     private fun loadImagesFromFolder() {
         val storageManager = requireContext().getSystemService(StorageManager::class.java)
         val storageVolume = storageManager?.storageVolumes?.get(0)
-        val folderPath =
-            storageVolume?.directory?.path + "/DCIM/100PINT/Pins" // Specify your folder path here
+        val folderPath = storageVolume?.directory?.path + "/DCIM/100PINT/Pins" // Specify your folder path here
         val folder = File(folderPath)
 
-        if (folder.exists() && folder.isDirectory) {
+        // Check if the folder exists, and if not, create it
+        if (!folder.exists()) {
+            val folderCreated = folder.mkdirs()
+            if (folderCreated) {
+                Toast.makeText(requireContext(), "Folder created in gallery", Toast.LENGTH_SHORT).show()
+            } else {
+                Toast.makeText(requireContext(), "Failed to create folder", Toast.LENGTH_SHORT).show()
+                return
+            }
+        }
+
+        // Load images if folder exists or was created successfully
+        if (folder.isDirectory) {
             val imageFiles = folder.listFiles { file ->
                 file?.isFile == true && (file.name.endsWith(".jpeg", true) ||
                         file.name.endsWith(".jpg", true) || file.name.endsWith(".png", true))

@@ -12,6 +12,7 @@ import com.frogstore.droneapp.Fragments.LoginFragment
 import com.frogstore.droneapp.Fragments.RegisterFragment
 import com.frogstore.droneapp.R
 import com.google.android.material.tabs.TabLayout
+import java.util.Locale
 
 class MainActivity : AppCompatActivity() {
     private val loginFragment = LoginFragment()
@@ -24,6 +25,8 @@ class MainActivity : AppCompatActivity() {
         // Load theme before super.onCreate
         val sharedPreferences = PreferenceManager.getDefaultSharedPreferences(this)
         val isDarkTheme = sharedPreferences.getBoolean("isDarkTheme", false)
+        val savedLanguage = sharedPreferences.getString("appLanguage", "en") ?: "en"
+        setLocale(savedLanguage)
         if (isDarkTheme) {
             setTheme(R.style.Theme_DroneApp_Dark)
         } else {
@@ -70,6 +73,14 @@ class MainActivity : AppCompatActivity() {
 
 
     }
+    private fun setLocale(languageCode: String) {
+        val locale = Locale(languageCode)
+        Locale.setDefault(locale)
+        val config = resources.configuration
+        config.setLocale(locale)
+        resources.updateConfiguration(config, resources.displayMetrics)
+    }
+
     private fun updateSystemUiColors(isDarkTheme: Boolean) {
         val colorPrimary = if (isDarkTheme) {
             ContextCompat.getColor(this, R.color.darkGreenAccent) // Dark theme color
