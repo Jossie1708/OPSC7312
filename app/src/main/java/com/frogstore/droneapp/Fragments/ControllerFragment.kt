@@ -18,6 +18,7 @@ import android.view.ViewGroup
 import android.widget.ImageButton
 import android.widget.TextView
 import androidx.core.content.ContextCompat
+import androidx.lifecycle.ViewModel
 import com.frogstore.droneapp.R
 import kotlinx.coroutines.*
 import java.io.ByteArrayOutputStream
@@ -27,10 +28,13 @@ import java.net.URL
 import kotlin.coroutines.coroutineContext
 import java.io.OutputStreamWriter
 import java.net.Socket
+import androidx.fragment.app.activityViewModels
+import com.frogstore.droneapp.SharedViewModel
 
 
 class ControllerFragment : Fragment() {
     private lateinit var textureView: TextureView
+    private val viewModel: SharedViewModel by activityViewModels()
     private lateinit var statusTextView: TextView
     private var streamJob: Job? = null
     private var x = 0.0f
@@ -53,7 +57,9 @@ class ControllerFragment : Fragment() {
         layout.findViewById<ImageButton>(R.id.button_back).setOnClickListener { y -= 0.1f; sendThrottleValues() }
         layout.findViewById<ImageButton>(R.id.button_up).setOnClickListener { z += 0.1f; sendThrottleValues() }
         layout.findViewById<ImageButton>(R.id.button_down).setOnClickListener { z -= 0.1f; sendThrottleValues() }
-
+// Example: Trigger check when `statusTextView` text changes
+        statusTextView.text = "Connected"
+//        checkConnectionAndUpdateLog()
 //
 //        textureView = layout.findViewById(R.id.textureView)
 //        statusTextView = layout.findViewById(R.id.statusTextView)
@@ -69,6 +75,12 @@ class ControllerFragment : Fragment() {
 
         return layout
     }
+
+//    private fun checkConnectionAndUpdateLog() {
+//        if (statusTextView.text == "Connected") {
+//            SharedViewModel.("Connected")
+//        }
+//    }
 
     private fun sendThrottleValues() {
         // Calculate throttle values for each motor based on x, y, and z

@@ -17,9 +17,13 @@ import com.google.android.material.floatingactionbutton.FloatingActionButton
 class FlightLogFragment : Fragment() {
     private lateinit var flightLogAdapter: FlightLogAdapter
     private val sampleFlightLogs = listOf(
-        "Flight on 2024-10-01 at Location A",
-        "Flight on 2024-10-02 at Location B",
-        "Flight on 2024-10-03 at Location C"
+        "Flight on 2024-11-02 at Port Elizabeth",
+        "Flight on 2024-11-02 at Port Elizabeth",
+        "Flight on 2024-11-02 at Port Elizabeth",
+        "Flight on 2024-11-02 at Port Elizabeth",
+        "Flight on 2024-11-02 at Port Elizabeth",
+        "Flight on 2024-11-02 at Port Elizabeth",
+        "Flight on 2024-11-03 at Port Elizabeth"
     )
 
     override fun onCreateView(
