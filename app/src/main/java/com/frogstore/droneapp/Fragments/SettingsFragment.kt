@@ -12,6 +12,7 @@ import android.widget.RadioGroup
 import android.widget.Switch
 import android.widget.Toast
 import androidx.appcompat.widget.SwitchCompat
+import androidx.core.app.ActivityCompat.recreate
 import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
 import com.frogstore.droneapp.R
@@ -30,27 +31,19 @@ class SettingsFragment : Fragment() {
         // Inflate the layout for this fragment
         val layout = inflater.inflate(R.layout.fragment_settings, container, false)
 
-        val btnDetails = layout.findViewById<ImageButton>(R.id.btnAccountDetails)
-        val btnPass = layout.findViewById<ImageButton>(R.id.btnSetPassword)
-
-        val switchFingerPrint = layout.findViewById<Switch>(R.id.switchTouchID)
-        // Set the switch state based on saved preference
-        val isBiometric = sharedPreferences.getBoolean("isBiometric", false)
-        switchFingerPrint.isChecked = isBiometric
-
-        // Switch listener to change theme
-        switchFingerPrint.setOnCheckedChangeListener { _, isChecked ->
-            sharedPreferences.edit().putBoolean("isBiometric", isChecked).apply()
-            //set a value here
-        }
-
-        // Initialize SharedPreferences
+        // Initialize SharedPreferences and UI components
         sharedPreferences = PreferenceManager.getDefaultSharedPreferences(requireContext())
         switchDarkTheme = layout.findViewById(R.id.switchTheme)
         radioGroupLanguages = layout.findViewById(R.id.radioGroupLanguages)
 
-        // Set the initial state of the radio buttons based on saved preference
-        val savedLanguage = sharedPreferences.getString("appLanguage", "en")
+        // Set up initial state for switches and radio buttons
+        val savedLanguage = sharedPreferences.getString("appLanguage", "en") ?: "en"
+        val currentLanguage = Locale.getDefault().language
+        if (savedLanguage != currentLanguage) {
+            // Only call setLocale if the language has changed
+            setLocale(savedLanguage)
+        }
+
         if (savedLanguage == "en") {
             radioGroupLanguages.check(R.id.rbtnEnglish)
         } else {
@@ -58,47 +51,51 @@ class SettingsFragment : Fragment() {
         }
 
         // Set up listeners for language selection
-        radioGroupLanguages.setOnCheckedChangeListener { group, checkedId ->
-            when (checkedId) {
-                R.id.rbtnEnglish -> setLocale("en")
-                R.id.rbtnAfrikaans -> setLocale("af")
+        radioGroupLanguages.setOnCheckedChangeListener { _, checkedId ->
+            val selectedLanguage = when (checkedId) {
+                R.id.rbtnEnglish -> "en"
+                R.id.rbtnAfrikaans -> "af"
+                else -> savedLanguage
+            }
+
+            // Only call setLocale if the selected language is different
+            if (selectedLanguage != savedLanguage) {
+                setLocale(selectedLanguage)
             }
         }
 
-        // Set the switch state based on saved preference
+        // Dark theme switch setup
         val isDarkTheme = sharedPreferences.getBoolean("isDarkTheme", false)
         switchDarkTheme.isChecked = isDarkTheme
-
-        // Switch listener to change theme
         switchDarkTheme.setOnCheckedChangeListener { _, isChecked ->
             sharedPreferences.edit().putBoolean("isDarkTheme", isChecked).apply()
             requireActivity().recreate()
         }
 
+        // Button navigation setup
+        val btnDetails = layout.findViewById<ImageButton>(R.id.btnAccountDetails)
+        val btnPass = layout.findViewById<ImageButton>(R.id.btnSetPassword)
         btnDetails.setOnClickListener {
             findNavController().navigate(R.id.action_nav_settings_to_accountDetailsFragment)
         }
-
         btnPass.setOnClickListener {
             findNavController().navigate(R.id.action_nav_settings_to_updatePasswordFragment)
         }
 
-
-        // Return the inflated layout
         return layout
     }
 
-    private fun setLocale(languageCode: String) {
+    fun setLocale(languageCode: String) {
         val locale = Locale(languageCode)
         Locale.setDefault(locale)
         val config = resources.configuration
         config.setLocale(locale)
         resources.updateConfiguration(config, resources.displayMetrics)
 
-        // Save the language preference
+        // Save the chosen language in SharedPreferences
         sharedPreferences.edit().putString("appLanguage", languageCode).apply()
 
-        // Restart the activity to apply changes
+        // Restart the activity to apply the language change
         requireActivity().recreate()
     }
 }
