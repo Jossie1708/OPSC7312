@@ -150,6 +150,7 @@ dependencies {
     implementation(libs.firebase.auth.ktx)
 
     implementation(libs.androidx.biometric)
+    implementation ("com.google.android.material:material:1.6.0")
 
 
 }
