@@ -100,12 +100,12 @@ class AccountDetailsFragment : Fragment() {
                         if (task.isSuccessful) {
                             Toast.makeText(requireContext(), "Profile picture updated successfully", Toast.LENGTH_SHORT).show()
                         } else {
-                            Toast.makeText(requireContext(), "Failed to update profile picture", Toast.LENGTH_SHORT).show()
+                         //   Toast.makeText(requireContext(), "Failed to update profile picture", Toast.LENGTH_SHORT).show()
                         }
                     }
                 }
             }.addOnFailureListener { exception ->
-                Toast.makeText(requireContext(), "Upload failed: ${exception.message}", Toast.LENGTH_SHORT).show()
+              //  Toast.makeText(requireContext(), "Upload failed: ${exception.message}", Toast.LENGTH_SHORT).show()
             }
         } else {
             Log.e("User Error", "No user is currently signed in.")
