@@ -69,21 +69,30 @@ android {
     }
 }
 
+
 dependencies {
-    implementation(platform("com.google.firebase:firebase-bom:33.5.1"))
-    implementation("com.google.firebase:firebase-analytics")
+    constraints {
+        implementation("org.jetbrains.kotlin:kotlin-stdlib-jdk7:1.8.0") {
+            because("kotlin-stdlib-jdk7 is now a part of kotlin-stdlib")
+        }
+        implementation("org.jetbrains.kotlin:kotlin-stdlib-jdk8:1.8.0") {
+            because("kotlin-stdlib-jdk8 is now a part of kotlin-stdlib")
+        }
+    }
+   // implementation(libs.firebase.bom)
+    implementation(libs.firebase.analytics)
 
-    implementation ("com.google.firebase:firebase-messaging-ktx:24.0.0")
+    implementation (libs.firebase.messaging.ktx)
 
-    implementation ("com.google.android.material:material:1.6.0")
+    implementation (libs.material.v160)
 
-    implementation ("androidx.navigation:navigation-fragment-ktx:2.5.3")
-    implementation ("androidx.navigation:navigation-ui-ktx:2.5.3")
-    implementation ("androidx.appcompat:appcompat:1.3.1")
-    implementation ("com.google.code.gson:gson:2.10.1")
+    implementation (libs.androidx.navigation.fragment.ktx.v253)
+    implementation (libs.androidx.navigation.ui.ktx.v253)
+    implementation (libs.androidx.appcompat.v131)
+    implementation (libs.gson)
 
-    implementation ("com.google.firebase:firebase-auth-ktx:your_version")
-    implementation ("com.google.firebase:firebase-storage-ktx:your_version")
+    implementation (libs.google.firebase.auth.ktx)
+    implementation (libs.firebase.storage.ktx.vyourversion)
     implementation (libs.picasso)
     implementation (libs.volley)
     implementation(libs.androidx.core.ktx)
@@ -100,8 +109,6 @@ dependencies {
     implementation(libs.core.ktx)
     implementation(libs.androidx.junit.ktx)
     implementation(libs.firebase.storage.ktx)
-    implementation(libs.androidx.androidx.room.gradle.plugin)
-    implementation(libs.androidx.room.compiler)
     testImplementation(libs.junit)
     androidTestImplementation(libs.androidx.junit)
     androidTestImplementation(libs.androidx.espresso.core)
@@ -143,13 +150,6 @@ dependencies {
     implementation(libs.firebase.auth.ktx)
 
     implementation(libs.androidx.biometric)
-
-
-
-    implementation("androidx.room:room-runtime:2.6.1")
-    kapt("androidx.room:room-compiler:2.6.1")
-    implementation("androidx.room:room-ktx:2.6.1")
-
 
 
 }

@@ -1,7 +1,5 @@
 package com.frogstore.droneapp.Fragments
 
-import AppDatabase
-import UserDao
 import android.content.ContentValues.TAG
 import android.content.Intent
 import android.os.Build
@@ -23,7 +21,6 @@ import androidx.compose.runtime.setValue
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
 import androidx.lifecycle.lifecycleScope
-import androidx.room.Room
 import com.android.volley.RequestQueue
 import com.android.volley.toolbox.StringRequest
 import com.android.volley.toolbox.Volley
@@ -83,10 +80,7 @@ class LoginFragment : Fragment() {
 
                 if (googleSignInClient.isSingedIn())
                 {
-                    val db = Room.databaseBuilder(
-                        requireContext(),
-                        AppDatabase::class.java, "database-name"
-                    ).build()
+
 
                     //auth biometrics
                     biometricPromptManager.showBiometricPrompt(
