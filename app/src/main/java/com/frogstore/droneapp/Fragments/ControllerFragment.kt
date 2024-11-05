@@ -49,7 +49,7 @@ class ControllerFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         val layout = inflater.inflate(R.layout.fragment_controller, container, false)
-
+        // Initialize statusTextView here
         // Set up control buttons
         layout.findViewById<ImageButton>(R.id.button_left).setOnClickListener { x -= 0.1f; sendThrottleValues() }
         layout.findViewById<ImageButton>(R.id.button_right).setOnClickListener { x += 0.1f; sendThrottleValues() }
@@ -57,9 +57,8 @@ class ControllerFragment : Fragment() {
         layout.findViewById<ImageButton>(R.id.button_back).setOnClickListener { y -= 0.1f; sendThrottleValues() }
         layout.findViewById<ImageButton>(R.id.button_up).setOnClickListener { z += 0.1f; sendThrottleValues() }
         layout.findViewById<ImageButton>(R.id.button_down).setOnClickListener { z -= 0.1f; sendThrottleValues() }
-// Example: Trigger check when `statusTextView` text changes
-        statusTextView.text = "Connected"
-//        checkConnectionAndUpdateLog()
+        statusTextView = layout.findViewById(R.id.statusTextView)
+
 //
 //        textureView = layout.findViewById(R.id.textureView)
 //        statusTextView = layout.findViewById(R.id.statusTextView)
@@ -72,15 +71,17 @@ class ControllerFragment : Fragment() {
 //            toggleOrientation(rotateButton)
 //
 //        }
-
+//    Set the status text and check connection
+    statusTextView.text = "Connected"
+    checkConnectionAndUpdateLog() // Call after initializing statusTextView
         return layout
     }
 
-//    private fun checkConnectionAndUpdateLog() {
-//        if (statusTextView.text == "Connected") {
-//            SharedViewModel.("Connected")
-//        }
-//    }
+    private fun checkConnectionAndUpdateLog() {
+        if (statusTextView.text == "Connected") {
+            viewModel.updateConnectionStatus("Connected")
+        }
+    }
 
     private fun sendThrottleValues() {
         // Calculate throttle values for each motor based on x, y, and z
