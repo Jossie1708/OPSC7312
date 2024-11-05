@@ -34,9 +34,14 @@ class SettingsFragment : Fragment() {
         val btnPass = layout.findViewById<ImageButton>(R.id.btnSetPassword)
 
         val switchFingerPrint = layout.findViewById<Switch>(R.id.switchTouchID)
+        // Set the switch state based on saved preference
+        val isBiometric = sharedPreferences.getBoolean("isBiometric", false)
+        switchFingerPrint.isChecked = isBiometric
 
-        switchFingerPrint.setOnClickListener {
-            Toast.makeText(requireContext(), "Fingerprint feature coming soon!", Toast.LENGTH_SHORT).show()
+        // Switch listener to change theme
+        switchFingerPrint.setOnCheckedChangeListener { _, isChecked ->
+            sharedPreferences.edit().putBoolean("isBiometric", isChecked).apply()
+            //set a value here
         }
 
         // Initialize SharedPreferences

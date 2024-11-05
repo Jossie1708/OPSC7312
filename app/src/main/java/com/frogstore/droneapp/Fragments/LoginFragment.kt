@@ -80,8 +80,6 @@ class LoginFragment : Fragment() {
 
                 if (googleSignInClient.isSingedIn())
                 {
-
-
                     //auth biometrics
                     biometricPromptManager.showBiometricPrompt(
                         title = "Biometric Authentication",
