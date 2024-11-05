@@ -41,9 +41,6 @@
             android:name=".Activities.ImageViewerActivity"
             android:exported="false" />
         <activity
-            android:name=".Activities.LocationActivity"
-            android:exported="false" />
-        <activity
             android:name=".Activities.SettingsActivity"
             android:exported="false" />
         <activity

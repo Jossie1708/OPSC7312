@@ -40,6 +40,7 @@ class RegisterFragment : Fragment() {
     private lateinit var username: String
     private lateinit var email: String
     private lateinit var password: String
+    private  val tag = "register"
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -89,6 +90,8 @@ class RegisterFragment : Fragment() {
                             {
                                 // Sign in success, update UI with the signed-in user's information
                                 Log.d(TAG, "createUserWithEmail:success")
+                                Toast.makeText(requireContext(), "createUserWithEmail:success", Toast.LENGTH_SHORT).show()
+
                                 val user = auth.currentUser
                                 val intent = Intent(activity, SideMenuNavBarActivity::class.java)
                                 startActivity(intent)

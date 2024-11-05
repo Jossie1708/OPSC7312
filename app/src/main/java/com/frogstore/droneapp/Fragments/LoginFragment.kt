@@ -37,6 +37,7 @@ import com.frogstore.droneapp.GoogleSignInClient
 import com.google.firebase.Firebase
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.auth
+import kotlinx.coroutines.CoroutineScope
 
 
 class LoginFragment : Fragment() {
@@ -79,6 +80,8 @@ class LoginFragment : Fragment() {
 
                 if (googleSignInClient.isSingedIn())
                 {
+
+
                     //auth biometrics
                     biometricPromptManager.showBiometricPrompt(
                         title = "Biometric Authentication",
@@ -129,20 +132,34 @@ class LoginFragment : Fragment() {
         btnLogin.setOnClickListener {
             val email = emailField.text.toString()
             var password = passwordField.text.toString()
+            if (email.isEmpty() || password.isEmpty()) {
+                // Show error message for empty email
+                Toast.makeText(
+                    requireContext(),
+                    "Email and password cannot be empty.",
+                    Toast.LENGTH_SHORT,
+                ).show()
+            }
+            else{
+                auth.signInWithEmailAndPassword(email, password)
+                    .addOnCompleteListener(requireActivity()) { task ->
 
-            auth.signInWithEmailAndPassword(email, password)
-                .addOnCompleteListener(requireActivity()) { task ->
-                    if (task.isSuccessful) {
-                        // Sign in success, update UI with the signed-in user's information
-                        Log.d(TAG, "signInWithEmail:success")
-                        val intent = Intent(activity, SideMenuNavBarActivity::class.java)
-                        startActivity(intent)
-                    } else {
-                        // If sign in fails, display a message to the user.
-                        Log.w(TAG, "signInWithEmail:failure", task.exception)
-                        Toast.makeText(requireContext(), "Authentication failed.", Toast.LENGTH_SHORT,).show()
+                        if (task.isSuccessful) {
+                            // Sign in success, update UI with the signed-in user's information
+                            Log.d(TAG, "signInWithEmail:success")
+                            val intent = Intent(activity, SideMenuNavBarActivity::class.java)
+                            startActivity(intent)
+                        } else {
+                            // If sign in fails, display a message to the user.
+                            Log.w(TAG, "signInWithEmail:failure", task.exception)
+                            Toast.makeText(
+                                requireContext(),
+                                "Authentication failed.",
+                                Toast.LENGTH_SHORT,
+                            ).show()
+                        }
                     }
-                }
+            }
         }
         return layout
     }
